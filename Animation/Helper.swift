@@ -164,14 +164,14 @@ open class Color {
     
 }
 
-open class Canvas : CustomPlaygroundQuickLookable {
+open class Canvas : CustomPlaygroundDisplayConvertible {
     
     /// A custom playground Quick Look for this instance.
     ///
     /// If this type has value semantics, the `PlaygroundQuickLook` instance
     /// should be unaffected by subsequent mutations.
-    public var customPlaygroundQuickLook: PlaygroundQuickLook {
-        return .image(self.privateImageView)
+    public var playgroundDescription : Any {
+        return self.imageView.image as Any
     }
     
     public var imageView : NSImageView {
@@ -241,15 +241,15 @@ open class Canvas : CustomPlaygroundQuickLookable {
     open var drawShapesWithFill: Bool = true
     
     // Size of canvas
-    open let width : Int
-    open let height : Int
+    public let width : Int
+    public let height : Int
     
     // Current location of mouse on canvas
     open var mouseX : Float = 0.0
     open var mouseY : Float = 0.0
     
     // Scale factor for drawing
-    open let scale : Int
+    public let scale : Int
     
     /**
      Draw in high performance mode.
@@ -344,11 +344,11 @@ open class Canvas : CustomPlaygroundQuickLookable {
         let skew = 0.0
         
         // create dictionary with attributes of the string to be drawn
-        let attributes: [NSAttributedStringKey : AnyObject] = [
-            NSAttributedStringKey.foregroundColor: fieldColor,
-            NSAttributedStringKey.paragraphStyle: paraStyle,
-            NSAttributedStringKey.obliqueness: skew as AnyObject,
-            NSAttributedStringKey.font: fieldFont!
+        let attributes: [NSAttributedString.Key : AnyObject] = [
+            NSAttributedString.Key.foregroundColor: fieldColor,
+            NSAttributedString.Key.paragraphStyle: paraStyle,
+            NSAttributedString.Key.obliqueness: skew as AnyObject,
+            NSAttributedString.Key.font: fieldFont!
         ]
         
         // Draw the string
@@ -357,7 +357,7 @@ open class Canvas : CustomPlaygroundQuickLookable {
     }
     
     // Draw a line on the image
-    open func drawLine(fromX: Int, fromY: Int, toX: Int, toY: Int, lineWidth: Int = 0, capStyle : NSBezierPath.LineCapStyle = NSBezierPath.LineCapStyle.squareLineCapStyle) {
+    open func drawLine(fromX: Int, fromY: Int, toX: Int, toY: Int, lineWidth: Int = 0, capStyle : NSBezierPath.LineCapStyle = NSBezierPath.LineCapStyle.square) {
         
         // Set attributes of shape based on the canvas scale factor
         var fromX = fromX
@@ -655,10 +655,10 @@ open class Canvas : CustomPlaygroundQuickLookable {
     open func drawAxes() {
         
         // Draw horizontal axis
-        self.drawLine(fromX: self.width * -10, fromY: 0, toX: self.width * 10, toY: 0, lineWidth: 1, capStyle: NSBezierPath.LineCapStyle.squareLineCapStyle)
+        self.drawLine(fromX: self.width * -10, fromY: 0, toX: self.width * 10, toY: 0, lineWidth: 1, capStyle: NSBezierPath.LineCapStyle.square)
         
         // Draw vertical axis
-        self.drawLine(fromX: 0, fromY: self.height * -10, toX: 0, toY: self.height * 10, lineWidth: 1, capStyle: NSBezierPath.LineCapStyle.squareLineCapStyle)
+        self.drawLine(fromX: 0, fromY: self.height * -10, toX: 0, toY: self.height * 10, lineWidth: 1, capStyle: NSBezierPath.LineCapStyle.square)
         
         // Draw labels
         self.drawText(message: "x", size: 12, x: 50, y: 5)
@@ -667,5 +667,4 @@ open class Canvas : CustomPlaygroundQuickLookable {
     }
     
 }
-
 
