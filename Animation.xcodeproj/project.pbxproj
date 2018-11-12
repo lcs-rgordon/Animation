@@ -16,8 +16,10 @@
 		818878412199C645008CB375 /* CanvasGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188783A2199C645008CB375 /* CanvasGraphics.framework */; };
 		818878422199C645008CB375 /* CanvasGraphics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8188783A2199C645008CB375 /* CanvasGraphics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		818878532199C7EA008CB375 /* PerlinGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818878502199C7EA008CB375 /* PerlinGenerator.swift */; };
-		818878542199C7EA008CB375 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818878512199C7EA008CB375 /* Helper.swift */; };
+		818878542199C7EA008CB375 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818878512199C7EA008CB375 /* Canvas.swift */; };
 		818878552199C7EA008CB375 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818878522199C7EA008CB375 /* Map.swift */; };
+		81A9FADB219A151B003E6502 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A9FADA219A151B003E6502 /* Helpers.swift */; };
+		81A9FADD219A156E003E6502 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A9FADC219A156E003E6502 /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,8 +59,10 @@
 		818878492199C720008CB375 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		8188784E2199C7DF008CB375 /* CanvasLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasLiveViewController.swift; sourceTree = "<group>"; };
 		818878502199C7EA008CB375 /* PerlinGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerlinGenerator.swift; sourceTree = "<group>"; };
-		818878512199C7EA008CB375 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		818878512199C7EA008CB375 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		818878522199C7EA008CB375 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		81A9FADA219A151B003E6502 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		81A9FADC219A156E003E6502 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,9 +145,11 @@
 		818878562199C7F0008CB375 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				818878512199C7EA008CB375 /* Helper.swift */,
+				818878512199C7EA008CB375 /* Canvas.swift */,
 				818878522199C7EA008CB375 /* Map.swift */,
 				818878502199C7EA008CB375 /* PerlinGenerator.swift */,
+				81A9FADA219A151B003E6502 /* Helpers.swift */,
+				81A9FADC219A156E003E6502 /* Color.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -275,7 +281,9 @@
 				8134176A2199DBBA003676F3 /* CanvasLiveViewController.swift in Sources */,
 				818878552199C7EA008CB375 /* Map.swift in Sources */,
 				818878532199C7EA008CB375 /* PerlinGenerator.swift in Sources */,
-				818878542199C7EA008CB375 /* Helper.swift in Sources */,
+				81A9FADB219A151B003E6502 /* Helpers.swift in Sources */,
+				818878542199C7EA008CB375 /* Canvas.swift in Sources */,
+				81A9FADD219A156E003E6502 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
