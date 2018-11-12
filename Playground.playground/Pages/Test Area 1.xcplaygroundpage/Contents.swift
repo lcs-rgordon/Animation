@@ -1,9 +1,11 @@
 //: [Previous](@previous) / [Next](@next)
 //: # Test Area
 //:
-//: Add pages to this playground to experiment with creating static images.
+//: ## To duplicate this page
 //:
-//: Place your cursor on line 17 of this page, press `Command-A` to select all text, and then `Command-C` to copy.
+//: You can add pages to this playground to experiment with creating static images.
+//:
+//: Place your cursor on line 19 of this page, press `Command-A` to select all text, and then `Command-C` to copy.
 //:
 //: Move to the new page and press `Command-A` to select all text there, then `Command-V` to paste.
 //:
