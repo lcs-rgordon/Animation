@@ -180,7 +180,7 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
     }
     
     // Frame rate for animation on this canvas
-    var framesPerSecond : Int = 60 {
+    public var framesPerSecond : Int = 60 {
         didSet {
             // Ensure rational frame rate set
             if (framesPerSecond < 0) {
@@ -190,7 +190,7 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
     }
     
     // Keep track of how many frames have been animated using this particular canvas
-    var frameCount : Int = 0
+    public var frameCount : Int = 0
     
     // Image view that will display our image
     var privateImageView: NSImageView = NSImageView()

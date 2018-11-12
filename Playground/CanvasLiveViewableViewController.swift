@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import CanvasGraphics
 
 class CanvasLiveViewableViewController: NSViewController {
     

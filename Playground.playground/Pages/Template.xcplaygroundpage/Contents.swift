@@ -1,9 +1,12 @@
 //: [Previous](@previous) / [Next](@next)
 //: # Test Area
 //:
-//: Use this page to experiment with creating a static image.
+//: Add pages to this playground to experiment with creating static images.
 //:
-//: When you perfect a technique, you can move it into the animated sketch.
+//: Place your cursor on line 17 of this page, press `Command-A` to select all text, and then `Command-C` to copy.
+//:
+//: Move to the new page and press `Command-A` to select all text there, then `Command-V` to paste.
+//:
 /*:
  ## Required code
  
@@ -13,6 +16,7 @@
  */
 import Cocoa
 import PlaygroundSupport
+import CanvasGraphics
 
 // Create canvas
 let canvas = Canvas(width: 400, height: 300)
@@ -24,7 +28,7 @@ let canvas = Canvas(width: 400, height: 300)
  Use whitespace and comments as appropriate.
  */
 // Replace this comment with your first comment – what is the goal of the code you're about to write?
-
+canvas.drawRectangle(bottomLeftX: 100, bottomLeftY: 100, width: 50, height: 50, borderWidth: 5)
 
 
 /*:
