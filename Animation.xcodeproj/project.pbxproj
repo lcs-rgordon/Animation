@@ -12,6 +12,7 @@
 		81064A0E1C130A10007ED524 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81064A0D1C130A10007ED524 /* Assets.xcassets */; };
 		81064A111C130A10007ED524 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81064A0F1C130A10007ED524 /* Main.storyboard */; };
 		81064A1C1C132DA2007ED524 /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81064A1B1C132DA2007ED524 /* Sketch.swift */; };
+		8134176A2199DBBA003676F3 /* CanvasLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188784E2199C7DF008CB375 /* CanvasLiveViewController.swift */; };
 		818878412199C645008CB375 /* CanvasGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188783A2199C645008CB375 /* CanvasGraphics.framework */; };
 		818878422199C645008CB375 /* CanvasGraphics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8188783A2199C645008CB375 /* CanvasGraphics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		818878532199C7EA008CB375 /* PerlinGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818878502199C7EA008CB375 /* PerlinGenerator.swift */; };
@@ -54,7 +55,7 @@
 		8134E7921C14CD5700EC4523 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8188783A2199C645008CB375 /* CanvasGraphics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasGraphics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		818878492199C720008CB375 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		8188784E2199C7DF008CB375 /* CanvasLiveViewableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasLiveViewableViewController.swift; sourceTree = "<group>"; };
+		8188784E2199C7DF008CB375 /* CanvasLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasLiveViewController.swift; sourceTree = "<group>"; };
 		818878502199C7EA008CB375 /* PerlinGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerlinGenerator.swift; sourceTree = "<group>"; };
 		818878512199C7EA008CB375 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		818878522199C7EA008CB375 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
@@ -132,7 +133,7 @@
 		8188784D2199C7B8008CB375 /* Playground */ = {
 			isa = PBXGroup;
 			children = (
-				8188784E2199C7DF008CB375 /* CanvasLiveViewableViewController.swift */,
+				8188784E2199C7DF008CB375 /* CanvasLiveViewController.swift */,
 			);
 			path = Playground;
 			sourceTree = "<group>";
@@ -271,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8134176A2199DBBA003676F3 /* CanvasLiveViewController.swift in Sources */,
 				818878552199C7EA008CB375 /* Map.swift in Sources */,
 				818878532199C7EA008CB375 /* PerlinGenerator.swift in Sources */,
 				818878542199C7EA008CB375 /* Helper.swift in Sources */,

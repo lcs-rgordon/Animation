@@ -164,19 +164,10 @@ open class Color {
     
 }
 
-open class Canvas : CustomPlaygroundDisplayConvertible {
+open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     
-    /// A custom playground Quick Look for this instance.
-    ///
-    /// If this type has value semantics, the `PlaygroundQuickLook` instance
-    /// should be unaffected by subsequent mutations.
     public var playgroundDescription : Any {
-        return self.imageView.image as Any
-    }
-    
-    public var imageView : NSImageView {
-        self.highPerformance = false
-        return self.privateImageView
+        return self.image as Any
     }
     
     // Frame rate for animation on this canvas
@@ -191,9 +182,6 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
     
     // Keep track of how many frames have been animated using this particular canvas
     public var frameCount : Int = 0
-    
-    // Image view that will display our image
-    var privateImageView: NSImageView = NSImageView()
     
     // default line width
     open var defaultLineWidth: Int = 1 {
@@ -261,11 +249,11 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
         didSet {
             if self.highPerformance {
                 
-                self.privateImageView.image = nil
+                self.image = nil
                 
             } else {
                 
-                self.privateImageView.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
+                self.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
                 
             }
         }
@@ -278,7 +266,7 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
     }
     
     // Initialization of object based on this class
-    public init(width: Int, height: Int, quality : Quality = Quality.Standard) {
+    public init(width: Int = 300, height: Int = 200, quality : Quality = Quality.Standard) {
         
         // Set the canvas scale factor
         self.scale = quality.rawValue
@@ -286,23 +274,23 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
         // Set the width and height of the canvas
         self.width = width
         self.height = height
-        
+
         // Set the default line and border widths
         self.defaultLineWidth = 1 * self.scale
         self.defaultBorderWidth = 1 * self.scale
         
-        // Create the frame that defines boundaries of the image view to be used
-        let frameRect = NSRect(x: 0, y: 0, width: self.width * self.scale, height: self.height * self.scale)
-        
-        // Create the image view based on dimensions of frame created
-        self.privateImageView = NSImageView(frame: frameRect)
-        
         // Define the offscreen bitmap we will draw to
-        offscreenRep = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: self.width * self.scale, pixelsHigh: self.height * self.scale, bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: NSColorSpaceName.calibratedRGB, bytesPerRow: 4 * self.width * self.scale, bitsPerPixel: 32)!
+        self.offscreenRep = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: self.width * self.scale, pixelsHigh: self.height * self.scale, bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: NSColorSpaceName.calibratedRGB, bytesPerRow: 4 * self.width * self.scale, bitsPerPixel: 32)!
+
+        // Initialize the superclass
+        super.init(frame: NSRect(x: 0, y: 0, width: self.width * self.scale, height: self.height * self.scale))
         
         // Set the grpahics context to the offscreen bitmap
         NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: offscreenRep)
         
+        // Set the view's image
+        self.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
+
         // Make the background white
         self.fillColor = Color.white
         self.drawShapesWithBorders = false
@@ -310,9 +298,17 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
         self.fillColor = Color.black
         self.drawShapesWithBorders = true
         
-        // Default to low performance mode (shows output after every draw call, better for debugging and student learning)
-        self.privateImageView.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
+    }
+    
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    open override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
         
+        // Update the view's image
+        self.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
         
     }
     
@@ -353,6 +349,9 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
         
         // Draw the string
         string.draw(at: NSPoint(x: x, y: y), withAttributes: attributes)
+
+        // Make the view update
+        self.setNeedsDisplay()
         
     }
     
@@ -391,6 +390,10 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
         
         // Draw the line
         path.stroke()
+        
+        // Make the view update
+        self.setNeedsDisplay()
+
         
     }
     
@@ -435,6 +438,9 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
             path.fill()
         }
         
+        // Make the view update
+        self.setNeedsDisplay()
+        
     }
     
     // Draw a rectangle on the image
@@ -454,7 +460,6 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
         
         // Make the new path
         let path = NSBezierPath(rect: NSRect(x: bottomLeftX, y: bottomLeftY, width: width, height: height))
-        
         
         // Set width of border
         if borderWidth > 1 * scale {
@@ -479,6 +484,9 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
             path.fill()
         }
         
+        // Make the view update
+        self.setNeedsDisplay()
+        
     }
     
     // Convenience method to draw rectangle from it's centre point
@@ -486,6 +494,9 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
         
         // Call the original method but with points translated
         self.drawRectangle(bottomLeftX: centreX - width / 2, bottomLeftY: centreY - height / 2, width: width, height: height, borderWidth: borderWidth)
+        
+        // Make the view update
+        self.setNeedsDisplay()
         
     }
     
@@ -534,6 +545,9 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
             path.fill()
         }
         
+        // Make the view update
+        self.setNeedsDisplay()
+        
     }
     
     // Convenience method to draw a roudned rectangle from it's centre point
@@ -542,6 +556,9 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
         // Call the original method but with points translated
         self.drawRoundedRectangle(bottomLeftX: centreX - width / 2, bottomLeftY: centreY - height / 2, width: width, height: height, borderWidth: borderWidth, xRadius: xRadius, yRadius: yRadius)
         
+        // Make the view update
+        self.setNeedsDisplay()
+
     }
     
     /**
@@ -593,6 +610,9 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
             customPath.fill()
         }
         
+        // Make the view update
+        self.setNeedsDisplay()
+        
     }
     
     
@@ -602,6 +622,9 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
         xform.rotate(byDegrees: provided)
         xform.concat()
         
+        // Make the view update
+        self.setNeedsDisplay()
+
     }
     
     open func translate(byX: Int, byY: Int) {
@@ -614,6 +637,10 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
         let xform = NSAffineTransform()
         xform.translateX(by: CGFloat(byX), yBy: CGFloat(byY))
         xform.concat()
+        
+        // Make the view update
+        self.setNeedsDisplay()
+
     }
     
     open func saveState() {
@@ -645,7 +672,7 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
         }
         
         // Copy contents of image to clipboard
-        pasteBoard.writeObjects([self.privateImageView.image!])
+        pasteBoard.writeObjects([self.image!])
         
         // Restore prior high performance state
         self.highPerformance = priorHighPerformanceState
@@ -663,6 +690,9 @@ open class Canvas : CustomPlaygroundDisplayConvertible {
         // Draw labels
         self.drawText(message: "x", size: 12, x: 50, y: 5)
         self.drawText(message: "y", size: 12, x: 5, y: 50)
+        
+        // Make the view update
+        self.setNeedsDisplay()
         
     }
     

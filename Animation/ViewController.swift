@@ -15,31 +15,11 @@ class ViewController: NSViewController {
     
     @IBOutlet var myView: NSView!
     
-//    override func mouseDown(with theEvent: NSEvent) {
-//        
-//        // Set the mouseX and mouseY values on the canvas
-//        sketch.canvas.mouseX = Float(theEvent.locationInWindow.x)
-//        sketch.canvas.mouseY = Float(theEvent.locationInWindow.y)
-//        
-//        // Call the mouseDown function on the canvas, but only if it exists
-//        if sketch.responds(to: Selector(("mouseDown"))) {
-//            sketch.mouseDown()
-//        }
-//        
-//    }
-    
-    override func keyDown(with theEvent: NSEvent) {
-        print("Key Pressed")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Tell OS that we want a layer to display an image on
         self.view.wantsLayer = true
-        
-        // We want to accept keyboard events
-        //        self.view.window
         
         // Initialize the timer used to drive the sketch
         timer = Timer.scheduledTimer(timeInterval: 1/Double(sketch.canvas.framesPerSecond), target: self, selector: #selector(ViewController.timedDraw), userInfo: nil, repeats: true)
@@ -65,6 +45,9 @@ class ViewController: NSViewController {
         // Call the draw() method on the Sketch object
         sketch.draw()
         
+        // Make sure the canvas image gets updated
+        sketch.canvas.highPerformance = false
+
         // Increment the frame count for the current canvas of the sketch
         sketch.canvas.frameCount += 1
         
@@ -72,11 +55,9 @@ class ViewController: NSViewController {
         // and set it to the backing layer of the NSView object tied to the
         var imageRect : NSRect = NSMakeRect(0, 0, CGFloat(sketch.canvas.width), CGFloat(sketch.canvas.height))
         NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: sketch.canvas.offscreenRepresentation)
-        self.view.layer!.contents = sketch.canvas.imageView.image?.cgImage(forProposedRect: &imageRect, context: NSGraphicsContext.current, hints: nil)
-        
+        self.view.layer!.contents = sketch.canvas.image?.cgImage(forProposedRect: &imageRect, context: NSGraphicsContext.current, hints: nil)
+
     }
-    
-    
     
 }
 
