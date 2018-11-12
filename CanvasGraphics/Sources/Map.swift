@@ -4,13 +4,18 @@ import Foundation
 
 /// Re-maps a number from one range to another.
 ///
+/// Numbers outside of the range are not clamped to the minimum and maximum parameters values, because out-of-range values are often intentional and useful.
+///
 /// - Parameters:
 ///   - value: the incoming value to be converted
 ///   - fromLower: lower bound of the value's current range
 ///   - fromUpper: upper bound of the value's current range
 ///   - toLower: lower bound of the value's target range
 ///   - toUpper: upper bound of the value's target range
-/// - Returns: the equivalent value in the target range
+/// - Experiment: When the value given is 2, and the current range is from 0 to 5, what do you expect the return value to be when mapped to a target range of 0 to 50? Try it, and find out:
+///
+/// `let result = map(value: 2, fromLower: 0, fromUpper: 5, toLower: 0, toUpper: 50)`
+/// - Returns: The equivalent value in the target range
 public func map(value : Double,
                 fromLower : Double, fromUpper : Double,
                 toLower   : Double,   toUpper : Double) -> Double {
