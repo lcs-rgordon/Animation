@@ -11,15 +11,15 @@
 import Foundation
 
 /**
- Returns a random number in the given range.
+ Returns a random number in the given range, inclusive.
  
  - parameter from: The lowest possible random value that may be returned.
- - parameter toButNotIncluding: The random number returned will never include this value.
+ - parameter to: The highest possible random value that may be returned.
  
  */
-public func random(from : Int, toButNotIncluding : Int) -> Int {
+public func random(from : Int, to : Int) -> Int {
     
-    let max = UInt32(toButNotIncluding - from)
+    let max = UInt32(to + 1 - from)
     
     return Int(arc4random_uniform(max)) + from
     
