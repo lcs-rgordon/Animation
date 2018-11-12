@@ -1,7 +1,7 @@
 //: [Previous](@previous) / [Next](@next)
 //: # Test Area
 //:
-//: Use this page to experiment with a static image.
+//: Use this page to experiment with creating a static image.
 //:
 //: When you perfect a technique, you can move it into the animated sketch.
 /*:

@@ -25,7 +25,7 @@
 		81064A101C130A10007ED524 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		81064A121C130A10007ED524 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81064A1B1C132DA2007ED524 /* Sketch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
-		8134E7921C14CD5700EC4523 /* CanvasTestArea.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CanvasTestArea.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		8134E7921C14CD5700EC4523 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81B42BA71F9D6CF700E501B8 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		81B42BA81F9D6CF700E501B8 /* PerlinGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerlinGenerator.swift; sourceTree = "<group>"; };
 		81EAC5A31D87DF52005DD91D /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 		810649FD1C130A10007ED524 = {
 			isa = PBXGroup;
 			children = (
-				8134E7921C14CD5700EC4523 /* CanvasTestArea.playground */,
+				8134E7921C14CD5700EC4523 /* Playground.playground */,
 				81064A081C130A10007ED524 /* Animation */,
 				81064A071C130A10007ED524 /* Products */,
 			);
