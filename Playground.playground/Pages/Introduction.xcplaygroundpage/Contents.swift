@@ -40,7 +40,7 @@ PlaygroundPage.current.liveView = canvas
  You can remove the code on line 43 and begin writing your own code.
  */
 // Replace this comment with your first comment – what is the goal of the code you're about to write?
-canvas.drawRectangle(bottomLeftX: 100, bottomLeftY: 100, width: 50, height: 50, borderWidth: 5)
+canvas.drawRectangle(at: Point(x: 50, y: 75), width: 100, height: 200)
 
 /*:
  ## Show the Assistant Editor
@@ -52,7 +52,7 @@ canvas.drawRectangle(bottomLeftX: 100, bottomLeftY: 100, width: 50, height: 50, 
  */
 /*:
  ## Use source control
- To keep your work organized, receieve feedback, and earn a high grade in this course, regular use of source control is a must.
+ To keep your work organized, receive feedback, and earn a high grade in this course, regular use of source control is a must.
  
  Please commit and push your work often.
  

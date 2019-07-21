@@ -3,11 +3,25 @@ import Foundation
 
 public typealias Degrees = CGFloat
 
+public typealias Point = NSPoint
+
+public extension Int {
+    func asCGFloat() -> CGFloat {
+        return CGFloat(self)
+    }
+}
+
 /// Set to High (2x) or Ultra (4x) when generating output for printing, otherwise use Standard.
 public enum Quality : Int {
     case Standard = 1
     case High = 2
     case Ultra = 4
+}
+
+/// Used to specify how rectangles should be anchored
+public enum AnchorPosition : Int {
+    case bottomLeft  = 1
+    case centre = 2
 }
 
 open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
@@ -114,14 +128,14 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         // Set the width and height of the canvas
         self.width = width
         self.height = height
-
+        
         // Set the default line and border widths
         self.defaultLineWidth = 1 * self.scale
         self.defaultBorderWidth = 1 * self.scale
         
         // Define the offscreen bitmap we will draw to
         self.offscreenRep = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: self.width * self.scale, pixelsHigh: self.height * self.scale, bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: NSColorSpaceName.calibratedRGB, bytesPerRow: 4 * self.width * self.scale, bitsPerPixel: 32)!
-
+        
         // Initialize the superclass
         super.init(frame: NSRect(x: 0, y: 0, width: self.width * self.scale, height: self.height * self.scale))
         
@@ -130,11 +144,11 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         
         // Set the view's image
         self.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
-
+        
         // Make the background white
         self.fillColor = Color.white
         self.drawShapesWithBorders = false
-        self.drawRectangle(bottomLeftX: 0, bottomLeftY: 0, width: self.width * self.scale, height: self.height * self.scale)
+        self.drawRectangle(at: Point(x: 0, y: 0), width: self.width * self.scale, height: self.height * self.scale)
         self.fillColor = Color.black
         self.drawShapesWithBorders = true
         
@@ -152,16 +166,24 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         
     }
     
-    // Draw text on the image
-    open func drawText(message: String, size: Int = 24, x: Int = 0, y: Int = 0)  {
+    /**
+     Draw text beginning at the point specified.
+     
+     - Parameters:
+         - message: The text to be drawn on screen.
+         - size: The size of the text, specified in points.
+         - at: Text will be drawn starting at this location.
+     
+     */
+    open func drawText(message: String, size: Int = 24, at: Point)  {
         
         // Set attributes of shape based on the canvas scale factor
         var size = size
         size *= scale
-        var x = x
-        x *= scale
-        var y = y
-        y *= scale
+        var x = at.x
+        x *= scale.asCGFloat()
+        var y = at.y
+        y *= scale.asCGFloat()
         
         // Convert the provided String object to an NSString object
         let string: NSString = NSString(string: message)
@@ -170,7 +192,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         let fieldColor : NSColor = NSColor(hue: textColor.translatedHue, saturation: textColor.translatedSaturation, brightness: textColor.translatedBrightness, alpha: textColor.translatedAlpha)
         
         // set the font to Helvetica Neue 24
-        let fieldFont = NSFont(name: "Helvetica Neue", size: CGFloat(size))
+        let fieldFont = NSFont(name: "Helvetica Neue", size: size.asCGFloat())
         
         // set the line spacing to 1
         let paraStyle = NSMutableParagraphStyle()
@@ -189,24 +211,32 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         
         // Draw the string
         string.draw(at: NSPoint(x: x, y: y), withAttributes: attributes)
-
+        
         // Make the view update
         self.setNeedsDisplay()
         
     }
     
-    // Draw a line on the image
-    open func drawLine(fromX: Int, fromY: Int, toX: Int, toY: Int, lineWidth: Int = 0, capStyle : NSBezierPath.LineCapStyle = NSBezierPath.LineCapStyle.square) {
+    /**
+     Draw a line segment between the provided points.
+     
+     - Parameters:
+         - from: Starting position of the line segment.
+         - to: Ending position of the line segment.
+         - lineWidth: Width of the line segment.
+         - capStyle: The shape of line segment endpoints (square, rounded, et cetera).
+     */
+    open func drawLine(from: Point, to: Point, lineWidth: Int = 0, capStyle : NSBezierPath.LineCapStyle = NSBezierPath.LineCapStyle.square) {
         
         // Set attributes of shape based on the canvas scale factor
-        var fromX = fromX
-        fromX *= scale
-        var fromY = fromY
-        fromY *= scale
-        var toX = toX
-        toX *= scale
-        var toY = toY
-        toY *= scale
+        var fromX = from.x
+        fromX *= scale.asCGFloat()
+        var fromY = from.y
+        fromY *= scale.asCGFloat()
+        var toX = to.x
+        toX *= scale.asCGFloat()
+        var toY = to.y
+        toY *= scale.asCGFloat()
         var lineWidth = lineWidth
         lineWidth *= scale
         
@@ -216,9 +246,9 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         
         // Set width of border
         if lineWidth > 0 {
-            path.lineWidth = CGFloat(lineWidth)
+            path.lineWidth = lineWidth.asCGFloat()
         } else {
-            path.lineWidth = CGFloat(self.defaultLineWidth)
+            path.lineWidth = self.defaultLineWidth.asCGFloat()
         }
         
         // Define the line
@@ -233,18 +263,25 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         
         // Make the view update
         self.setNeedsDisplay()
-
         
     }
     
-    // Draw an ellipse on the image
-    open func drawEllipse(centreX: Int, centreY: Int, width: Int, height: Int, borderWidth: Int = 0) {
+    /**
+     Draw an ellipse centred at the point specified.
+     
+     - Parameters:
+         - at: Point over which the ellipse will be drawn.
+         - width: How wide the ellipse will be across its horizontal axis.
+         - height: How tall the ellipse will be across its vertical axis.
+         - borderWidth: How thick the stroke of the border should be.
+     */
+    open func drawEllipse(at: Point, width: Int, height: Int, borderWidth: Int = 0) {
         
         // Set attributes of shape based on the canvas scale factor
-        var centreX = centreX
-        centreX *= scale
-        var centreY = centreY
-        centreY *= scale
+        var centreX = at.x
+        centreX *= scale.asCGFloat()
+        var centreY = at.y
+        centreY *= scale.asCGFloat()
         var width = width
         width *= scale
         var height = height
@@ -253,11 +290,11 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         borderWidth *= scale
         
         // Make the new path
-        let path = NSBezierPath(ovalIn: NSRect(x: centreX - width/2, y: centreY - height/2, width: width, height: height))
+        let path = NSBezierPath(ovalIn: NSRect(x: centreX - width.asCGFloat() / 2, y: centreY - height.asCGFloat() / 2, width: width.asCGFloat(), height: height.asCGFloat()))
         
         // Set width of border
         if borderWidth > 0 {
-            path.lineWidth = CGFloat(borderWidth)
+            path.lineWidth = borderWidth.asCGFloat()
         } else {
             path.lineWidth = CGFloat(self.defaultBorderWidth * scale)
         }
@@ -283,14 +320,23 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         
     }
     
-    // Draw a rectangle on the image
-    open func drawRectangle(bottomLeftX: Int, bottomLeftY: Int, width: Int, height: Int, borderWidth: Int = 1) {
+    /**
+     Draw a rectangle at the specified point and anchor position.
+     
+     - Parameters:
+        - at: Point at which the rectangle will be drawn.
+        - anchoredBy: Draw the rectangle from a point at the rectangle's bottom left corner, or, the rectangle's centre.
+        - width: How wide the rectangle will be across its horizontal axis.
+        - height: How tall the rectangle will be across its vertical axis.
+        - borderWidth: How thick the stroke of the border should be.
+     */
+    open func drawRectangle(at: Point, width: Int, height: Int, anchoredBy : AnchorPosition = AnchorPosition.bottomLeft, borderWidth: Int = 1) {
         
         // Set attributes of shape based on the canvas scale factor
-        var bottomLeftX = bottomLeftX
-        bottomLeftX *= scale
-        var bottomLeftY = bottomLeftY
-        bottomLeftY *= scale
+        var bottomLeftX = at.x
+        bottomLeftX *= scale.asCGFloat()
+        var bottomLeftY = at.y
+        bottomLeftY *= scale.asCGFloat()
         var width = width
         width *= scale
         var height = height
@@ -298,12 +344,18 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         var borderWidth = borderWidth
         borderWidth *= scale
         
+        // Adjust when anchored at centre point
+        if anchoredBy == .centre {
+            bottomLeftX = at.x - width.asCGFloat() / 2
+            bottomLeftY = at.y - height.asCGFloat() / 2
+        }
+        
         // Make the new path
-        let path = NSBezierPath(rect: NSRect(x: bottomLeftX, y: bottomLeftY, width: width, height: height))
+        let path = NSBezierPath(rect: NSRect(x: bottomLeftX, y: bottomLeftY, width: width.asCGFloat(), height: height.asCGFloat()))
         
         // Set width of border
         if borderWidth > 1 * scale {
-            path.lineWidth = CGFloat(borderWidth)
+            path.lineWidth = borderWidth.asCGFloat()
         } else {
             path.lineWidth = CGFloat(self.defaultBorderWidth * scale)
         }
@@ -329,25 +381,31 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         
     }
     
-    // Convenience method to draw rectangle from it's centre point
-    open func drawRectangle(centreX: Int, centreY: Int, width: Int, height: Int, borderWidth: Int = 1) {
-        
-        // Call the original method but with points translated
-        self.drawRectangle(bottomLeftX: centreX - width / 2, bottomLeftY: centreY - height / 2, width: width, height: height, borderWidth: borderWidth)
-        
-        // Make the view update
-        self.setNeedsDisplay()
-        
-    }
-    
-    // Draw a rounded rectangle on the image
-    open func drawRoundedRectangle(bottomLeftX: Int, bottomLeftY: Int, width: Int, height: Int, borderWidth: Int = 1, xRadius: Int = 10, yRadius : Int = 10) {
+    /**
+     Draw a rounded rectangle at the specified point and anchor position.
+     
+     For the `xRadius` and `yRadius` parameters, imagine a circle at each corner of the rectangle.
+     
+     An `xRadius` and `yRadius` of 25 each means that the last 25 points of a typical rectangle have been replaced with the rounded edge of a circle with a radius of 25 points.
+     
+     When the `xRadius` and `yRadius` values are different, you can imagine that the corners of a typical rectangle have been replaced by the rounded edge of an ellipse rather than a circle.
+     
+     - Parameters:
+        - at: Point at which the rectangle will be drawn.
+        - anchoredBy: Draw the rectangle from a point at the rectangle's bottom left corner, or, the rectangle's centre.
+        - width: How wide the rectangle will be across its horizontal axis.
+        - height: How tall the rectangle will be across its vertical axis.
+        - borderWidth: How thick the stroke of the border should be.
+        - xRadius: Horizontal size of the rounded corner.
+        - yRadius: Vertical size of the rounded corner.
+     */
+    open func drawRoundedRectangle(at: Point, width: Int, height: Int, anchoredBy : AnchorPosition = AnchorPosition.bottomLeft, borderWidth: Int = 1, xRadius: Int = 10, yRadius: Int = 10) {
         
         // Set attributes of shape based on the canvas scale factor
-        var bottomLeftX = bottomLeftX
-        bottomLeftX *= scale
-        var bottomLeftY = bottomLeftY
-        bottomLeftY *= scale
+        var bottomLeftX = at.x
+        bottomLeftX *= scale.asCGFloat()
+        var bottomLeftY = at.y
+        bottomLeftY *= scale.asCGFloat()
         var width = width
         width *= scale
         var height = height
@@ -359,12 +417,18 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         var yRadius = yRadius
         yRadius *= scale
         
+        // Adjust when anchored at centre point
+        if anchoredBy == .centre {
+            bottomLeftX = at.x - width.asCGFloat() / 2
+            bottomLeftY = at.y - height.asCGFloat() / 2
+        }
+        
         // Make the new path
-        let path = NSBezierPath(roundedRect: NSRect(x: bottomLeftX, y: bottomLeftY, width: width, height: height), xRadius: CGFloat(xRadius), yRadius: CGFloat(yRadius))
+        let path = NSBezierPath(roundedRect: NSRect(x: bottomLeftX, y: bottomLeftY, width: width.asCGFloat(), height: height.asCGFloat()), xRadius: xRadius.asCGFloat(), yRadius: yRadius.asCGFloat())
         
         // Set width of border
         if borderWidth > 1 * scale {
-            path.lineWidth = CGFloat(borderWidth)
+            path.lineWidth = borderWidth.asCGFloat()
         } else {
             path.lineWidth = CGFloat(self.defaultBorderWidth * scale)
         }
@@ -390,26 +454,15 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         
     }
     
-    // Convenience method to draw a roudned rectangle from it's centre point
-    open func drawRoundedRectangle(centreX: Int, centreY: Int, width: Int, height: Int, borderWidth: Int = 1, xRadius : Int = 10, yRadius : Int = 10) {
-        
-        // Call the original method but with points translated
-        self.drawRoundedRectangle(bottomLeftX: centreX - width / 2, bottomLeftY: centreY - height / 2, width: width, height: height, borderWidth: borderWidth, xRadius: xRadius, yRadius: yRadius)
-        
-        // Make the view update
-        self.setNeedsDisplay()
-
-    }
-    
     /**
      Draws a closed polygon from the given vertices.
      
-     - parameter vertices: An array of NSPoint instances defining the vertices of the figure.
+     - parameter vertices: An array of Point instances defining the vertices of the figure.
      
      At least three vertices must be provided.
      
      */
-    open func drawCustomShape(with vertices : [NSPoint]) {
+    open func drawCustomShape(with vertices : [Point]) {
         
         // Ensure there are at least three vertices provided
         if vertices.count < 3 {
@@ -455,7 +508,16 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         
     }
     
-    
+    /**
+     Rotate the canvas around the origin.
+     
+     - parameter by: A value in degrees by which to rotate the canvas.
+     
+     Positive value rotate the canvas clockwise, negative values rotate the canvas counter-clockwise.
+     
+     Use `drawAxes()` after invoking this method to understand how the canvas has changed.
+     
+     */
     open func rotate(by provided : Degrees) {
         
         let xform = NSAffineTransform()
@@ -464,29 +526,57 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         
         // Make the view update
         self.setNeedsDisplay()
-
+        
     }
     
-    open func translate(byX: Int, byY: Int) {
+    /**
+     Translate the origin of the canvas to a new location.
+     
+     - parameter to: The point that you wish to move the origin to.
+     
+     Translating to (50, 100) would move the origin 50 steps "to the right" along the horizontal axis, and 100 steps "up" along the vertical axis.
+     
+     Note that "to the right" and "up" are relative, since the canvas may be rotated.
+     */
+    open func translate(to: Point) {
         
-        var byX = byX
-        byX *= scale
-        var byY = byY
-        byY *= scale
+        var byX = to.x
+        byX *= scale.asCGFloat()
+        var byY = to.y
+        byY *= scale.asCGFloat()
         
         let xform = NSAffineTransform()
-        xform.translateX(by: CGFloat(byX), yBy: CGFloat(byY))
+        xform.translateX(by: byX, yBy: byY)
         xform.concat()
         
         // Make the view update
         self.setNeedsDisplay()
-
+        
     }
     
+    /**
+     Save the current state of the canvas (location of origin, rotation of canvas).
+     
+     Works the same way as pushMatrix() in Processing.
+     
+     From the Processing documentation:
+     
+     "Pushes the current transformation matrix onto the matrix stack. Understanding pushMatrix() and popMatrix() requires understanding the concept of a matrix stack. The pushMatrix() function saves the current coordinate system to the stack and popMatrix() restores the prior coordinate system. pushMatrix() and popMatrix() are used in conjuction with the other transformation functions and may be embedded to control the scope of the transformations."
+     */
     open func saveState() {
         NSGraphicsContext.saveGraphicsState()
     }
     
+    /**
+     Restore a prior state of the canvas (location of origin, rotation of canvas).
+     
+     Works the same way as popMatrix() in Processing.
+     
+     From the Processing documentation:
+     
+     "Pops the current transformation matrix off the matrix stack. Understanding pushing and popping requires understanding the concept of a matrix stack. The pushMatrix() function saves the current coordinate system to the stack and popMatrix() restores the prior coordinate system. pushMatrix() and popMatrix() are used in conjuction with the other transformation functions and may be embedded to control the scope of the transformations."
+     
+     */
     open func restoreState() {
         NSGraphicsContext.restoreGraphicsState()
     }
@@ -494,8 +584,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     /**
      Copies the contents of the canvas to the clipboard.
      
-     You can then paste the image into any other program, for example, Preview, and then save to disk.
-     
+     You can then paste the image into any other program, for example, Preview, and from there, save to disk, print, share with others, et cetera.
      */
     open func copyToClipboard() {
         
@@ -519,17 +608,18 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         
     }
     
+    /// Draws horizontal and vertical axes based on the current location of the origin and rotation of the canvas.
     open func drawAxes() {
         
         // Draw horizontal axis
-        self.drawLine(fromX: self.width * -10, fromY: 0, toX: self.width * 10, toY: 0, lineWidth: 1, capStyle: NSBezierPath.LineCapStyle.square)
+        self.drawLine(from: Point(x: self.width * -10, y: 0), to: Point(x: self.width * 10, y: 0), capStyle: NSBezierPath.LineCapStyle.square)
         
         // Draw vertical axis
-        self.drawLine(fromX: 0, fromY: self.height * -10, toX: 0, toY: self.height * 10, lineWidth: 1, capStyle: NSBezierPath.LineCapStyle.square)
+        self.drawLine(from: Point(x: 0, y: self.height * -10), to: Point(x: 0, y: self.height * 10), capStyle: NSBezierPath.LineCapStyle.square)
         
         // Draw labels
-        self.drawText(message: "x", size: 12, x: 50, y: 5)
-        self.drawText(message: "y", size: 12, x: 5, y: 50)
+        self.drawText(message: "x", at: Point(x: 50, y: 5))
+        self.drawText(message: "y", at: Point(x: 5, y: 50))
         
         // Make the view update
         self.setNeedsDisplay()
