@@ -3,12 +3,7 @@ import Foundation
 
 public typealias Degrees = CGFloat
 
-/**
- Used to set scale factor for the canvas.
- 
- Standard should generally be used. When quality level is set to High or Ultra, the time required to generate the canvas is *significantly* increased. Only use a quality level other than standard when generating image output for printing.
- 
- */
+/// Set to High (2x) or Ultra (4x) when generating output for printing, otherwise use Standard.
 public enum Quality : Int {
     case Standard = 1
     case High = 2
@@ -21,7 +16,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         return self.image as Any
     }
     
-    // Frame rate for animation on this canvas
+    /// Frame rate for animation on this canvas
     public var framesPerSecond : Int = 60 {
         didSet {
             // Ensure rational frame rate set
@@ -31,10 +26,10 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         }
     }
     
-    // Keep track of how many frames have been animated using this particular canvas
+    /// Keep track of how many frames have been animated using this particular canvas
     public var frameCount : Int = 0
     
-    // default line width
+    /// Default line width
     open var defaultLineWidth: Int = 1 {
         didSet {
             // Ensure rational line width set
@@ -48,10 +43,10 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         }
     }
     
-    // Line color, default is black
+    /// Line color, default is black
     open var lineColor: Color = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
     
-    // Border width for closed shapes
+    /// Default border width for closed shapes
     open var defaultBorderWidth: Int = 1 {
         didSet {
             // Ensure rational border width set
@@ -64,19 +59,19 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         }
     }
     
-    // Border color, default is black
+    /// Border color, default is black
     open var borderColor: Color = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
     
-    // Fill color, default is black
+    /// Fill color, default is black
     open var fillColor: Color = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
     
-    // Text color, default is black
+    /// Text color, default is black
     open var textColor: Color = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
     
-    // Whether to draw shapes with borders
+    /// Whether to draw shapes with borders
     open var drawShapesWithBorders: Bool = true
     
-    // Whether to draw shapes with fill
+    /// Whether to draw shapes with fill
     open var drawShapesWithFill: Bool = true
     
     // Size of canvas
@@ -90,12 +85,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     // Scale factor for drawing
     public let scale : Int
     
-    /**
-     Draw in high performance mode.
-     
-     When set to true, the canvas will not update after every draw call.
-     
-     */
+    /// Draw in high performance mode. When true, canvas does not update after every draw call.
     open var highPerformance : Bool = false {
         didSet {
             if self.highPerformance {
@@ -116,7 +106,10 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         return self.offscreenRep
     }
     
-    // Initialization of object based on this class
+    /// Creates a canvas object that can be drawn upon.
+    /// - parameter width: Width of the canvas
+    /// - parameter height: Height of the canvas
+    /// - parameter qualty: When generating output for printing, use High or Ultra.
     public init(width: Int = 300, height: Int = 200, quality : Quality = Quality.Standard) {
         
         // Set the canvas scale factor
