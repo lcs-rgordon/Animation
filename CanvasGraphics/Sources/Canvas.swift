@@ -78,10 +78,6 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     public let width : Int
     public let height : Int
     
-    // Current location of mouse on canvas
-    open var mouseX : Float = 0.0
-    open var mouseY : Float = 0.0
-    
     // Scale factor for drawing
     public let scale : Int
     
