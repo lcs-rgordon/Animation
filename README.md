@@ -12,7 +12,7 @@ The following is an excerpt from **Getting Started with Processing** (2010) by C
 
 My experience has been that:
 
-* easy creation of interative graphics
+* easy creation of interactive graphics
 * the elegance of the Swift programming language
 * the forgiving and exploratory nature of the Swift Playgrounds environment
 
