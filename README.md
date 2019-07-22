@@ -1,6 +1,6 @@
 # Animation
 
-Welcome to **Animation**, an environent for authoring [Processing](https://processing.org)-style animations with Swift.
+Welcome to **Animation**, an environment for authoring [Processing](https://processing.org)-style animations with Swift.
 
 ## Motivation
 
