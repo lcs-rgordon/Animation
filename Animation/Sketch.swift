@@ -21,7 +21,7 @@ class Sketch : NSObject {
         
     }
     
-    // Runs in a loop, forever, to create the animated effect
+    // This function runs repeatedly, forever, to create the animated effect
     func draw() {
         
         // Change position
