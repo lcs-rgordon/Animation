@@ -1,18 +1,27 @@
 //: [Previous](@previous) / [Next](@next)
-//: # Introduction
+//: # Blank canvas to copy
 //:
-//: This is a playground that will let you draw shapes and other graphics easily.
+//: ## To duplicate this page
+//:
+//: Place your cursor on line 19 of this page, press `Command-A` to select all text, and then `Command-C` to copy.
+//:
+//: Two-finger tap on the playground, then choose **New Playground Page**:
+//:
+//: ![new-playground](new-playground.png "New Playground")
+//:
+//: Move to the new page and press `Command-A` to select all text there, then `Command-V` to paste.
+//:
 /*:
  ## Canvas size
  
- Set the size of your desired canvas by adjusting the constants on lines 10 and 11.
+ Set the size of your desired canvas by adjusting the constants on lines 19 and 20.
  */
 let preferredWidth = 300
 let preferredHeight = 600
 /*:
  ## Required code
  
- Lines 19 to 27 are required to make the playground run.
+ Lines 28 to 36 are required to make the playground run.
  
  Please do not remove.
  */
@@ -28,9 +37,9 @@ PlaygroundPage.current.liveView = canvas
 /*:
  ## Add your code
  
- Beginning on line 36, write a meaningful comment.
+ Beginning on line 45, write a meaningful comment.
  
- You can remove the code on line 37 and begin writing your own code.
+ You can remove the code on line 46 and begin writing your own code.
  */
 
 // Replace this comment with your first comment – what is the goal of the code you're about to write?
