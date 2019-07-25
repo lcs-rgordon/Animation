@@ -56,3 +56,38 @@ To see your animation, build and run the Animation application:
 
 <img width="334" alt="Screen Shot 2019-07-24 at 9 48 07 PM" src="https://user-images.githubusercontent.com/32135742/61842157-c9f4d200-ae5c-11e9-98e1-b66dcef76172.png">
 
+## Documentation
+
+Animation is designed to be an easy-to-use sketching environment.
+
+Create an instance of the Canvas class and begin drawing:
+
+```swift
+import Cocoa
+import PlaygroundSupport
+import CanvasGraphics
+
+// Create canvas
+let canvas = Canvas(width: 300, height: 600)
+
+// Show the canvas in the playground's live view
+PlaygroundPage.current.liveView = canvas
+
+// Draw a face
+canvas.fillColor = .white
+canvas.defaultBorderWidth = 5
+canvas.drawEllipse(at: Point(x: 150, y: 300), width: 200, height: 200)
+
+// Draw eyes
+canvas.drawEllipse(at: Point(x: 125, y: 325), width: 10, height: 20)
+canvas.drawEllipse(at: Point(x: 175, y: 325), width: 10, height: 20)
+
+// Draw mouth
+canvas.drawEllipse(at: Point(x: 150, y: 270), width: 100, height: 30)
+
+// Turn mouth into a smile by covering up top half of mouth
+canvas.drawShapesWithBorders = false
+canvas.drawRectangle(at: Point(x: 150, y: 275), width: 125, height: 25, anchoredBy: .centre)
+```
+
+You can read through the [documentation for available drawing methods here](http://russellgordon.ca/CanvasGraphics/Documentation/Classes/Canvas.html).
