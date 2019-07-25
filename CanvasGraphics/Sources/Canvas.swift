@@ -133,21 +133,16 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         self.defaultLineWidth = 1 * self.scale
         self.defaultBorderWidth = 1 * self.scale
         
-//        // Define the offscreen bitmap we will draw to
-//        // For now it is a non-retina bitmap (see viewDidMoveToSuperview() below)
+        // Define the offscreen bitmap we will draw to
+        // For now it is a non-retina bitmap (see setDrawingScale() below)
+        // Cannot determine screen capabilities until this class is initialized
         self.offscreenRep = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: self.width * self.scale, pixelsHigh: self.height * self.scale, bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: NSColorSpaceName.calibratedRGB, bytesPerRow: 4 * self.width * self.scale, bitsPerPixel: 32)!
         
         // Initialize the superclass
         super.init(frame: NSRect(x: 0, y: 0, width: self.width * self.scale, height: self.height * self.scale))
         
         // Set drawing scale and graphics context
-        setDrawingScale()
-        
-//        // Set the graphics context to the offscreen bitmap
-//        NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: offscreenRep)
-//
-//        // Set the view's image
-//        self.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
+        setDrawingScaleAndGraphicsContext()
         
         // Make the background white
         self.fillColor = Color.white
@@ -169,26 +164,35 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         self.offscreenRep = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: self.width * self.scale * Int(displayScale), pixelsHigh: self.height * self.scale * Int(displayScale), bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: NSColorSpaceName.calibratedRGB, bytesPerRow: 4 * self.width * self.scale * Int(displayScale), bitsPerPixel: 32)!
         
         // Setting the user size communicates the dpi
-        print("offscreen rep size is: \(self.offscreenRep.size)")
+        // Essentially compresses down the bitmap into a smaller frame if this is
+        // a Retina display (see DEBUG statements below to understand)
+        // DEBUG
+//        print("offscreen rep size is: \(self.offscreenRep.size)")
         self.offscreenRep.size = NSMakeSize(width, height)
-        print("offscreen rep size is: \(self.offscreenRep.size)")
+        // DEBUG
+//        print("offscreen rep size is: \(self.offscreenRep.size)")
 
         // Create the bitmap context
         NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: offscreenRep)
         
     }
     
-    func setDrawingScale() {
+    // Determines whether the display is Retina calibre or not and sizes bitmap we draw to
+    // as needed
+    func setDrawingScaleAndGraphicsContext() {
         
         // Bounds are in points
         let bounds : NSRect = self.bounds
         
         // Figure out the scale of pixels to points
         let displayScale : CGFloat = self.convertToBacking(NSSize(width: 1, height: 1)).width
+
+        // DEBUG
+//        print("Display scale is: \(displayScale)")
         
-        print("Width is: \(bounds.size.width)")
-        print("Height is: \(bounds.size.height)")
-        print("Display scale is: \(displayScale)")
+        // DEBUG
+//        print("Width is: \(bounds.size.width)")
+//        print("Height is: \(bounds.size.height)")
         
         // Supply the user size (in points)
         drawToBitmapOf(width: bounds.size.width, height: bounds.size.height, withDisplayScale: displayScale)
@@ -201,19 +205,16 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
 
     }
     
+    // This is called when the view needs to be updated
     open override func draw(_ dirtyRect: NSRect) {
+
         super.draw(dirtyRect)
-        
-        print("inside draw")
 
     }
     
+    // This is called after the view is created
     override open func viewDidMoveToSuperview() {
         
-        // Force the bitmap to be redrawn now that the view exists
-        // This ensure that a Retina display will see crisp text
-        //print("asking for redraw")
-        //self.setNeedsDisplay()
     }
     
     /**
