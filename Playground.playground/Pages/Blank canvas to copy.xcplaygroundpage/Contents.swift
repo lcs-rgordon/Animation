@@ -37,9 +37,12 @@ PlaygroundPage.current.liveView = canvas
 /*:
  ## Add your code
  
- Beginning on line 45, write a meaningful comment.
+ Beginning on line 48, write a meaningful comment.
  
- You can remove the code on line 46 and begin writing your own code.
+ You can remove the code on line 49 and begin writing your own code.
+ 
+ [Documentation](http://russellgordon.ca/CanvasGraphics/Documentation/) is available.
+
  */
 
 // Replace this comment with your first comment – what is the goal of the code you're about to write?
