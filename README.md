@@ -2,6 +2,20 @@
 
 Welcome to **Animation**, an environment for authoring [Processing](https://processing.org)-style animations with Swift.
 
+## Examples
+
+Animations are, naturally, easy to generate:
+
+![colorful-animation-smaller-resolution](https://user-images.githubusercontent.com/32135742/61841329-07a42b80-ae5a-11e9-84f5-b6a3a0a59acb.gif)
+
+Of course, animations are crisp and smooth when running in Xcode; what you see here is an animated GIF.
+
+Static images can also be generated, for example:
+
+![thepixies](https://user-images.githubusercontent.com/32135742/61841552-c5c7b500-ae5a-11e9-8d21-e0bff2029493.png)
+
+NOTE: the original gig poster design shown here is by [Mike Joyce at Swissted](https://www.swissted.com/pages/about-us).
+
 ## Motivation
 
 Animation shares the same goal as the Processing environment – to allow students to learn programming by creating interactive graphics.
