@@ -133,17 +133,21 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         self.defaultLineWidth = 1 * self.scale
         self.defaultBorderWidth = 1 * self.scale
         
-        // Define the offscreen bitmap we will draw to
+//        // Define the offscreen bitmap we will draw to
+//        // For now it is a non-retina bitmap (see viewDidMoveToSuperview() below)
         self.offscreenRep = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: self.width * self.scale, pixelsHigh: self.height * self.scale, bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: NSColorSpaceName.calibratedRGB, bytesPerRow: 4 * self.width * self.scale, bitsPerPixel: 32)!
         
         // Initialize the superclass
         super.init(frame: NSRect(x: 0, y: 0, width: self.width * self.scale, height: self.height * self.scale))
         
-        // Set the grpahics context to the offscreen bitmap
-        NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: offscreenRep)
+        // Set drawing scale and graphics context
+        setDrawingScale()
         
-        // Set the view's image
-        self.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
+//        // Set the graphics context to the offscreen bitmap
+//        NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: offscreenRep)
+//
+//        // Set the view's image
+//        self.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
         
         // Make the background white
         self.fillColor = Color.white
@@ -158,12 +162,58 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // Based on: https://developer.apple.com/library/archive/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/CapturingScreenContents/CapturingScreenContents.html#//apple_ref/doc/uid/TP40012302-CH10-SW30
+    func drawToBitmapOf(width : CGFloat, height : CGFloat, withDisplayScale displayScale: CGFloat) {
+        
+        // Define the offscreen bitmap we will draw to
+        self.offscreenRep = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: self.width * self.scale * Int(displayScale), pixelsHigh: self.height * self.scale * Int(displayScale), bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: NSColorSpaceName.calibratedRGB, bytesPerRow: 4 * self.width * self.scale * Int(displayScale), bitsPerPixel: 32)!
+        
+        // Setting the user size communicates the dpi
+        print("offscreen rep size is: \(self.offscreenRep.size)")
+        self.offscreenRep.size = NSMakeSize(width, height)
+        print("offscreen rep size is: \(self.offscreenRep.size)")
+
+        // Create the bitmap context
+        NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: offscreenRep)
+        
+    }
+    
+    func setDrawingScale() {
+        
+        // Bounds are in points
+        let bounds : NSRect = self.bounds
+        
+        // Figure out the scale of pixels to points
+        let displayScale : CGFloat = self.convertToBacking(NSSize(width: 1, height: 1)).width
+        
+        print("Width is: \(bounds.size.width)")
+        print("Height is: \(bounds.size.height)")
+        print("Display scale is: \(displayScale)")
+        
+        // Supply the user size (in points)
+        drawToBitmapOf(width: bounds.size.width, height: bounds.size.height, withDisplayScale: displayScale)
+        
+        // Draw the bitmap image to the view bounds
+        self.offscreenRep.draw(in: bounds)
+        
+        // Update the view's image
+        self.image = NSImage(cgImage: self.offscreenRep.cgImage!, size: self.offscreenRep.size)
+
+    }
+    
     open override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         
-        // Update the view's image
-        self.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
+        print("inside draw")
+
+    }
+    
+    override open func viewDidMoveToSuperview() {
         
+        // Force the bitmap to be redrawn now that the view exists
+        // This ensure that a Retina display will see crisp text
+        //print("asking for redraw")
+        //self.setNeedsDisplay()
     }
     
     /**
@@ -175,7 +225,9 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
          - at: Text will be drawn starting at this location.
      
      */
-    open func drawText(message: String, size: Int = 24, at: Point)  {
+    open func drawText(message: String, at: Point, size: Int = 24, kerning : Float = 0.0)  {
+        
+        print("inside drawText")
         
         // Set attributes of shape based on the canvas scale factor
         var size = size
@@ -191,8 +243,8 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         // set the text color to dark gray
         let fieldColor : NSColor = NSColor(hue: textColor.translatedHue, saturation: textColor.translatedSaturation, brightness: textColor.translatedBrightness, alpha: textColor.translatedAlpha)
         
-        // set the font to Helvetica Neue 24
-        let fieldFont = NSFont(name: "Helvetica Neue", size: size.asCGFloat())
+        // set the font to Helvetica Bold
+        let fieldFont = NSFont(name: "Helvetica Bold", size: size.asCGFloat())
         
         // set the line spacing to 1
         let paraStyle = NSMutableParagraphStyle()
@@ -206,7 +258,8 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
             NSAttributedString.Key.foregroundColor: fieldColor,
             NSAttributedString.Key.paragraphStyle: paraStyle,
             NSAttributedString.Key.obliqueness: skew as AnyObject,
-            NSAttributedString.Key.font: fieldFont!
+            NSAttributedString.Key.font: fieldFont!,
+            NSAttributedString.Key.kern: NSNumber(value: kerning) as AnyObject
         ]
         
         // Draw the string
