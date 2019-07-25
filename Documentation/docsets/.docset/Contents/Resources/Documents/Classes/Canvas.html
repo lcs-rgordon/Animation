@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Canvas Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/Canvas" class="dashAnchor"></a>
+    <a title="Canvas Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (55% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Canvas Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Canvas.html">Canvas</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Color.html">Color</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:14CanvasGraphics14AnchorPositionO">AnchorPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:14CanvasGraphics7QualityO">Quality</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:14CanvasGraphics3map5value9fromLower0E5Upper02toF00hG0S2d_S4dtF">map(value:fromLower:fromUpper:toLower:toUpper:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:14CanvasGraphics6random4from2toS2i_SitF">random(from:to:)</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Canvas</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">Canvas</span> <span class="p">:</span> <span class="kt">NSImageView</span><span class="p">,</span> <span class="kt">CustomPlaygroundDisplayConvertible</span></code></pre>
+
+                </div>
+              </div>
+            <p>Carries out the heavy lifting to generate bitmap graphics</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C21playgroundDescriptionypvp"></a>
+                    <a name="//apple_ref/swift/Property/playgroundDescription" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C21playgroundDescriptionypvp">playgroundDescription</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the bitmap image used for Xcode Playground quick looks; represents current state of the canvas at any given time.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">playgroundDescription</span><span class="p">:</span> <span class="kt">Any</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C15framesPerSecondSivp"></a>
+                    <a name="//apple_ref/swift/Property/framesPerSecond" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C15framesPerSecondSivp">framesPerSecond</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Frame rate for animation on this canvas</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">framesPerSecond</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C10frameCountSivp"></a>
+                    <a name="//apple_ref/swift/Property/frameCount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C10frameCountSivp">frameCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Keeps track of how many frames have been animated using this particular canvas</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">frameCount</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C16defaultLineWidthSivp"></a>
+                    <a name="//apple_ref/swift/Property/defaultLineWidth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C16defaultLineWidthSivp">defaultLineWidth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Default line width for lines drawn using drawLine()</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">defaultLineWidth</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C9lineColorAA0D0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/lineColor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C9lineColorAA0D0Cvp">lineColor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Line color, default is black</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">lineColor</span><span class="p">:</span> <span class="kt"><a href="../Classes/Color.html">Color</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C18defaultBorderWidthSivp"></a>
+                    <a name="//apple_ref/swift/Property/defaultBorderWidth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C18defaultBorderWidthSivp">defaultBorderWidth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Default border width for closed shapes</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">defaultBorderWidth</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C11borderColorAA0D0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/borderColor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C11borderColorAA0D0Cvp">borderColor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Border color, default is black</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">borderColor</span><span class="p">:</span> <span class="kt"><a href="../Classes/Color.html">Color</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C9fillColorAA0D0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/fillColor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C9fillColorAA0D0Cvp">fillColor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fill color, default is black</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">fillColor</span><span class="p">:</span> <span class="kt"><a href="../Classes/Color.html">Color</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C9textColorAA0D0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/textColor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C9textColorAA0D0Cvp">textColor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Text color, default is black</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">textColor</span><span class="p">:</span> <span class="kt"><a href="../Classes/Color.html">Color</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C21drawShapesWithBordersSbvp"></a>
+                    <a name="//apple_ref/swift/Property/drawShapesWithBorders" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C21drawShapesWithBordersSbvp">drawShapesWithBorders</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether to draw shapes with borders</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">drawShapesWithBorders</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C18drawShapesWithFillSbvp"></a>
+                    <a name="//apple_ref/swift/Property/drawShapesWithFill" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C18drawShapesWithFillSbvp">drawShapesWithFill</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether to draw shapes with fill</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">drawShapesWithFill</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C15highPerformanceSbvp"></a>
+                    <a name="//apple_ref/swift/Property/highPerformance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C15highPerformanceSbvp">highPerformance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Draw in high performance mode. When true, canvas image does not get updated after every draw call. This should generally be kept at the default value of <code>false</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">highPerformance</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C5width6height7qualityACSi_SiAA7QualityOtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(width:height:quality:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C5width6height7qualityACSi_SiAA7QualityOtcfc">init(width:height:quality:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a canvas object that can be drawn upon.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">quality</span><span class="p">:</span> <span class="kt"><a href="../Enums.html#/s:14CanvasGraphics7QualityO">Quality</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums.html#/s:14CanvasGraphics7QualityO">Quality</a></span><span class="o">.</span><span class="kt">Standard</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Width of the canvas</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>height</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Height of the canvas</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>qualty</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>When generating output for printing, use High or Ultra.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C8drawText7message2at4size7kerningySS_So7CGPointVSiSftF"></a>
+                    <a name="//apple_ref/swift/Method/drawText(message:at:size:kerning:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C8drawText7message2at4size7kerningySS_So7CGPointVSiSftF">drawText(message:at:size:kerning:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Draw text beginning at the point specified.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">drawText</span><span class="p">(</span><span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">at</span><span class="p">:</span> <span class="kt">Point</span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">24</span><span class="p">,</span> <span class="nv">kerning</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>message</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The text to be drawn on screen.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>at</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Text will be drawn starting at this location.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>size</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The size of the text, specified in points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>kerning</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The spacing between letters of the text. 0.0 is neutral, negative values draw letters together, positive values move letters further apart.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C8drawLine4from2to9lineWidth8capStyleySo7CGPointV_AJSiSo09NSLineCapJ0VtF"></a>
+                    <a name="//apple_ref/swift/Method/drawLine(from:to:lineWidth:capStyle:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C8drawLine4from2to9lineWidth8capStyleySo7CGPointV_AJSiSo09NSLineCapJ0VtF">drawLine(from:to:lineWidth:capStyle:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Draw a line segment between the provided points.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">drawLine</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">Point</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt">Point</span><span class="p">,</span> <span class="nv">lineWidth</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">capStyle</span><span class="p">:</span> <span class="kt">NSBezierPath</span><span class="o">.</span><span class="kt">LineCapStyle</span> <span class="o">=</span> <span class="kt">NSBezierPath</span><span class="o">.</span><span class="kt">LineCapStyle</span><span class="o">.</span><span class="n">square</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Starting position of the line segment.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Ending position of the line segment.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lineWidth</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Width of the line segment.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>capStyle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The shape of line segment endpoints (square, rounded, et cetera).</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C11drawEllipse2at5width6height11borderWidthySo7CGPointV_S3itF"></a>
+                    <a name="//apple_ref/swift/Method/drawEllipse(at:width:height:borderWidth:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C11drawEllipse2at5width6height11borderWidthySo7CGPointV_S3itF">drawEllipse(at:width:height:borderWidth:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Draw an ellipse centred at the point specified.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">drawEllipse</span><span class="p">(</span><span class="nv">at</span><span class="p">:</span> <span class="kt">Point</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">borderWidth</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>at</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Point over which the ellipse will be drawn.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>How wide the ellipse will be across its horizontal axis.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>height</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>How tall the ellipse will be across its vertical axis.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>borderWidth</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>How thick the stroke of the border should be.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C13drawRectangle2at5width6height10anchoredBy11borderWidthySo7CGPointV_S2iAA14AnchorPositionOSitF"></a>
+                    <a name="//apple_ref/swift/Method/drawRectangle(at:width:height:anchoredBy:borderWidth:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C13drawRectangle2at5width6height10anchoredBy11borderWidthySo7CGPointV_S2iAA14AnchorPositionOSitF">drawRectangle(at:width:height:anchoredBy:borderWidth:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Draw a rectangle at the specified point and anchor position.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">drawRectangle</span><span class="p">(</span><span class="nv">at</span><span class="p">:</span> <span class="kt">Point</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">anchoredBy</span><span class="p">:</span> <span class="kt"><a href="../Enums.html#/s:14CanvasGraphics14AnchorPositionO">AnchorPosition</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums.html#/s:14CanvasGraphics14AnchorPositionO">AnchorPosition</a></span><span class="o">.</span><span class="n">bottomLeft</span><span class="p">,</span> <span class="nv">borderWidth</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>at</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Point at which the rectangle will be drawn.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>anchoredBy</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Draw the rectangle from a point at the rectangle&rsquo;s bottom left corner, or, the rectangle&rsquo;s centre.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>How wide the rectangle will be across its horizontal axis.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>height</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>How tall the rectangle will be across its vertical axis.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>borderWidth</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>How thick the stroke of the border should be.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C20drawRoundedRectangle2at5width6height10anchoredBy11borderWidth7xRadius01yM0ySo7CGPointV_S2iAA14AnchorPositionOS3itF"></a>
+                    <a name="//apple_ref/swift/Method/drawRoundedRectangle(at:width:height:anchoredBy:borderWidth:xRadius:yRadius:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C20drawRoundedRectangle2at5width6height10anchoredBy11borderWidth7xRadius01yM0ySo7CGPointV_S2iAA14AnchorPositionOS3itF">drawRoundedRectangle(at:width:height:anchoredBy:borderWidth:xRadius:yRadius:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Draw a rounded rectangle at the specified point and anchor position.</p>
+
+<p>For the <code>xRadius</code> and <code>yRadius</code> parameters, imagine a circle at each corner of the rectangle.</p>
+
+<p>An <code>xRadius</code> and <code>yRadius</code> of 25 each means that the last 25 points of a typical rectangle have been replaced with the rounded edge of a circle with a radius of 25 points.</p>
+
+<p>When the <code>xRadius</code> and <code>yRadius</code> values are different, you can imagine that the corners of a typical rectangle have been replaced by the rounded edge of an ellipse rather than a circle.</p>
+
+<p>For example:</p>
+
+<p><code>canvas.drawRoundedRectangle(at: Point(x: 50, y: 50),</code>
+<code>width: 100,</code>
+<code>height: 75,</code>
+<code>anchoredBy: .bottomLeft,</code>
+<code>borderWidth: 2,</code>
+<code>xRadius: 20,</code>
+<code>yRadius: 30)</code></p>
+
+<p>&hellip; will produce:</p>
+
+<p><img src="http://russellgordon.ca/CanvasGraphics/drawRoundedRectangle_example.png" alt="drawCustomShape"></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">drawRoundedRectangle</span><span class="p">(</span><span class="nv">at</span><span class="p">:</span> <span class="kt">Point</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">anchoredBy</span><span class="p">:</span> <span class="kt"><a href="../Enums.html#/s:14CanvasGraphics14AnchorPositionO">AnchorPosition</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums.html#/s:14CanvasGraphics14AnchorPositionO">AnchorPosition</a></span><span class="o">.</span><span class="n">bottomLeft</span><span class="p">,</span> <span class="nv">borderWidth</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">xRadius</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="nv">yRadius</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>at</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Point at which the rectangle will be drawn.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>anchoredBy</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Draw the rectangle from a point at the rectangle&rsquo;s bottom left corner, or, the rectangle&rsquo;s centre.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>How wide the rectangle will be across its horizontal axis.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>height</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>How tall the rectangle will be across its vertical axis.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>borderWidth</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>How thick the stroke of the border should be.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>xRadius</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Horizontal size of the rounded corner.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>yRadius</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Vertical size of the rounded corner.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C15drawCustomShape4withySaySo7CGPointVG_tF"></a>
+                    <a name="//apple_ref/swift/Method/drawCustomShape(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C15drawCustomShape4withySaySo7CGPointVG_tF">drawCustomShape(with:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Draws a closed polygon from the given vertices.</p>
+
+<p>At least three vertices must be provided.</p>
+
+<p>For example:</p>
+
+<p><code>var myPoints : [Point] = []</code></p>
+
+<p><code>myPoints.append(Point(x: 50, y: 50))</code></p>
+
+<p><code>myPoints.append(Point(x: 100, y: 50))</code></p>
+
+<p><code>myPoints.append(Point(x: 75, y: 100))</code></p>
+
+<p><code>canvas.drawCustomShape(with: myPoints)</code></p>
+
+<p>&hellip; will produce:</p>
+
+<p><img src="http://russellgordon.ca/CanvasGraphics/drawCustomShape_example.png" alt="drawCustomShape"></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">drawCustomShape</span><span class="p">(</span><span class="n">with</span> <span class="nv">vertices</span><span class="p">:</span> <span class="p">[</span><span class="kt">Point</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>vertices</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An array of Point instances defining the vertices of the figure.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C6rotate2byy04CoreB07CGFloatV_tF"></a>
+                    <a name="//apple_ref/swift/Method/rotate(by:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C6rotate2byy04CoreB07CGFloatV_tF">rotate(by:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Rotate the canvas around the origin.</p>
+
+<p>Positive value rotate the canvas clockwise, negative values rotate the canvas counter-clockwise.</p>
+
+<p>Use <code><a href="../Classes/Canvas.html#/s:14CanvasGraphics0A0C8drawAxesyyF">drawAxes()</a></code> after invoking this method to understand how the canvas is changed by rotation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">rotate</span><span class="p">(</span><span class="n">by</span> <span class="nv">provided</span><span class="p">:</span> <span class="kt">Degrees</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>by</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A value in degrees by which to rotate the canvas.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C9translate2toySo7CGPointV_tF"></a>
+                    <a name="//apple_ref/swift/Method/translate(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C9translate2toySo7CGPointV_tF">translate(to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Translate the origin of the canvas to a new location.</p>
+
+<p>Translating to (50, 100) would move the origin 50 steps <q>to the right</q> along the horizontal axis, and 100 steps <q>up</q> along the vertical axis.</p>
+
+<p>Note that <q>to the right</q> and <q>up</q> are relative, since the canvas may be rotated.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">translate</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt">Point</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The point that you wish to move the origin to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C9saveStateyyF"></a>
+                    <a name="//apple_ref/swift/Method/saveState()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C9saveStateyyF">saveState()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Save the current state of the canvas (location of origin, rotation of canvas).</p>
+
+<p>Works the same way as <a href="https://processing.org/reference/pushMatrix_.html">pushMatrix()</a> in Processing.</p>
+
+<p>From the Processing documentation:</p>
+
+<p><q>Pushes the current transformation matrix onto the matrix stack. Understanding pushMatrix() and popMatrix() requires understanding the concept of a matrix stack. The pushMatrix() function saves the current coordinate system to the stack and popMatrix() restores the prior coordinate system. pushMatrix() and popMatrix() are used in conjuction with the other transformation functions and may be embedded to control the scope of the transformations.</q></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">saveState</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C12restoreStateyyF"></a>
+                    <a name="//apple_ref/swift/Method/restoreState()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C12restoreStateyyF">restoreState()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Restore a prior state of the canvas (location of origin, rotation of canvas).</p>
+
+<p>Works the same way as <a href="https://processing.org/reference/popMatrix_.html">popMatrix()</a> in Processing.</p>
+
+<p>From the Processing documentation:</p>
+
+<p><q>Pops the current transformation matrix off the matrix stack. Understanding pushing and popping requires understanding the concept of a matrix stack. The pushMatrix() function saves the current coordinate system to the stack and popMatrix() restores the prior coordinate system. pushMatrix() and popMatrix() are used in conjuction with the other transformation functions and may be embedded to control the scope of the transformations.</q></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">restoreState</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C15copyToClipboardyyF"></a>
+                    <a name="//apple_ref/swift/Method/copyToClipboard()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C15copyToClipboardyyF">copyToClipboard()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Copies the contents of the canvas to the clipboard.</p>
+
+<p>You can then paste the image into any other program, for example, Preview, and from there, save to disk, print, share with others, et cetera.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">copyToClipboard</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CanvasGraphics0A0C8drawAxesyyF"></a>
+                    <a name="//apple_ref/swift/Method/drawAxes()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CanvasGraphics0A0C8drawAxesyyF">drawAxes()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Draws horizontal and vertical axes based on the current location of the origin and rotation of the canvas.</p>
+
+<p>For example:</p>
+
+<p><img src="http://russellgordon.ca/CanvasGraphics/drawAxes_example.png" alt="axes"></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">drawAxes</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://twitter.com/rgordon" target="_blank" rel="external">Russell Gordon</a>. All rights reserved. (Last updated: 2019-07-24)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

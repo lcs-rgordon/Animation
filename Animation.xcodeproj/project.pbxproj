@@ -63,6 +63,39 @@
 		818878522199C7EA008CB375 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		81A9FADA219A151B003E6502 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		81A9FADC219A156E003E6502 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		81DBFBF722E96442005EDE85 /* Enums.html */ = {isa = PBXFileReference; lastKnownFileType = text.html.documentation; path = Enums.html; sourceTree = "<group>"; };
+		81DBFBF822E96442005EDE85 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html.documentation; path = index.html; sourceTree = "<group>"; };
+		81DBFBF922E96442005EDE85 /* Functions.html */ = {isa = PBXFileReference; lastKnownFileType = text.html.documentation; path = Functions.html; sourceTree = "<group>"; };
+		81DBFBFA22E96442005EDE85 /* search.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search.json; sourceTree = "<group>"; };
+		81DBFBFC22E96442005EDE85 /* highlight.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = highlight.css; sourceTree = "<group>"; };
+		81DBFBFD22E96442005EDE85 /* jazzy.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = jazzy.css; sourceTree = "<group>"; };
+		81DBFBFF22E96442005EDE85 /* Canvas.html */ = {isa = PBXFileReference; lastKnownFileType = text.html.documentation; path = Canvas.html; sourceTree = "<group>"; };
+		81DBFC0022E96442005EDE85 /* Color.html */ = {isa = PBXFileReference; lastKnownFileType = text.html.documentation; path = Color.html; sourceTree = "<group>"; };
+		81DBFC0222E96442005EDE85 /* jquery.min.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
+		81DBFC0322E96442005EDE85 /* jazzy.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = jazzy.js; sourceTree = "<group>"; };
+		81DBFC0522E96442005EDE85 /* carat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carat.png; sourceTree = "<group>"; };
+		81DBFC0622E96442005EDE85 /* dash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash.png; sourceTree = "<group>"; };
+		81DBFC0722E96442005EDE85 /* gh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gh.png; sourceTree = "<group>"; };
+		81DBFC0822E96442005EDE85 /* undocumented.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = undocumented.json; sourceTree = "<group>"; };
+		81DBFC0922E96442005EDE85 /* badge.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = badge.svg; sourceTree = "<group>"; };
+		81DBFC0A22E96442005EDE85 /* Classes.html */ = {isa = PBXFileReference; lastKnownFileType = text.html.documentation; path = Classes.html; sourceTree = "<group>"; };
+		81DBFC0F22E96442005EDE85 /* docSet.dsidx */ = {isa = PBXFileReference; lastKnownFileType = file; path = docSet.dsidx; sourceTree = "<group>"; };
+		81DBFC1122E96442005EDE85 /* Enums.html */ = {isa = PBXFileReference; lastKnownFileType = text.html.documentation; path = Enums.html; sourceTree = "<group>"; };
+		81DBFC1222E96442005EDE85 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html.documentation; path = index.html; sourceTree = "<group>"; };
+		81DBFC1322E96442005EDE85 /* Functions.html */ = {isa = PBXFileReference; lastKnownFileType = text.html.documentation; path = Functions.html; sourceTree = "<group>"; };
+		81DBFC1422E96442005EDE85 /* search.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search.json; sourceTree = "<group>"; };
+		81DBFC1622E96442005EDE85 /* highlight.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = highlight.css; sourceTree = "<group>"; };
+		81DBFC1722E96442005EDE85 /* jazzy.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = jazzy.css; sourceTree = "<group>"; };
+		81DBFC1922E96442005EDE85 /* Canvas.html */ = {isa = PBXFileReference; lastKnownFileType = text.html.documentation; path = Canvas.html; sourceTree = "<group>"; };
+		81DBFC1A22E96442005EDE85 /* Color.html */ = {isa = PBXFileReference; lastKnownFileType = text.html.documentation; path = Color.html; sourceTree = "<group>"; };
+		81DBFC1C22E96442005EDE85 /* jquery.min.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
+		81DBFC1D22E96442005EDE85 /* jazzy.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = jazzy.js; sourceTree = "<group>"; };
+		81DBFC1F22E96442005EDE85 /* carat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carat.png; sourceTree = "<group>"; };
+		81DBFC2022E96442005EDE85 /* dash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash.png; sourceTree = "<group>"; };
+		81DBFC2122E96442005EDE85 /* gh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gh.png; sourceTree = "<group>"; };
+		81DBFC2222E96442005EDE85 /* Classes.html */ = {isa = PBXFileReference; lastKnownFileType = text.html.documentation; path = Classes.html; sourceTree = "<group>"; };
+		81DBFC2322E96442005EDE85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81DBFC2422E96442005EDE85 /* .tgz */ = {isa = PBXFileReference; lastKnownFileType = file; path = .tgz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +122,7 @@
 			children = (
 				8134E7921C14CD5700EC4523 /* Playground.playground */,
 				818878472199C6A0008CB375 /* CanvasGraphics */,
+				81DBFBF622E96442005EDE85 /* Documentation */,
 				81064A081C130A10007ED524 /* Animation */,
 				8188784D2199C7B8008CB375 /* Playground */,
 				81064A071C130A10007ED524 /* Products */,
@@ -152,6 +186,150 @@
 				81A9FADC219A156E003E6502 /* Color.swift */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		81DBFBF622E96442005EDE85 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				81DBFBF722E96442005EDE85 /* Enums.html */,
+				81DBFBF822E96442005EDE85 /* index.html */,
+				81DBFBF922E96442005EDE85 /* Functions.html */,
+				81DBFBFA22E96442005EDE85 /* search.json */,
+				81DBFBFB22E96442005EDE85 /* css */,
+				81DBFBFE22E96442005EDE85 /* Classes */,
+				81DBFC0122E96442005EDE85 /* js */,
+				81DBFC0422E96442005EDE85 /* img */,
+				81DBFC0822E96442005EDE85 /* undocumented.json */,
+				81DBFC0922E96442005EDE85 /* badge.svg */,
+				81DBFC0A22E96442005EDE85 /* Classes.html */,
+				81DBFC0B22E96442005EDE85 /* docsets */,
+			);
+			path = Documentation;
+			sourceTree = SOURCE_ROOT;
+		};
+		81DBFBFB22E96442005EDE85 /* css */ = {
+			isa = PBXGroup;
+			children = (
+				81DBFBFC22E96442005EDE85 /* highlight.css */,
+				81DBFBFD22E96442005EDE85 /* jazzy.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		81DBFBFE22E96442005EDE85 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				81DBFBFF22E96442005EDE85 /* Canvas.html */,
+				81DBFC0022E96442005EDE85 /* Color.html */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		81DBFC0122E96442005EDE85 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				81DBFC0222E96442005EDE85 /* jquery.min.js */,
+				81DBFC0322E96442005EDE85 /* jazzy.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		81DBFC0422E96442005EDE85 /* img */ = {
+			isa = PBXGroup;
+			children = (
+				81DBFC0522E96442005EDE85 /* carat.png */,
+				81DBFC0622E96442005EDE85 /* dash.png */,
+				81DBFC0722E96442005EDE85 /* gh.png */,
+			);
+			path = img;
+			sourceTree = "<group>";
+		};
+		81DBFC0B22E96442005EDE85 /* docsets */ = {
+			isa = PBXGroup;
+			children = (
+				81DBFC0C22E96442005EDE85 /* .docset */,
+				81DBFC2422E96442005EDE85 /* .tgz */,
+			);
+			path = docsets;
+			sourceTree = "<group>";
+		};
+		81DBFC0C22E96442005EDE85 /* .docset */ = {
+			isa = PBXGroup;
+			children = (
+				81DBFC0D22E96442005EDE85 /* Contents */,
+			);
+			path = .docset;
+			sourceTree = "<group>";
+		};
+		81DBFC0D22E96442005EDE85 /* Contents */ = {
+			isa = PBXGroup;
+			children = (
+				81DBFC0E22E96442005EDE85 /* Resources */,
+				81DBFC2322E96442005EDE85 /* Info.plist */,
+			);
+			path = Contents;
+			sourceTree = "<group>";
+		};
+		81DBFC0E22E96442005EDE85 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				81DBFC0F22E96442005EDE85 /* docSet.dsidx */,
+				81DBFC1022E96442005EDE85 /* Documents */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		81DBFC1022E96442005EDE85 /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				81DBFC1122E96442005EDE85 /* Enums.html */,
+				81DBFC1222E96442005EDE85 /* index.html */,
+				81DBFC1322E96442005EDE85 /* Functions.html */,
+				81DBFC1422E96442005EDE85 /* search.json */,
+				81DBFC1522E96442005EDE85 /* css */,
+				81DBFC1822E96442005EDE85 /* Classes */,
+				81DBFC1B22E96442005EDE85 /* js */,
+				81DBFC1E22E96442005EDE85 /* img */,
+				81DBFC2222E96442005EDE85 /* Classes.html */,
+			);
+			path = Documents;
+			sourceTree = "<group>";
+		};
+		81DBFC1522E96442005EDE85 /* css */ = {
+			isa = PBXGroup;
+			children = (
+				81DBFC1622E96442005EDE85 /* highlight.css */,
+				81DBFC1722E96442005EDE85 /* jazzy.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		81DBFC1822E96442005EDE85 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				81DBFC1922E96442005EDE85 /* Canvas.html */,
+				81DBFC1A22E96442005EDE85 /* Color.html */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		81DBFC1B22E96442005EDE85 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				81DBFC1C22E96442005EDE85 /* jquery.min.js */,
+				81DBFC1D22E96442005EDE85 /* jazzy.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		81DBFC1E22E96442005EDE85 /* img */ = {
+			isa = PBXGroup;
+			children = (
+				81DBFC1F22E96442005EDE85 /* carat.png */,
+				81DBFC2022E96442005EDE85 /* dash.png */,
+				81DBFC2122E96442005EDE85 /* gh.png */,
+			);
+			path = img;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

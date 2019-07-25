@@ -1,0 +1,187 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Canvas.swift",
+      "line": 4,
+      "symbol": "Degrees",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Canvas.swift",
+      "line": 6,
+      "symbol": "Point",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Canvas.swift",
+      "line": 9,
+      "symbol": "Int.asCGFloat()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Canvas.swift",
+      "line": 16,
+      "symbol": "Quality.Standard",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Canvas.swift",
+      "line": 17,
+      "symbol": "Quality.High",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Canvas.swift",
+      "line": 18,
+      "symbol": "Quality.Ultra",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Canvas.swift",
+      "line": 23,
+      "symbol": "AnchorPosition.bottomLeft",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Canvas.swift",
+      "line": 24,
+      "symbol": "AnchorPosition.centre",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Canvas.swift",
+      "line": 94,
+      "symbol": "Canvas.width",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Canvas.swift",
+      "line": 95,
+      "symbol": "Canvas.height",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Canvas.swift",
+      "line": 98,
+      "symbol": "Canvas.scale",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Canvas.swift",
+      "line": 117,
+      "symbol": "Canvas.offscreenRepresentation",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Canvas.swift",
+      "line": 158,
+      "symbol": "Canvas.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Canvas.swift",
+      "line": 211,
+      "symbol": "Canvas.draw(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Canvas.swift",
+      "line": 218,
+      "symbol": "Canvas.viewDidMoveToSuperview()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Color.swift",
+      "line": 53,
+      "symbol": "Color.black",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Color.swift",
+      "line": 54,
+      "symbol": "Color.white",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Color.swift",
+      "line": 55,
+      "symbol": "Color.red",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Color.swift",
+      "line": 56,
+      "symbol": "Color.orange",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Color.swift",
+      "line": 57,
+      "symbol": "Color.yellow",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Color.swift",
+      "line": 58,
+      "symbol": "Color.green",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Color.swift",
+      "line": 59,
+      "symbol": "Color.blue",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Color.swift",
+      "line": 60,
+      "symbol": "Color.purple",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/Color.swift",
+      "line": 120,
+      "symbol": "Color.init(hue:saturation:brightness:alpha:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/CanvasGraphics/Sources/PerlinGenerator.swift",
+      "line": 58,
+      "symbol": "PerlinGenerator",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/russellgordon/Repositories/Animation/Playground/CanvasLiveViewController.swift",
+      "line": 3,
+      "symbol": "CanvasLiveViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/russellgordon/Repositories/Animation"
+}

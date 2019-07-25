@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html"> Docs</a> (55% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html"> Reference</a>
+        <img id="carat" src="img/carat.png" />
+          Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/Canvas.html">Canvas</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Color.html">Color</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums.html#/s:14CanvasGraphics14AnchorPositionO">AnchorPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums.html#/s:14CanvasGraphics7QualityO">Quality</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:14CanvasGraphics3map5value9fromLower0E5Upper02toF00hG0S2d_S4dtF">map(value:fromLower:fromUpper:toLower:toUpper:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:14CanvasGraphics6random4from2toS2i_SitF">random(from:to:)</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <h1 id='animation' class='heading'>Animation</h1>
+
+<p>Welcome to <strong>Animation</strong>, an environment for authoring <a href="https://processing.org">Processing</a>-style animations with Swift.</p>
+<h2 id='examples' class='heading'>Examples</h2>
+
+<p>Animations are, naturally, easy to generate:</p>
+
+<p><img src="https://user-images.githubusercontent.com/32135742/61841329-07a42b80-ae5a-11e9-84f5-b6a3a0a59acb.gif" alt="colorful-animation-smaller-resolution"></p>
+
+<p>Of course, animations are crisp and smooth when running in Xcode; what you see above is an animated GIF.</p>
+
+<p>Static images can also be generated, for example:</p>
+
+<p><img src="https://user-images.githubusercontent.com/32135742/61841552-c5c7b500-ae5a-11e9-8d21-e0bff2029493.png" alt="thepixies"></p>
+
+<p>NOTE: the original gig poster design shown here is by <a href="https://www.swissted.com/pages/about-us">Mike Joyce at Swissted</a>.</p>
+<h2 id='motivation' class='heading'>Motivation</h2>
+
+<p>Animation shares the same goal as the Processing environment – to allow students to learn programming by creating interactive graphics.</p>
+
+<p>The following is an excerpt from <strong>Getting Started with Processing</strong> (2010) by Casey Reas and Ben Fry:</p>
+
+<p><em>Programming courses typically focus on structure and theory first. Anything visual—an interface, an animation—is considered a dessert to be enjoyed only after finishing your vegetables, usually several weeks of studying algorithms and methods. Over the years, we’ve watched many friends try to take such courses and drop out after the first lecture or after a long, frustrating night before the first assignment deadline. What initial curiosity they had about making the computer work for them was lost because they couldn’t see a path from what they had to learn first to what they wanted to create.</em></p>
+
+<p>My experience has been that:</p>
+
+<ul>
+<li>easy creation of interactive graphics</li>
+<li>the elegance of the Swift programming language</li>
+<li>the forgiving and exploratory nature of the Swift Playgrounds environment</li>
+</ul>
+
+<p>&hellip; combines to make an extremely powerful introductory learning experience for students in Computer Science classes.</p>
+<h2 id='getting-started' class='heading'>Getting Started</h2>
+
+<p>Clone or <a href="https://github.com/lcs-rgordon/Animation/archive/master.zip">download a ZIP</a> of the repository.</p>
+
+<p>Be sure you open the <code>Animation.xcodeproj</code> file:</p>
+
+<p><img width="641" alt="Screen Shot 2019-07-24 at 9 42 57 PM" src="https://user-images.githubusercontent.com/32135742/61841955-1855a100-ae5c-11e9-89a3-30386bf8f864.png"></p>
+
+<p>Once you open the project, you must (one time only) build the <code>CanvasGraphics</code> framework:</p>
+
+<p><img width="370" alt="Screen Shot 2019-07-24 at 9 45 16 PM" src="https://user-images.githubusercontent.com/32135742/61842049-64a0e100-ae5c-11e9-9b60-94e58212d12b.png"></p>
+
+<p>To create static images, use the playground file:</p>
+
+<p><img width="269" alt="Screen Shot 2019-07-24 at 9 41 46 PM" src="https://user-images.githubusercontent.com/32135742/61841886-e04e5e00-ae5b-11e9-83e1-eb3d85b664d9.png"></p>
+
+<p>To create an animation, work in the <code>Sketch.swift</code> file:</p>
+
+<p><img width="279" alt="Screen Shot 2019-07-24 at 9 46 23 PM" src="https://user-images.githubusercontent.com/32135742/61842074-7edabf00-ae5c-11e9-96ad-63ff914bba1f.png"></p>
+
+<p>To see your animation, build and run the Animation application:</p>
+
+<p><img width="334" alt="Screen Shot 2019-07-24 at 9 48 07 PM" src="https://user-images.githubusercontent.com/32135742/61842157-c9f4d200-ae5c-11e9-98e1-b66dcef76172.png"></p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://twitter.com/rgordon" target="_blank" rel="external">Russell Gordon</a>. All rights reserved. (Last updated: 2019-07-24)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
