@@ -230,9 +230,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
      
      */
     open func drawText(message: String, at: Point, size: Int = 24, kerning : Float = 0.0)  {
-        
-        print("inside drawText")
-        
+                
         // Set attributes of shape based on the canvas scale factor
         var size = size
         size *= scale
@@ -268,9 +266,6 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         
         // Draw the string
         string.draw(at: NSPoint(x: x, y: y), withAttributes: attributes)
-        
-        // Make the view update
-        self.setNeedsDisplay()
         
     }
     
@@ -317,9 +312,6 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         
         // Draw the line
         path.stroke()
-        
-        // Make the view update
-        self.setNeedsDisplay()
         
     }
     
@@ -371,9 +363,6 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         if (self.drawShapesWithFill == true) {
             path.fill()
         }
-        
-        // Make the view update
-        self.setNeedsDisplay()
         
     }
     
@@ -432,9 +421,6 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         if (self.drawShapesWithFill == true) {
             path.fill()
         }
-        
-        // Make the view update
-        self.setNeedsDisplay()
         
     }
     
@@ -520,9 +506,6 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
             path.fill()
         }
         
-        // Make the view update
-        self.setNeedsDisplay()
-        
     }
     
     /**
@@ -590,9 +573,6 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
             customPath.fill()
         }
         
-        // Make the view update
-        self.setNeedsDisplay()
-        
     }
     
     /**
@@ -610,9 +590,6 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         let xform = NSAffineTransform()
         xform.rotate(byDegrees: provided)
         xform.concat()
-        
-        // Make the view update
-        self.setNeedsDisplay()
         
     }
     
@@ -635,9 +612,6 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         let xform = NSAffineTransform()
         xform.translateX(by: byX, yBy: byY)
         xform.concat()
-        
-        // Make the view update
-        self.setNeedsDisplay()
         
     }
     
@@ -711,9 +685,6 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         // Draw labels
         self.drawText(message: "x", at: Point(x: 50, y: 5))
         self.drawText(message: "y", at: Point(x: 5, y: 50))
-        
-        // Make the view update
-        self.setNeedsDisplay()
         
     }
     
