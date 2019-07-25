@@ -24,8 +24,10 @@ public enum AnchorPosition : Int {
     case centre = 2
 }
 
+/// Carries out the heavy lifting to generate bitmap graphics
 open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     
+    /// Returns the bitmap image used for Xcode Playground quick looks; represents current state of the canvas at any given time.
     public var playgroundDescription : Any {
         return self.image as Any
     }
@@ -40,10 +42,10 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         }
     }
     
-    /// Keep track of how many frames have been animated using this particular canvas
+    /// Keeps track of how many frames have been animated using this particular canvas
     public var frameCount : Int = 0
     
-    /// Default line width
+    /// Default line width for lines drawn using drawLine()
     open var defaultLineWidth: Int = 1 {
         didSet {
             // Ensure rational line width set
@@ -95,7 +97,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     // Scale factor for drawing
     public let scale : Int
     
-    /// Draw in high performance mode. When true, canvas does not update after every draw call.
+    /// Draw in high performance mode. When true, canvas image does not get updated after every draw call. This should generally be kept at the default value of `false`.
     open var highPerformance : Bool = false {
         didSet {
             if self.highPerformance {
@@ -222,8 +224,9 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
      
      - Parameters:
          - message: The text to be drawn on screen.
-         - size: The size of the text, specified in points.
          - at: Text will be drawn starting at this location.
+         - size: The size of the text, specified in points.
+         - kerning: The spacing between letters of the text. 0.0 is neutral, negative values draw letters together, positive values move letters further apart.
      
      */
     open func drawText(message: String, at: Point, size: Int = 24, kerning : Float = 0.0)  {
@@ -444,6 +447,20 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
      
      When the `xRadius` and `yRadius` values are different, you can imagine that the corners of a typical rectangle have been replaced by the rounded edge of an ellipse rather than a circle.
      
+     For example:
+     
+     `canvas.drawRoundedRectangle(at: Point(x: 50, y: 50),`
+     `                            width: 100,`
+     `                            height: 75,`
+     `                            anchoredBy: .bottomLeft,`
+     `                            borderWidth: 2,`
+     `                            xRadius: 20,`
+     `                            yRadius: 30)`
+     
+     ... will produce:
+     
+     ![drawCustomShape](http://russellgordon.ca/CanvasGraphics/drawRoundedRectangle_example.png)
+
      - Parameters:
         - at: Point at which the rectangle will be drawn.
         - anchoredBy: Draw the rectangle from a point at the rectangle's bottom left corner, or, the rectangle's centre.
@@ -515,6 +532,22 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
      
      At least three vertices must be provided.
      
+     For example:
+     
+     `var myPoints : [Point] = []`
+     
+     `myPoints.append(Point(x: 50, y: 50))`
+     
+     `myPoints.append(Point(x: 100, y: 50))`
+     
+     `myPoints.append(Point(x: 75, y: 100))`
+     
+     `canvas.drawCustomShape(with: myPoints)`
+     
+     ... will produce:
+     
+     ![drawCustomShape](http://russellgordon.ca/CanvasGraphics/drawCustomShape_example.png)
+
      */
     open func drawCustomShape(with vertices : [Point]) {
         
@@ -569,7 +602,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
      
      Positive value rotate the canvas clockwise, negative values rotate the canvas counter-clockwise.
      
-     Use `drawAxes()` after invoking this method to understand how the canvas has changed.
+     Use `drawAxes()` after invoking this method to understand how the canvas is changed by rotation.
      
      */
     open func rotate(by provided : Degrees) {
@@ -611,7 +644,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     /**
      Save the current state of the canvas (location of origin, rotation of canvas).
      
-     Works the same way as pushMatrix() in Processing.
+     Works the same way as [pushMatrix()](https://processing.org/reference/pushMatrix_.html) in Processing.
      
      From the Processing documentation:
      
@@ -624,7 +657,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     /**
      Restore a prior state of the canvas (location of origin, rotation of canvas).
      
-     Works the same way as popMatrix() in Processing.
+     Works the same way as [popMatrix()](https://processing.org/reference/popMatrix_.html) in Processing.
      
      From the Processing documentation:
      
@@ -663,6 +696,10 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     }
     
     /// Draws horizontal and vertical axes based on the current location of the origin and rotation of the canvas.
+    ///
+    /// For example:
+    ///
+    /// ![axes](http://russellgordon.ca/CanvasGraphics/drawAxes_example.png)
     open func drawAxes() {
         
         // Draw horizontal axis
