@@ -8,7 +8,7 @@ Animations are, naturally, easy to generate:
 
 ![colorful-animation-smaller-resolution](https://user-images.githubusercontent.com/32135742/61841329-07a42b80-ae5a-11e9-84f5-b6a3a0a59acb.gif)
 
-Of course, animations are crisp and smooth when running in Xcode; what you see here is an animated GIF.
+Of course, animations are crisp and smooth when running in Xcode; what you see above is an animated GIF.
 
 Static images can also be generated, for example:
 
