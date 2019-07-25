@@ -31,3 +31,28 @@ My experience has been that:
 * the forgiving and exploratory nature of the Swift Playgrounds environment
 
 ... combines to make an extremely powerful introductory learning experience for students in Computer Science classes.
+
+## Getting Started
+
+Clone or [download a ZIP](https://github.com/lcs-rgordon/Animation/archive/master.zip) of the repository.
+
+Be sure you open the `Animation.xcodeproj` file:
+
+<img width="641" alt="Screen Shot 2019-07-24 at 9 42 57 PM" src="https://user-images.githubusercontent.com/32135742/61841955-1855a100-ae5c-11e9-89a3-30386bf8f864.png">
+
+Once you open the project, you must (one time only) build the `CanvasGraphics` framework:
+
+<img width="370" alt="Screen Shot 2019-07-24 at 9 45 16 PM" src="https://user-images.githubusercontent.com/32135742/61842049-64a0e100-ae5c-11e9-9b60-94e58212d12b.png">
+
+To create static images, use the playground file:
+
+<img width="269" alt="Screen Shot 2019-07-24 at 9 41 46 PM" src="https://user-images.githubusercontent.com/32135742/61841886-e04e5e00-ae5b-11e9-83e1-eb3d85b664d9.png">
+
+To create an animation, work in the `Sketch.swift` file:
+
+<img width="279" alt="Screen Shot 2019-07-24 at 9 46 23 PM" src="https://user-images.githubusercontent.com/32135742/61842074-7edabf00-ae5c-11e9-96ad-63ff914bba1f.png">
+
+To see your animation, build and run the Animation application:
+
+<img width="334" alt="Screen Shot 2019-07-24 at 9 48 07 PM" src="https://user-images.githubusercontent.com/32135742/61842157-c9f4d200-ae5c-11e9-98e1-b66dcef76172.png">
+
