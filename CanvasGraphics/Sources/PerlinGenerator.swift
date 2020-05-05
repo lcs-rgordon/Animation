@@ -61,8 +61,8 @@ open class PerlinGenerator {
     var persistence: Double
     var zoom: Double
     
-    public init() {
-        octaves = 1
+    public init(octaves: Int = 2) {
+        self.octaves = octaves
         persistence = 1
         zoom = 1
     }
@@ -199,6 +199,10 @@ open class PerlinGenerator {
                                  y: y * frequency,
                                  z: z * frequency,
                                  t: t * frequency) * amplitude
+
+            // Adjust to range of 0 to 1
+            noise += 1
+            noise /= 2
         }
         return noise        
     }
