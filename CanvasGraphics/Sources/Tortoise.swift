@@ -40,15 +40,15 @@ open class Tortoise {
     
     open func right(by angle: Degrees) {
         
-        self.left(by: -angle)
+        self.heading -= angle
+        c.rotate(by: -angle)
         
     }
     
     open func left(by angle: Degrees) {
         
-        self.heading -= angle
-        c.rotate(by: angle)
-        
+        self.right(by: -angle)
+
     }
     
     open func forward(steps: Int) {
@@ -68,7 +68,7 @@ open class Tortoise {
     
     open func setHeading(to: Degrees) {
         
-        let relativeHeading = self.currentHeading() - to
+        let relativeHeading = to - self.currentHeading()
         self.heading = to
         c.rotate(by: relativeHeading)
         
