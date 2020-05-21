@@ -14,6 +14,7 @@ open class Tortoise {
     var drawing = true
     var heading: Degrees = 0
     var position: Point = Point(x: 0, y: 0)
+    var penColor: Color = Color.black
     
     // The canvas this turtle operates on
     let c: Canvas
@@ -118,6 +119,13 @@ open class Tortoise {
         
     }
     
+    open func setPenColor(to: Color) {
+        
+        self.penColor = to
+        c.lineColor = self.penColor
+        
+    }
+    
     open func goToHome() {
         
         self.setPosition(to: Point(x: 0, y: 0))
@@ -143,6 +151,12 @@ open class Tortoise {
     open func isPenDown() -> Bool {
         
         return self.drawing
+        
+    }
+    
+    open func currentPenColor() -> Color {
+        
+        return self.penColor
         
     }
     
