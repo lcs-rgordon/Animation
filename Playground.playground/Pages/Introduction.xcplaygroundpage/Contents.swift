@@ -85,6 +85,76 @@ for _ in 1...4 {
     turtle.right(by: 90)
 }
 
+// Go home
+turtle.goToHome()
+turtle.currentPosition()
+turtle.currentHeading()
+
+// Move over and up a bit
+turtle.setPosition(to: Point(x: 150, y: 50))
+
+// Turn left a bit
+turtle.left(by: 45)
+turtle.currentHeading()
+canvas.lineColor = Color.red
+turtle.forward(steps: 45)
+turtle.backward(steps: 45)
+
+// Turn left a bit more
+turtle.left(by: 45)
+turtle.currentHeading()
+canvas.lineColor = Color.blue
+turtle.forward(steps: 45)
+turtle.backward(steps: 45)
+
+// Turn right by 135
+turtle.right(by: 135)
+turtle.currentHeading()
+canvas.lineColor = Color.green
+turtle.forward(steps: 45)
+turtle.backward(steps: 45)
+
+// Turn left by 45
+turtle.left(by: 45)
+turtle.currentHeading()
+canvas.lineColor = Color.purple
+turtle.forward(steps: 45)
+turtle.backward(steps: 45)
+
+// Move over and repeat using absolute headings
+turtle.setPosition(to: Point(x: 250, y: 50))
+
+// Turn left a bit
+turtle.setHeading(to: -45)
+turtle.currentHeading()
+canvas.lineColor = Color.red
+turtle.forward(steps: 45)
+turtle.backward(steps: 45)
+
+// Turn left a bit more
+turtle.setHeading(to: -90)
+turtle.currentHeading()
+canvas.lineColor = Color.blue
+turtle.forward(steps: 45)
+turtle.backward(steps: 45)
+
+// Turn right by 135
+turtle.setHeading(to: 45)
+turtle.currentHeading()
+canvas.lineColor = Color.green
+turtle.forward(steps: 45)
+turtle.backward(steps: 45)
+
+// Turn left by 45
+turtle.setHeading(to: 0)
+turtle.currentHeading()
+canvas.lineColor = Color.purple
+turtle.forward(steps: 45)
+turtle.backward(steps: 45)
+
+
+
+
 
 /*:
  ## Show the Assistant Editor
