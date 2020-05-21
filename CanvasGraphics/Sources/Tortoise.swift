@@ -106,12 +106,17 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
     
     open func setPosition(to: Point) {
 
+        let tempHeading = self.heading
+        self.setHeading(to: 0)
+
         let relativePosition = Point(x: to.x - self.position.x, y: to.y - self.position.y)
         if drawing {
             c.drawLine(from: Point(x: 0, y: 0), to: relativePosition)
         }
         self.position = to
+
         c.translate(to: relativePosition)
+        self.setHeading(to: tempHeading)
         
         // If filling, keep track of current position
         if filling {
@@ -210,9 +215,11 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
         c.fillColor = .black
         c.defaultLineWidth = 1
         self.beginFill()
+        self.penUp()
         self.setPosition(to: Point(x: self.position.x - 10, y: self.position.y + 5))
         self.setPosition(to: Point(x: self.position.x, y: self.position.y - 10))
         self.setPosition(to: Point(x: self.position.x + 10, y: self.position.y + 5))
+        self.penDown()
         self.endFill()
         c.lineColor = self.currentPenColor()
         c.fillColor = self.currentFillColor()
@@ -256,6 +263,18 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
     open func currentFillColor() -> Color {
         
         return self.fillColor
+        
+    }
+    
+    public var xcor: CGFloat {
+        
+        return self.position.x
+        
+    }
+
+    public var ycor: CGFloat {
+        
+        return self.position.y
         
     }
         
