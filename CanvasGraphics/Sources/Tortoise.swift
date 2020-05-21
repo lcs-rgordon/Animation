@@ -78,7 +78,9 @@ open class Tortoise {
                               y: self.position.y + sin(self.heading.asRadians()) * CGFloat(steps))
         
         // If filling, keep track of current position
-        self.verticesForCurrentFill.append(self.position)
+        if filling {
+            self.verticesForCurrentFill.append(self.position)
+        }
         
     }
     
@@ -99,8 +101,17 @@ open class Tortoise {
     open func setPosition(to: Point) {
 
         let relativePosition = Point(x: to.x - self.position.x, y: to.y - self.position.y)
+        if drawing {
+            c.drawLine(from: Point(x: 0, y: 0), to: relativePosition)
+        }
         self.position = to
         c.translate(to: relativePosition)
+        
+        // If filling, keep track of current position
+        if filling {
+            self.verticesForCurrentFill.append(self.position)
+        }
+
         
     }
     
@@ -185,6 +196,22 @@ open class Tortoise {
         self.verticesForCurrentFill = []
         c.translate(to: Point(x: self.position.x, y: self.position.y))
 
+    }
+    
+    open func drawSelf() {
+        
+        c.lineColor = .black
+        c.fillColor = .black
+        c.defaultLineWidth = 1
+        self.beginFill()
+        self.setPosition(to: Point(x: self.position.x - 10, y: self.position.y + 5))
+        self.setPosition(to: Point(x: self.position.x, y: self.position.y - 10))
+        self.setPosition(to: Point(x: self.position.x + 10, y: self.position.y + 5))
+        self.endFill()
+        c.lineColor = self.currentPenColor()
+        c.fillColor = self.currentFillColor()
+        c.defaultLineWidth = self.currentPenSize()
+        
     }
 
     
