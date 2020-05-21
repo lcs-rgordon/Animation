@@ -14,7 +14,7 @@ extension Degrees {
     }
 }
 
-open class Tortoise {
+open class Tortoise: CustomPlaygroundDisplayConvertible {
     
     // Turtle state
     var drawing = true
@@ -36,6 +36,12 @@ open class Tortoise {
         // No borders on shapes
         c.drawShapesWithBorders = false
         
+    }
+    
+    // MARK: Conformance with declared protocols
+    /// Returns the bitmap image used for Xcode Playground quick looks; represents current state of the canvas at any given time.
+    public var playgroundDescription : Any {
+        return c.image as Any
     }
     
     // MARK: Change state
