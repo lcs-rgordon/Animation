@@ -40,7 +40,12 @@ let turtle = Tortoise(drawingUpon: canvas)
 
 // Draw a square
 turtle.penDown()
-for _ in 1...4 {
+for i in 1...4 {
+    if i % 2 == 0 {
+        turtle.penDown()
+    } else {
+        turtle.penUp()
+    }
     turtle.forward(steps: 100)
     turtle.right(by: 90)
 }

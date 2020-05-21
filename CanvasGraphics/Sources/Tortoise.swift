@@ -55,9 +55,11 @@ open class Tortoise {
     
     open func forward(steps: Int) {
         
-        c.drawLine(from: Point(x: 0, y: 0), to: Point(x: steps, y: 0))
+        if drawing {
+            c.drawLine(from: Point(x: 0, y: 0), to: Point(x: steps, y: 0))
+        }
         c.translate(to: Point(x: steps, y: 0))
         
     }
-    
+        
 }
