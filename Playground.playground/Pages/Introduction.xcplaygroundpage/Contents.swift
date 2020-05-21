@@ -7,8 +7,8 @@
  
  Set the size of your desired canvas by adjusting the constants on lines 10 and 11.
  */
-let preferredWidth = 300
-let preferredHeight = 600
+let preferredWidth = 500
+let preferredHeight = 500
 /*:
  ## Required code
  
@@ -35,8 +35,17 @@ PlaygroundPage.current.liveView = canvas
  [Documentation](http://russellgordon.ca/CanvasGraphics/Documentation/) is available.
  */
 
-// Replace this comment with your first comment – what is the goal of the code you're about to write?
-canvas.drawRectangle(at: Point(x: 50, y: 75), width: 100, height: 200)
+// Create a turtle that will draw upon the canvas
+let turtle = Tortoise(drawingUpon: canvas)
+
+// Draw a square
+turtle.penDown()
+for _ in 1...4 {
+    turtle.forward(steps: 100)
+    turtle.right(by: 90)
+}
+
+
 
 /*:
  ## Show the Assistant Editor
