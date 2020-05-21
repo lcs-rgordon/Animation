@@ -15,6 +15,7 @@ open class Tortoise {
     var heading: Degrees = 0
     var position: Point = Point(x: 0, y: 0)
     var penColor: Color = Color.black
+    var penSize: Int = 1
     
     // The canvas this turtle operates on
     let c: Canvas
@@ -126,6 +127,15 @@ open class Tortoise {
         
     }
     
+    open func setPenSize(to: Int) {
+        
+        if to > 0 {
+            self.penSize = to
+            c.defaultLineWidth = self.penSize
+        }
+        
+    }
+    
     open func goToHome() {
         
         self.setPosition(to: Point(x: 0, y: 0))
@@ -157,6 +167,12 @@ open class Tortoise {
     open func currentPenColor() -> Color {
         
         return self.penColor
+        
+    }
+    
+    open func currentPenSize() -> Int {
+        
+        return self.penSize
         
     }
     
