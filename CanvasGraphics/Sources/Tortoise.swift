@@ -21,6 +21,9 @@ open class Tortoise {
     var heading: Degrees = 0
     var position: Point = Point(x: 0, y: 0)
     var penColor: Color = Color.black
+    var fillColor: Color = Color.blue
+    var filling: Bool = false
+    var verticesForCurrentFill: [Point] = []
     var penSize: Int = 1
     
     // The canvas this turtle operates on
@@ -29,6 +32,9 @@ open class Tortoise {
     public init(drawingUpon: Canvas) {
         
         self.c = drawingUpon
+        
+        // No borders on shapes
+        c.drawShapesWithBorders = false
         
     }
     
@@ -70,6 +76,9 @@ open class Tortoise {
         // Update position relative to original origin
         self.position = Point(x: self.position.x + cos(self.heading.asRadians()) * CGFloat(steps),
                               y: self.position.y + sin(self.heading.asRadians()) * CGFloat(steps))
+        
+        // If filling, keep track of current position
+        self.verticesForCurrentFill.append(self.position)
         
     }
     
@@ -138,6 +147,13 @@ open class Tortoise {
         
     }
     
+    open func setFillColor(to: Color) {
+        
+        self.fillColor = to
+        c.fillColor = self.fillColor
+        
+    }
+    
     open func setPenSize(to: Int) {
         
         if to > 0 {
@@ -152,6 +168,23 @@ open class Tortoise {
         self.setPosition(to: Point(x: 0, y: 0))
         self.setHeading(to: 0)
         
+    }
+    
+    open func beginFill() {
+        
+        self.filling = true
+        self.verticesForCurrentFill.append(self.position)
+        
+    }
+    
+    open func endFill() {
+        
+        c.translate(to: Point(x: -self.position.x, y: -self.position.y))
+        c.drawCustomShape(with: verticesForCurrentFill)
+        self.filling = false
+        self.verticesForCurrentFill = []
+        c.translate(to: Point(x: self.position.x, y: self.position.y))
+
     }
 
     
@@ -187,6 +220,10 @@ open class Tortoise {
         
     }
     
-
+    open func currentFillColor() -> Color {
+        
+        return self.fillColor
+        
+    }
         
 }
