@@ -36,18 +36,13 @@ PlaygroundPage.current.liveView = canvas
  */
 
 // Create a turtle that will draw upon the canvas
-let turtle = Tortoise(drawingUpon: canvas)
+    let turtle = Tortoise(drawingUpon: canvas)
 
 // Draw a square
 turtle.penDown()
 for i in 1...4 {
-    if i % 2 == 0 {
-        turtle.penDown()
-    } else {
-        turtle.penUp()
-    }
     turtle.forward(steps: 100)
-    turtle.right(by: 90)
+        turtle.left(by: 90)
 }
 
 

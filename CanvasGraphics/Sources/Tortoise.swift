@@ -12,6 +12,7 @@ open class Tortoise {
     
     // Turtle state
     var drawing = true
+    var heading: Degrees = 0
     
     // The canvas this turtle operates on
     let c: Canvas
@@ -43,13 +44,13 @@ open class Tortoise {
     
     open func right(by angle: Degrees) {
         
-        c.rotate(by: angle)
+        self.left(by: -angle)
         
     }
     
     open func left(by angle: Degrees) {
         
-        self.right(by: -angle)
+        c.rotate(by: angle)
         
     }
     
@@ -59,6 +60,12 @@ open class Tortoise {
             c.drawLine(from: Point(x: 0, y: 0), to: Point(x: steps, y: 0))
         }
         c.translate(to: Point(x: steps, y: 0))
+        
+    }
+    
+    open func backward(steps: Int) {
+        
+        self.forward(steps: -steps)
         
     }
         
