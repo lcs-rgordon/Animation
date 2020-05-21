@@ -44,6 +44,7 @@ for i in 1...4 {
     turtle.forward(steps: 100)
     turtle.left(by: 90)
     turtle.currentHeading()
+    turtle.currentPosition()
 }
 
 // Move to middle of canvas and draw square
@@ -54,6 +55,7 @@ for i in 1...4 {
     turtle.forward(steps: 100)
     turtle.left(by: 90)
     turtle.currentHeading()
+    turtle.currentPosition()
 }
 
 // Move up a bit more
@@ -134,6 +136,7 @@ turtle.currentHeading()
 turtle.setPenSize(to: 1)
 turtle.setPenColor(to: .red)
 turtle.forward(steps: 45)
+turtle.currentPosition()
 turtle.backward(steps: 45)
 
 // Turn left a bit more
@@ -142,6 +145,7 @@ turtle.currentHeading()
 turtle.setPenSize(to: 2)
 turtle.setPenColor(to: .blue)
 turtle.forward(steps: 45)
+turtle.currentPosition()
 turtle.backward(steps: 45)
 
 // Turn right by 135
@@ -150,6 +154,7 @@ turtle.currentHeading()
 turtle.setPenSize(to: 3)
 turtle.setPenColor(to: .green)
 turtle.forward(steps: 45)
+turtle.currentPosition()
 turtle.backward(steps: 45)
 
 // Turn left by 45
@@ -158,6 +163,7 @@ turtle.currentHeading()
 turtle.setPenSize(to: 4)
 turtle.setPenColor(to: .purple)
 turtle.forward(steps: 45)
+turtle.currentPosition()
 turtle.backward(steps: 45)
 
 //// Draw canvas axes

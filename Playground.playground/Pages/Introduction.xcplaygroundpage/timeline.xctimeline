@@ -3,13 +3,25 @@
    version = "3.0">
    <TimelineItems>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Volumes/Accounts/Users/russellgordon/Repositories/Teacher/CulminatingTask/Playground.playground/Pages/Introduction.xcplaygroundpage#CharacterRangeLen=24&amp;CharacterRangeLoc=1098&amp;EndingColumnNumber=0&amp;EndingLineNumber=46&amp;StartingColumnNumber=4&amp;StartingLineNumber=45&amp;Timestamp=611766641.211401"
+         documentLocation = "file:///Volumes/Accounts/Users/russellgordon/Repositories/Teacher/CulminatingTask/Playground.playground/Pages/Introduction.xcplaygroundpage#CharacterRangeLen=53&amp;CharacterRangeLoc=1098&amp;EndingColumnNumber=0&amp;EndingLineNumber=47&amp;StartingColumnNumber=4&amp;StartingLineNumber=45&amp;Timestamp=611769376.821577"
          selectedRepresentationIndex = "1"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Volumes/Accounts/Users/russellgordon/Repositories/Teacher/CulminatingTask/Playground.playground/Pages/Introduction.xcplaygroundpage#CharacterRangeLen=23&amp;CharacterRangeLoc=1099&amp;EndingColumnNumber=0&amp;EndingLineNumber=46&amp;StartingColumnNumber=5&amp;StartingLineNumber=45&amp;Timestamp=611766641.211518"
+         documentLocation = "file:///Volumes/Accounts/Users/russellgordon/Repositories/Teacher/CulminatingTask/Playground.playground/Pages/Introduction.xcplaygroundpage#CharacterRangeLen=23&amp;CharacterRangeLoc=1099&amp;EndingColumnNumber=0&amp;EndingLineNumber=46&amp;StartingColumnNumber=5&amp;StartingLineNumber=45&amp;Timestamp=611769376.821691"
          selectedRepresentationIndex = "2"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Volumes/Accounts/Users/russellgordon/Repositories/Teacher/CulminatingTask/Playground.playground/Pages/Introduction.xcplaygroundpage#CharacterRangeLen=24&amp;CharacterRangeLoc=1127&amp;EndingColumnNumber=0&amp;EndingLineNumber=47&amp;StartingColumnNumber=5&amp;StartingLineNumber=46&amp;Timestamp=611769376.821777"
+         lockedSize = "{218, 252}"
+         selectedRepresentationIndex = "1"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Volumes/Accounts/Users/russellgordon/Repositories/Teacher/CulminatingTask/Playground.playground/Pages/Introduction.xcplaygroundpage#CharacterRangeLen=24&amp;CharacterRangeLoc=1391&amp;EndingColumnNumber=0&amp;EndingLineNumber=58&amp;StartingColumnNumber=5&amp;StartingLineNumber=57&amp;Timestamp=611769376.821864"
+         lockedSize = "{247, 362}"
+         selectedRepresentationIndex = "1"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
    </TimelineItems>

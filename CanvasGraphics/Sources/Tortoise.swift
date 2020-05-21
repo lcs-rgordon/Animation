@@ -8,6 +8,12 @@
 
 import Foundation
 
+extension Degrees {
+    func asRadians() -> CGFloat {
+        return self * CGFloat.pi / 180
+    }
+}
+
 open class Tortoise {
     
     // Turtle state
@@ -55,10 +61,15 @@ open class Tortoise {
     
     open func forward(steps: Int) {
         
+        // Draw based on movement
         if drawing {
             c.drawLine(from: Point(x: 0, y: 0), to: Point(x: steps, y: 0))
         }
         c.translate(to: Point(x: steps, y: 0))
+        
+        // Update position relative to original origin
+        self.position = Point(x: self.position.x + cos(self.heading.asRadians()) * CGFloat(steps),
+                              y: self.position.y + sin(self.heading.asRadians()) * CGFloat(steps))
         
     }
     
