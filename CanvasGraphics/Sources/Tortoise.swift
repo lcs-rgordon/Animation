@@ -13,10 +13,10 @@ open class Tortoise {
     // Turtle state
     var drawing = true
     var heading: Degrees = 0
+    var position: Point = Point(x: 0, y: 0)
     
     // The canvas this turtle operates on
     let c: Canvas
-    
     
     public init(drawingUpon: Canvas) {
         
@@ -24,6 +24,8 @@ open class Tortoise {
         
     }
     
+    // MARK: Change state
+
     open func penDown() {
         
         self.drawing = true
@@ -33,12 +35,6 @@ open class Tortoise {
     open func penUp() {
         
         self.drawing = false
-        
-    }
-    
-    open func isPenDown() -> Bool {
-        
-        return self.drawing
         
     }
     
@@ -71,8 +67,77 @@ open class Tortoise {
         
     }
     
-    open func currentHeading() -> Degrees {
-        return self.heading
+    open func setHeading(to: Degrees) {
+        
+        self.heading = to
+        
     }
+    
+    open func setPosition(to: Point) {
+
+        let relativePosition = Point(x: to.x - self.position.x, y: to.y - self.position.y)
+        self.position = to
+        c.translate(to: relativePosition)
+        
+    }
+    
+    open func setX(to: CGFloat) {
+        
+        self.setPosition(to: Point(x: to, y: self.position.y))
+        
+    }
+    
+    open func setX(to: Double) {
+        
+        self.setPosition(to: Point(x: CGFloat(to), y: CGFloat(self.position.y)))
+        
+    }
+
+    open func setX(to: Int) {
+        
+        self.setPosition(to: Point(x: Int(to), y: Int(self.position.y)))
+        
+    }
+
+    open func setY(to: CGFloat) {
+        
+        self.setPosition(to: Point(x: self.position.x, y: to))
+
+    }
+    
+    open func setY(to: Double) {
+        
+        self.setPosition(to: Point(x: CGFloat(self.position.x), y: CGFloat(to)))
+
+    }
+
+    open func setY(to: Int) {
+        
+        self.setPosition(to: Point(x: Int(self.position.x), y: Int(to)))
+        
+    }
+
+    
+    // MARK: Interrogate state
+
+    open func currentHeading() -> Degrees {
+        
+        return self.heading
+        
+    }
+    
+    open func currentPosition() -> Point {
+        
+        return self.position
+        
+    }
+    
+    open func isPenDown() -> Bool {
+        
+        return self.drawing
+        
+    }
+    
+
         
 }

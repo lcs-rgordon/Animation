@@ -46,6 +46,44 @@ for i in 1...4 {
     turtle.currentHeading()
 }
 
+// Move to middle of canvas and draw square
+turtle.setPosition(to: Point(x: 250, y: 250))
+turtle.currentPosition()
+turtle.penDown()
+for i in 1...4 {
+    turtle.forward(steps: 100)
+    turtle.left(by: 90)
+    turtle.currentHeading()
+}
+
+// Move up a bit more
+turtle.setPosition(to: Point(x: 300, y: 300))
+turtle.currentPosition()
+turtle.penDown()
+for i in 1...4 {
+    turtle.forward(steps: 100)
+    turtle.left(by: 90)
+    turtle.currentHeading()
+}
+
+// Move back a bit
+turtle.setPosition(to: Point(x: 200, y: 200))
+turtle.currentPosition()
+turtle.penDown()
+for i in 1...4 {
+    turtle.forward(steps: 100)
+    turtle.left(by: 90)
+    turtle.currentHeading()
+}
+
+// Left corner of canvas
+turtle.setPosition(to: Point(x: 100, y: 350))
+turtle.currentPosition()
+// Draw a sqaure backwards
+for _ in 1...4 {
+    turtle.backward(steps: 100)
+    turtle.right(by: 90)
+}
 
 
 /*:
