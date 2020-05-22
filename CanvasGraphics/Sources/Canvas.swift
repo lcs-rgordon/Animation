@@ -121,7 +121,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     /// Creates a canvas object that can be drawn upon.
     /// - parameter width: Width of the canvas
     /// - parameter height: Height of the canvas
-    /// - parameter qualty: When generating output for printing, use High or Ultra.
+    /// - parameter quality: When generating output for printing, use High or Ultra.
     public init(width: Int = 300, height: Int = 200, quality : Quality = Quality.Standard) {
         
         // Set the canvas scale factor
