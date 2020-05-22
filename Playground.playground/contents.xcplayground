@@ -2,6 +2,7 @@
 <playground version='6.0' target-platform='osx' display-mode='rendered' last-migration='0900'>
     <pages>
         <page name='Introduction'/>
-        <page name='Blank Canvas'/>
+        <page name='Tortoise Examples'/>
+        <page name='Blank canvas to copy'/>
     </pages>
 </playground>

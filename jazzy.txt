@@ -1,0 +1,2 @@
+# Jazzy command to generate documentation
+jazzy --clean --author Russell Gordon --author_url https://russellgordon.ca --github_url https://github.com/lcs-rgordon/Animation --output Documentation --module CanvasGraphics --exclude=./Playground/Canvas*,./CanvasGraphics/Sources/PerlinGenerator.swift --copyright "Russell Gordon"
