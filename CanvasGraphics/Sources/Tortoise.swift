@@ -341,7 +341,16 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
         c.defaultLineWidth = self.currentPenSize()
         
     }
+    
+    /**
+     When calling Tortoise methods within the a Processing-style `draw()` function, as with the `Sketch` class, be sure to invoke this method at the start of the `draw()` function to restore canvas state to where it left off after the last frame was animated.
+     */
+    open func restoreStateOnCanvas() {
 
+        c.translate(to: self.currentPosition())
+        c.rotate(by: self.currentHeading())
+        
+    }
     
     // MARK: Interrogate state
 
