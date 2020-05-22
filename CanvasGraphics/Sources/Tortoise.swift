@@ -102,14 +102,14 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
         right(by: -angle)
 
     }
-    
+        
     /**
      Move the turtle forward.
      
      - Parameters:
          - steps: How many steps forward the turtle should take.
      */
-    open func forward(steps: Int) {
+    open func forward(steps: Double) {
         
         // Draw based on movement
         if self.state.drawing {
@@ -125,7 +125,19 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
         if self.state.filling {
             self.state.verticesForCurrentFill.append(self.state.position)
         }
+                
+    }
+
+    /**
+     Move the turtle forward.
+     
+     - Parameters:
+         - steps: How many steps forward the turtle should take.
+     */
+    open func forward(steps: Int) {
         
+        forward(steps: Double(steps))
+                
     }
     
     /**
