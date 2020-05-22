@@ -15,10 +15,8 @@ extension Degrees {
     }
 }
 
-/// Abstraction layer to allow drawing on a Canvas instance with a "LOGO turtle" metaphor
-open class Tortoise: CustomPlaygroundDisplayConvertible {
+struct TortoiseState {
     
-    // Turtle state
     var drawing = true
     var heading: Degrees = 0
     var position: Point = Point(x: 0, y: 0)
@@ -27,6 +25,17 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
     var filling: Bool = false
     var verticesForCurrentFill: [Point] = []
     var penSize: Int = 1
+
+}
+
+/// Abstraction layer to allow drawing on a Canvas instance with a "LOGO turtle" metaphor
+open class Tortoise: CustomPlaygroundDisplayConvertible {
+    
+    // Turtle state
+    var state: TortoiseState = TortoiseState()
+    
+    // Stack for turtle state
+    var states: [TortoiseState] = []
     
     // The canvas this turtle operates on
     let c: Canvas
@@ -56,7 +65,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func penDown() {
         
-        self.drawing = true
+        self.state.drawing = true
         
     }
     
@@ -65,7 +74,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func penUp() {
         
-        self.drawing = false
+        self.state.drawing = false
         
     }
 
@@ -77,7 +86,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func right(by angle: Degrees) {
         
-        self.heading -= angle
+        self.state.heading -= angle
         c.rotate(by: -angle)
         
     }
@@ -90,7 +99,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func left(by angle: Degrees) {
         
-        self.right(by: -angle)
+        right(by: -angle)
 
     }
     
@@ -103,18 +112,18 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
     open func forward(steps: Int) {
         
         // Draw based on movement
-        if drawing {
+        if self.state.drawing {
             c.drawLine(from: Point(x: 0, y: 0), to: Point(x: steps, y: 0))
         }
         c.translate(to: Point(x: steps, y: 0))
         
         // Update position relative to original origin
-        self.position = Point(x: self.position.x + cos(self.heading.asRadians()) * CGFloat(steps),
-                              y: self.position.y + sin(self.heading.asRadians()) * CGFloat(steps))
+        self.state.position = Point(x: self.state.position.x + cos(self.state.heading.asRadians()) * CGFloat(steps),
+                              y: self.state.position.y + sin(self.state.heading.asRadians()) * CGFloat(steps))
         
         // If filling, keep track of current position
-        if filling {
-            self.verticesForCurrentFill.append(self.position)
+        if self.state.filling {
+            self.state.verticesForCurrentFill.append(self.state.position)
         }
         
     }
@@ -127,7 +136,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func backward(steps: Int) {
         
-        self.forward(steps: -steps)
+        forward(steps: -steps)
         
     }
     
@@ -139,8 +148,8 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func setHeading(to: Degrees) {
         
-        let relativeHeading = to - self.currentHeading()
-        self.heading = to
+        let relativeHeading = to - currentHeading()
+        self.state.heading = to
         c.rotate(by: relativeHeading)
         
     }
@@ -153,21 +162,21 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func setPosition(to: Point) {
 
-        let tempHeading = self.heading
-        self.setHeading(to: 0)
+        let tempHeading = self.state.heading
+        setHeading(to: 0)
 
-        let relativePosition = Point(x: to.x - self.position.x, y: to.y - self.position.y)
-        if drawing {
+        let relativePosition = Point(x: to.x - self.state.position.x, y: to.y - self.state.position.y)
+        if self.state.drawing {
             c.drawLine(from: Point(x: 0, y: 0), to: relativePosition)
         }
-        self.position = to
+        self.state.position = to
 
         c.translate(to: relativePosition)
-        self.setHeading(to: tempHeading)
+        setHeading(to: tempHeading)
         
         // If filling, keep track of current position
-        if filling {
-            self.verticesForCurrentFill.append(self.position)
+        if self.state.filling {
+            self.state.verticesForCurrentFill.append(self.state.position)
         }
 
         
@@ -181,7 +190,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func setX(to: CGFloat) {
         
-        self.setPosition(to: Point(x: to, y: self.position.y))
+        setPosition(to: Point(x: to, y: self.state.position.y))
         
     }
     
@@ -193,7 +202,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func setX(to: Double) {
         
-        self.setPosition(to: Point(x: CGFloat(to), y: CGFloat(self.position.y)))
+        setPosition(to: Point(x: CGFloat(to), y: CGFloat(self.state.position.y)))
         
     }
 
@@ -205,7 +214,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func setX(to: Int) {
         
-        self.setPosition(to: Point(x: Int(to), y: Int(self.position.y)))
+        setPosition(to: Point(x: Int(to), y: Int(self.state.position.y)))
         
     }
 
@@ -217,7 +226,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func setY(to: CGFloat) {
         
-        self.setPosition(to: Point(x: self.position.x, y: to))
+        setPosition(to: Point(x: self.state.position.x, y: to))
 
     }
     
@@ -229,7 +238,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func setY(to: Double) {
         
-        self.setPosition(to: Point(x: CGFloat(self.position.x), y: CGFloat(to)))
+        setPosition(to: Point(x: CGFloat(self.state.position.x), y: CGFloat(to)))
 
     }
 
@@ -241,7 +250,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func setY(to: Int) {
         
-        self.setPosition(to: Point(x: Int(self.position.x), y: Int(to)))
+        setPosition(to: Point(x: Int(self.state.position.x), y: Int(to)))
         
     }
     
@@ -253,8 +262,8 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func setPenColor(to: Color) {
         
-        self.penColor = to
-        c.lineColor = self.penColor
+        self.state.penColor = to
+        c.lineColor = self.state.penColor
         
     }
     
@@ -266,8 +275,8 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func setFillColor(to: Color) {
         
-        self.fillColor = to
-        c.fillColor = self.fillColor
+        self.state.fillColor = to
+        c.fillColor = self.state.fillColor
         
     }
     
@@ -280,8 +289,8 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
     open func setPenSize(to: Int) {
         
         if to > 0 {
-            self.penSize = to
-            c.defaultLineWidth = self.penSize
+            self.state.penSize = to
+            c.defaultLineWidth = self.state.penSize
         }
         
     }
@@ -291,8 +300,8 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func goToHome() {
         
-        self.setPosition(to: Point(x: 0, y: 0))
-        self.setHeading(to: 0)
+        setPosition(to: Point(x: 0, y: 0))
+        setHeading(to: 0)
         
     }
     
@@ -301,8 +310,8 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func beginFill() {
         
-        self.filling = true
-        self.verticesForCurrentFill.append(self.position)
+        self.state.filling = true
+        self.state.verticesForCurrentFill.append(self.state.position)
         
     }
     
@@ -312,11 +321,11 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func endFill() {
         
-        c.translate(to: Point(x: -self.position.x, y: -self.position.y))
-        c.drawCustomShape(with: verticesForCurrentFill)
-        self.filling = false
-        self.verticesForCurrentFill = []
-        c.translate(to: Point(x: self.position.x, y: self.position.y))
+        c.translate(to: Point(x: -self.state.position.x, y: -self.state.position.y))
+        c.drawCustomShape(with: self.state.verticesForCurrentFill)
+        self.state.filling = false
+        self.state.verticesForCurrentFill = []
+        c.translate(to: Point(x: self.state.position.x, y: self.state.position.y))
 
     }
     
@@ -329,16 +338,16 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
         c.lineColor = .black
         c.fillColor = .black
         c.defaultLineWidth = 1
-        self.beginFill()
-        self.penUp()
-        self.setPosition(to: Point(x: self.position.x - 10, y: self.position.y + 5))
-        self.setPosition(to: Point(x: self.position.x, y: self.position.y - 10))
-        self.setPosition(to: Point(x: self.position.x + 10, y: self.position.y + 5))
-        self.penDown()
-        self.endFill()
-        c.lineColor = self.currentPenColor()
-        c.fillColor = self.currentFillColor()
-        c.defaultLineWidth = self.currentPenSize()
+        beginFill()
+        penUp()
+        setPosition(to: Point(x: self.state.position.x - 10, y: self.state.position.y + 5))
+        setPosition(to: Point(x: self.state.position.x, y: self.state.position.y - 10))
+        setPosition(to: Point(x: self.state.position.x + 10, y: self.state.position.y + 5))
+        penDown()
+        endFill()
+        c.lineColor = currentPenColor()
+        c.fillColor = currentFillColor()
+        c.defaultLineWidth = currentPenSize()
         
     }
     
@@ -347,66 +356,87 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     open func restoreStateOnCanvas() {
 
-        c.translate(to: self.currentPosition())
-        c.rotate(by: self.currentHeading())
+        c.translate(to: currentPosition())
+        c.rotate(by: currentHeading())
         
     }
+    
+    /**
+     Save the current state of the tortoise (position, orientation, et cetera).
+     */
+    open func saveState() {
+        
+        states.append(state)
+        
+    }
+
+    /**
+     Restore a previous state of the tortoise (position, orientation, et cetera).
+     */
+    open func restoreState() {
+        
+        state = states.last!
+        restoreStateOnCanvas()
+        states.removeLast()
+        
+    }
+
     
     // MARK: Interrogate state
 
     /// The current heading of the turtle. 0 = right, 90 = up, 180 = left, 270 = down.
     open func currentHeading() -> Degrees {
         
-        return self.heading
+        return self.state.heading
         
     }
     
     /// The current position of the turtle on the Cartesian plane, relative to the origin (bottom left corner of canvas).
     open func currentPosition() -> Point {
         
-        return self.position
+        return self.state.position
         
     }
     
     /// Whether the pen is currently down, or not.
     open func isPenDown() -> Bool {
         
-        return self.drawing
+        return self.state.drawing
         
     }
     
     /// The color the turtle is drawing with right now.
     open func currentPenColor() -> Color {
         
-        return self.penColor
+        return self.state.penColor
         
     }
     
     /// The pen size the turtle is drawing with right now.
     open func currentPenSize() -> Int {
         
-        return self.penSize
+        return self.state.penSize
         
     }
     
     /// The color closed polygons will be filled with.
     open func currentFillColor() -> Color {
         
-        return self.fillColor
+        return self.state.fillColor
         
     }
     
     /// x-coordinate of the turtle's current position.
     public var xcor: CGFloat {
         
-        return self.position.x
+        return self.state.position.x
         
     }
 
     /// y-coordinate of the turtle's current position
     public var ycor: CGFloat {
         
-        return self.position.y
+        return self.state.position.y
         
     }
         
