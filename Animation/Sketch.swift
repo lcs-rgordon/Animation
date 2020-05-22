@@ -88,19 +88,12 @@ class Sketch : NSObject {
             
             // Render based on this character
             switch character {
-            case "F":
-                turtle.setPenColor(to: .black)
+            case "F", "B":
                 turtle.forward(steps: length)
-                print(turtle.currentHeading())
-            case "B":
-                turtle.forward(steps: length)
-                print(turtle.currentHeading())
             case "+":
                 turtle.right(by: angle)
-                turtle.setPenColor(to: .green)
             case "-":
                 turtle.left(by: angle)
-                turtle.setPenColor(to: .red)
             case "[":
                 turtle.saveState()
             case "]":
