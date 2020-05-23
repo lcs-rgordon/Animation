@@ -11,13 +11,13 @@ class Sketch : NSObject {
     let turtle: Tortoise
     
     // L-system defintion
-    let axiom: String = "SF-F-F-F"
-    let length: Double = 50
+    let axiom: String = "S-F"
+    let length: Double = 100
     let angle: Degrees = 90
-    let reduction: Double = 3.75
-    let rules: [Character:String] = ["F":"F-F+F+FF-F-F+F"]
-    let generations: Int = 3
-    let pointToStartRenderingFrom: Point = Point(x: 150, y: 150)
+    let reduction: Double = 3
+    let rules: [Character:String] = ["F":"F+F-F-F+F"]
+    let generations: Int = 4
+    let pointToStartRenderingFrom: Point = Point(x: 250, y: 100)
     
     // L-system interpreter state
     var word: String
