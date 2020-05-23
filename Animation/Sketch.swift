@@ -80,8 +80,8 @@ class Sketch : NSObject {
     func draw() {
         
         // Update rendering of all systems for the current frame of the animation
-//        kochIsland.update(forFrame: canvas.frameCount)
-//        anotherKochConstruction.update(forFrame: canvas.frameCount)
+        kochIsland.update(forFrame: canvas.frameCount)
+        anotherKochConstruction.update(forFrame: canvas.frameCount)
         coniferousTree.update(forFrame: canvas.frameCount)
 
     }

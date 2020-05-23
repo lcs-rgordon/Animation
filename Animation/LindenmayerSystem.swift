@@ -29,7 +29,6 @@ struct LindenmayerSystem {
     // Rendering state
     var word: String = ""
     var currentLength: Double = 0
-    var systemGenerationComplete = false
     
     // Turtle to draw with
     let t: Tortoise
@@ -113,58 +112,52 @@ struct LindenmayerSystem {
             
         }
         
-        // Signal the word re-writing is complete
-        systemGenerationComplete = true
     }
     
     // Render the next character of the system using the turtle provided
     func update(forFrame currentFrame: Int) {
         
-        if systemGenerationComplete {
+        // Save current state of the canvas so that next L-system has "clean slate" to work with
+        t.saveStateOfCanvas()
+        
+        // Required to bring canvas into same orientation and origin position as last run of draw() function for this turtle
+        t.restoreStateOnCanvas()
+        
+        // Render the alphabet of the L-system
+        if currentFrame < word.count {
             
-            // Save current state of the canvas so that next L-system has "clean slate" to work with
-            t.saveStateOfCanvas()
+            // Get an index for the current chracter in the axiom
+            let index = word.index(word.startIndex, offsetBy: currentFrame)
+            let character = word[index]
             
-            // Required to bring canvas into same orientation and origin position as last run of draw() function for this turtle
-            t.restoreStateOnCanvas()
+            // DEBUG: What character is being rendered?
+            print(character, terminator: "")
             
-            // Render the alphabet of the L-system
-            if currentFrame < word.count {
-                
-                // Get an index for the current chracter in the axiom
-                let index = word.index(word.startIndex, offsetBy: currentFrame)
-                let character = word[index]
-                
-                // DEBUG: What character is being rendered?
-                print(character, terminator: "")
-                
-                // Render based on this character
-                switch character {
-                case "S":
-                    t.penUp()
-                    t.setPosition(to: pointToStartRenderingFrom)
-                    t.left(by: initialDirection)
-                    t.penDown()
-                case "F", "X":
-                    t.forward(steps: currentLength)
-                case "+":
-                    t.right(by: angle)
-                case "-":
-                    t.left(by: angle)
-                case "[":
-                    t.saveState()
-                case "]":
-                    t.restoreState()
-                default:
-                    break
-                }
-                
+            // Render based on this character
+            switch character {
+            case "S":
+                t.penUp()
+                t.setPosition(to: pointToStartRenderingFrom)
+                t.left(by: initialDirection)
+                t.penDown()
+            case "F", "X":
+                t.forward(steps: currentLength)
+            case "+":
+                t.right(by: angle)
+            case "-":
+                t.left(by: angle)
+            case "[":
+                t.saveState()
+            case "]":
+                t.restoreState()
+            default:
+                break
             }
             
-            // Save state of the canvas so that next L-system has "clean slate" to work with
-            t.restoreStateOfCanvas()
-            
         }
+        
+        // Save state of the canvas so that next L-system has "clean slate" to work with
+        t.restoreStateOfCanvas()
         
     }
     
