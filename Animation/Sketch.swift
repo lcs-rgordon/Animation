@@ -10,7 +10,7 @@ class Sketch : NSObject {
     // Tortoise to draw with
     let turtle: Tortoise
     
-    // L-system defintion
+    // L-system definition
     let axiom: String = "S-F"
     let length: Double = 100
     let angle: Degrees = 90
