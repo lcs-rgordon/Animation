@@ -9,28 +9,36 @@
 import Foundation
 import CanvasGraphics
 
+struct RuleSet {
+    let odds: Int
+    let successorText: String
+}
+
 struct LindenmayerSystem {
     
     // Definition of system
     let axiom: String
     let length: Double
+    let initialDirection: Degrees
     let angle: Degrees
     let reduction: Double
-    let rules: [Character:String]
+    let rules: [Character:[RuleSet]]
     let generations: Int
     let pointToStartRenderingFrom: Point
-
+    
     // Rendering state
     var word: String = ""
     var currentLength: Double = 0
+    var systemGenerationComplete = false
     
     // Turtle to draw with
     let t: Tortoise
-
-    init(axiom: String, length: Double, angle: Degrees, reduction: Double, rules: [Character:String], generations: Int, pointToStartRenderingFrom: Point, turtleToRenderWith: Tortoise) {
+    
+    init(axiom: String, length: Double, initialDirection: Degrees, angle: Degrees, reduction: Double, rules: [Character:[RuleSet]], generations: Int, pointToStartRenderingFrom: Point, turtleToRenderWith: Tortoise) {
         
         self.axiom = axiom
         self.length = length
+        self.initialDirection = initialDirection
         self.angle = angle
         self.reduction = reduction
         self.rules = rules
@@ -53,12 +61,35 @@ struct LindenmayerSystem {
                 
                 // Iterate over all the rules
                 var match = false
-                for (key, value) in rules {
+                for (predecessor, successorRuleSet) in rules {
                     
                     // When a character matches, apply the rule
-                    if key == character {
-                        newWord.append(value)
-                        match = true
+                    if predecessor == character {
+                        
+                        // Determine total of odds in RuleSet
+                        var total = 0
+                        for successorRule in successorRuleSet {
+                            total += successorRule.odds
+                        }
+                        
+                        // Generate a random integer between 1 and the total odds
+                        let randomValue = Int.random(in: 1...total)
+                        
+                        // Find the rule to apply
+                        var runningTotal = 0
+                        for successorRule in successorRuleSet {
+                            runningTotal += successorRule.odds
+                            
+                            // See if this is the rule to apply
+                            if randomValue <= runningTotal {
+                                
+                                // Re-write the word based on selected rule
+                                newWord.append(successorRule.successorText)
+                                match = true
+                                break // end the loop looking for a rule to apply
+                            }
+                        }
+                        
                     }
                     
                 }
@@ -81,48 +112,59 @@ struct LindenmayerSystem {
             }
             
         }
-
+        
+        // Signal the word re-writing is complete
+        systemGenerationComplete = true
     }
     
     // Render the next character of the system using the turtle provided
     func update(forFrame currentFrame: Int) {
         
-        // Save current state of the canvas so that next L-system has "clean slate" to work with
-        t.saveStateOfCanvas()
-        
-        // Required to bring canvas into same orientation and origin position as last run of draw() function for this turtle
-        t.restoreStateOnCanvas()
-        
-        // Render the alphabet of the L-system
-        if currentFrame < word.count {
+        if systemGenerationComplete {
             
-            // Get an index for the current chracter in the axiom
-            let index = word.index(word.startIndex, offsetBy: currentFrame)
-            let character = word[index]
+            // Save current state of the canvas so that next L-system has "clean slate" to work with
+            t.saveStateOfCanvas()
             
-            // DEBUG: What character is being rendered?
-            print(character, terminator: "")
+            // Required to bring canvas into same orientation and origin position as last run of draw() function for this turtle
+            t.restoreStateOnCanvas()
             
-            // Render based on this character
-            switch character {
-            case "S":
-                t.penUp()
-                t.setPosition(to: pointToStartRenderingFrom)
-                t.penDown()
-            case "F":
-                t.forward(steps: currentLength)
-            case "+":
-                t.right(by: angle)
-            case "-":
-                t.left(by: angle)
-            default:
-                break
+            // Render the alphabet of the L-system
+            if currentFrame < word.count {
+                
+                // Get an index for the current chracter in the axiom
+                let index = word.index(word.startIndex, offsetBy: currentFrame)
+                let character = word[index]
+                
+                // DEBUG: What character is being rendered?
+                print(character, terminator: "")
+                
+                // Render based on this character
+                switch character {
+                case "S":
+                    t.penUp()
+                    t.setPosition(to: pointToStartRenderingFrom)
+                    t.left(by: initialDirection)
+                    t.penDown()
+                case "F", "X":
+                    t.forward(steps: currentLength)
+                case "+":
+                    t.right(by: angle)
+                case "-":
+                    t.left(by: angle)
+                case "[":
+                    t.saveState()
+                case "]":
+                    t.restoreState()
+                default:
+                    break
+                }
+                
             }
             
+            // Save state of the canvas so that next L-system has "clean slate" to work with
+            t.restoreStateOfCanvas()
+            
         }
-        
-        // Save state of the canvas so that next L-system has "clean slate" to work with
-        t.restoreStateOfCanvas()
         
     }
     
