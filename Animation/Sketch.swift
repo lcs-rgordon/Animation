@@ -13,7 +13,7 @@ class Sketch : NSObject {
     // L-system state
     let axiom : String
     var word : String
-    let length : Int = 10
+    let length : Int = 45
     let angle : Degrees = 60
         
     // This function runs once
@@ -30,7 +30,7 @@ class Sketch : NSObject {
         
         // Move to middle of screen
         turtle.penUp()
-        turtle.setPosition(to: Point(x: 250, y: 250))
+        turtle.setPosition(to: Point(x: 250, y: 150))
         turtle.penDown()
         
         // Define the axiom
@@ -39,31 +39,31 @@ class Sketch : NSObject {
         // Generation 0
         word = axiom
         
-        // Re-write the word for two generations
-        for generation in 1...2 {
-            
-            // Create an empty new word
-            var newWord = ""
-            
-            // Write the new word based on the production rules
-            for character in word {
-                
-                switch character {
-                case "F":
-                    newWord.append("F")
-                case "B":
-                    newWord.append("FF[+B][-B]")
-                default:
-                    newWord.append(character)
-                }
-            }
-            
-            // Replace the old word with the new word
-            word = newWord
-            print("After generation \(generation) the word is:")
-            print(word)
-            
-        }
+//        // Re-write the word for two generations
+//        for generation in 1...2 {
+//
+//            // Create an empty new word
+//            var newWord = ""
+//
+//            // Write the new word based on the production rules
+//            for character in word {
+//
+//                switch character {
+//                case "F":
+//                    newWord.append("F")
+//                case "B":
+//                    newWord.append("FF[+B][-B]")
+//                default:
+//                    newWord.append(character)
+//                }
+//            }
+//
+//            // Replace the old word with the new word
+//            word = newWord
+//            print("After generation \(generation) the word is:")
+//            print(word)
+//
+//        }
         
         // DEBUG:
         print("Rendering:")
@@ -84,25 +84,36 @@ class Sketch : NSObject {
             let character = word[index]
             
             // DEBUG: What character is being rendered?
-            print(character, terminator: "")
+            print(character)
             
             // Render based on this character
             switch character {
             case "F", "B":
                 turtle.forward(steps: length)
+                print("Forward\n")
             case "+":
                 turtle.right(by: angle)
+                print("Turn right\n")
             case "-":
                 turtle.left(by: angle)
+                print("Turn left\n")
             case "[":
                 turtle.saveState()
+                print("Save current state (location and orientation)\n")
             case "]":
                 turtle.restoreState()
+                print("Restore most state from stack (location and orientation)\n")
             case "U":
                 turtle.left(by: 90)
+                print("Orientation cheat so that drawing matches example\n")
             default:
                 break
             }
+            
+            // Render turtle so that it's clear what's happening
+            turtle.drawSelf()
+            print("Press RETURN to see visual result of last instruction.")
+            readLine()
             
         }
         
