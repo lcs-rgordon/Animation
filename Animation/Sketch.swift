@@ -9,10 +9,11 @@ class Sketch : NSObject {
     
     // Tortoise to draw with
     let turtle: Tortoise
+    let secondTurtle: Tortoise
     
     // L-systems
     let anotherKochConstruction: LindenmayerSystem
-
+    let kochIsland: LindenmayerSystem
     
     // This function runs once
     override init() {
@@ -23,10 +24,11 @@ class Sketch : NSObject {
         // Draw slowly
         //canvas.framesPerSecond = 1
         
-        // Create turtle to draw with
+        // Create turtles to draw with
         turtle = Tortoise(drawingUpon: canvas)
+        secondTurtle = Tortoise(drawingUpon: canvas)
         
-        // Create the system
+        // Create the systems
         anotherKochConstruction = LindenmayerSystem(axiom: "S-F",
                                                     length: 100,
                                                     angle: 90,
@@ -35,7 +37,16 @@ class Sketch : NSObject {
                                                     generations: 4,
                                                     pointToStartRenderingFrom: Point(x: 250, y: 100),
                                                     turtleToRenderWith: turtle)
-                                        
+        
+        kochIsland = LindenmayerSystem(axiom: "SF-F-F-F",
+                                       length: 50,
+                                       angle: 90,
+                                       reduction: 3.75,
+                                       rules: ["F":"F-F+F+FF-F-F+F"],
+                                       generations: 3,
+                                       pointToStartRenderingFrom: Point(x: 0, y: 100),
+                                       turtleToRenderWith: secondTurtle)
+        
         // DEBUG:
         print("Rendering:")
         
@@ -44,9 +55,10 @@ class Sketch : NSObject {
     // This function runs repeatedly, forever, to create the animated effect
     func draw() {
         
-        // Update rendering of this system for the current frame of the animation
+        // Update rendering of all systems for the current frame of the animation
+        kochIsland.update(forFrame: canvas.frameCount)
         anotherKochConstruction.update(forFrame: canvas.frameCount)
-        
+
     }
     
 }

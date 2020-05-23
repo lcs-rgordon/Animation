@@ -383,6 +383,15 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
     }
 
     /**
+     Save the current state of the canvas the tortoise is drawing upon.
+     */
+    open func saveStateOfCanvas() {
+        
+        c.saveState()
+        
+    }
+    
+    /**
      Restore a previous state of the tortoise (position, orientation, et cetera).
      */
     open func restoreState() {
@@ -393,7 +402,15 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
         
     }
 
-    
+    /**
+     Restore the current state of the canvas the tortoise is drawing upon.
+     */
+    open func restoreStateOfCanvas() {
+        
+        c.restoreState()
+        
+    }
+
     // MARK: Interrogate state
 
     /// The current heading of the turtle. 0 = right, 90 = up, 180 = left, 270 = down.

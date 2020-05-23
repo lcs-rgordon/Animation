@@ -87,7 +87,10 @@ struct LindenmayerSystem {
     // Render the next character of the system using the turtle provided
     func update(forFrame currentFrame: Int) {
         
-        // Required to bring canvas into same orientation and origin position as last run of draw() function
+        // Save current state of the canvas so that next L-system has "clean slate" to work with
+        t.saveStateOfCanvas()
+        
+        // Required to bring canvas into same orientation and origin position as last run of draw() function for this turtle
         t.restoreStateOnCanvas()
         
         // Render the alphabet of the L-system
@@ -117,6 +120,9 @@ struct LindenmayerSystem {
             }
             
         }
+        
+        // Save state of the canvas so that next L-system has "clean slate" to work with
+        t.restoreStateOfCanvas()
         
     }
     
