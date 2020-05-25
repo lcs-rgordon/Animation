@@ -4,6 +4,7 @@ import Foundation
 public typealias Degrees = CGFloat
 
 public typealias Point = NSPoint
+public typealias Vector = Point
 
 public extension Int {
     func asCGFloat() -> CGFloat {
