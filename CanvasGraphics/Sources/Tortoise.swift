@@ -9,7 +9,7 @@
 import Foundation
 
 /// Allow an angle mesaure in degrees to be converted to radians.
-extension Degrees {
+public extension Degrees {
     func asRadians() -> CGFloat {
         return self * CGFloat.pi / 180
     }
