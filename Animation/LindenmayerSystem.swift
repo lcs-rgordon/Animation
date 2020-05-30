@@ -145,35 +145,63 @@ struct LindenmayerSystem {
             // DEBUG: What character is being rendered?
             print(character, terminator: "")
             
-            // Render based on this character
-            switch character {
-            case "S":
-                t.penUp()
-                t.setPosition(to: pointToStartRenderingFrom)
-                t.left(by: initialDirection)
-                t.penDown()
-            case "F", "X":
-                t.forward(steps: currentLength)
-            case "+":
-                t.right(by: angle)
-            case "-":
-                t.left(by: angle)
-            case "[":
-                t.saveState()
-            case "]":
-                t.restoreState()
-            case "1","2","3","4","5","6","7","8","9":
-                if let providedColor = colors[character] {
-                    t.setPenColor(to: providedColor)
-                }
-            default:
-                break
-            }
+            // Render the character
+            self.render(command: character)
             
         }
         
         // Save state of the canvas so that next L-system has "clean slate" to work with
         t.restoreStateOfCanvas()
+        
+    }
+    
+    func renderFullSystem() {
+                
+        for character in word {
+            
+            // Save current state of the canvas so that next L-system has "clean slate" to work with
+            t.saveStateOfCanvas()
+            
+            // Required to bring canvas into same orientation and origin position as last run of draw() function for this turtle
+            t.restoreStateOnCanvas()
+            
+            self.render(command: character)
+            
+            // Save state of the canvas so that next L-system has "clean slate" to work with
+            t.restoreStateOfCanvas()
+            
+        }
+                
+    }
+    
+    // Render a specific character, or command, in the L-system
+    private func render(command: Character) {
+        
+        // Render based on this character
+        switch command {
+        case "S":
+            t.penUp()
+            t.setPosition(to: pointToStartRenderingFrom)
+            t.left(by: initialDirection)
+            t.penDown()
+        case "F", "X":
+            t.forward(steps: currentLength)
+        case "+":
+            t.right(by: angle)
+        case "-":
+            t.left(by: angle)
+        case "[":
+            t.saveState()
+        case "]":
+            t.restoreState()
+        case "1","2","3","4","5","6","7","8","9":
+            if let providedColor = colors[command] {
+                t.setPenColor(to: providedColor)
+            }
+        default:
+            break
+        }
+
         
     }
     

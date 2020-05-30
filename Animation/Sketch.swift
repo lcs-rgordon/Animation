@@ -81,15 +81,20 @@ class Sketch : NSObject {
         // DEBUG:
         print("Rendering:")
         
+        // Render the tree fully
+        coniferousTree.renderFullSystem()
+        anotherKochConstruction.renderFullSystem()
+        kochIsland.renderFullSystem()
+        
     }
     
     // This function runs repeatedly, forever, to create the animated effect
     func draw() {
         
-        // Update rendering of all systems for the current frame of the animation
-        kochIsland.update(forFrame: canvas.frameCount)
-        anotherKochConstruction.update(forFrame: canvas.frameCount)
-        coniferousTree.update(forFrame: canvas.frameCount)
+//        // Update rendering of all systems for the current frame of the animation
+//        kochIsland.update(forFrame: canvas.frameCount)
+//        anotherKochConstruction.update(forFrame: canvas.frameCount)
+//        coniferousTree.update(forFrame: canvas.frameCount)
 
     }
     
