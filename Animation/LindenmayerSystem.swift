@@ -18,48 +18,29 @@ struct LindenmayerSystem {
     
     // Definition of system
     let axiom: String
-    let length: Double
-    let initialDirection: Degrees
     let angle: Degrees
-    let reduction: Double
     let rules: [Character:[RuleSet]]
     var colors: [Character:Color]
     let generations: Int
-    let pointToStartRenderingFrom: Point
-    
-    // Rendering state
+         
+    // System state
     var word: String = ""
-    var currentLength: Double = 0
-    
-    // Turtle to draw with
-    let t: Tortoise
-    
+
     init(axiom: String,
-         length: Double,
-         initialDirection: Degrees,
          angle: Degrees,
-         reduction: Double,
          rules: [Character:[RuleSet]],
          colors: [Character:Color] = [:],
-         generations: Int,
-         pointToStartRenderingFrom: Point,
-         turtleToRenderWith: Tortoise) {
+         generations: Int) {
         
         // Initialize instance properties
         self.axiom = axiom
-        self.length = length
-        self.initialDirection = initialDirection
         self.angle = angle
-        self.reduction = reduction
         self.rules = rules
         self.colors = colors
         self.generations = generations
-        self.pointToStartRenderingFrom = pointToStartRenderingFrom
-        self.t = turtleToRenderWith
         
         // Set up the system state
         word = axiom
-        currentLength = length
         
         // Re-write the word for each generation
         for generation in 1...generations {
@@ -116,92 +97,8 @@ struct LindenmayerSystem {
             word = newWord
             print("After generation \(generation) the word is:")
             print(word)
-            
-            // Reduce the line length after generation 1
-            if generation > 1 {
-                currentLength /= reduction
-            }
-            
+                        
         }
-        
-    }
-    
-    // Render the next character of the system using the turtle provided
-    func update(forFrame currentFrame: Int) {
-        
-        // Save current state of the canvas so that next L-system has "clean slate" to work with
-        t.saveStateOfCanvas()
-        
-        // Required to bring canvas into same orientation and origin position as last run of draw() function for this turtle
-        t.restoreStateOnCanvas()
-        
-        // Render the alphabet of the L-system
-        if currentFrame < word.count {
-            
-            // Get an index for the current chracter in the axiom
-            let index = word.index(word.startIndex, offsetBy: currentFrame)
-            let character = word[index]
-            
-            // DEBUG: What character is being rendered?
-            print(character, terminator: "")
-            
-            // Render the character
-            self.render(command: character)
-            
-        }
-        
-        // Save state of the canvas so that next L-system has "clean slate" to work with
-        t.restoreStateOfCanvas()
-        
-    }
-    
-    func renderFullSystem() {
-                
-        for character in word {
-            
-            // Save current state of the canvas so that next L-system has "clean slate" to work with
-            t.saveStateOfCanvas()
-            
-            // Required to bring canvas into same orientation and origin position as last run of draw() function for this turtle
-            t.restoreStateOnCanvas()
-            
-            self.render(command: character)
-            
-            // Save state of the canvas so that next L-system has "clean slate" to work with
-            t.restoreStateOfCanvas()
-            
-        }
-                
-    }
-    
-    // Render a specific character, or command, in the L-system
-    private func render(command: Character) {
-        
-        // Render based on this character
-        switch command {
-        case "S":
-            t.penUp()
-            t.setPosition(to: pointToStartRenderingFrom)
-            t.left(by: initialDirection)
-            t.penDown()
-        case "F", "X":
-            t.forward(steps: currentLength)
-        case "+":
-            t.right(by: angle)
-        case "-":
-            t.left(by: angle)
-        case "[":
-            t.saveState()
-        case "]":
-            t.restoreState()
-        case "1","2","3","4","5","6","7","8","9":
-            if let providedColor = colors[command] {
-                t.setPenColor(to: providedColor)
-            }
-        default:
-            break
-        }
-
         
     }
     
