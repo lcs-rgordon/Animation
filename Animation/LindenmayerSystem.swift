@@ -23,6 +23,7 @@ struct LindenmayerSystem {
     let angle: Degrees
     let reduction: Double
     let rules: [Character:[RuleSet]]
+    var colors: [Character:Color]
     let generations: Int
     let pointToStartRenderingFrom: Point
     
@@ -33,14 +34,37 @@ struct LindenmayerSystem {
     // Turtle to draw with
     let t: Tortoise
     
-    init(axiom: String, length: Double, initialDirection: Degrees, angle: Degrees, reduction: Double, rules: [Character:[RuleSet]], generations: Int, pointToStartRenderingFrom: Point, turtleToRenderWith: Tortoise) {
+    init(axiom: String,
+         length: Double,
+         initialDirection: Degrees,
+         angle: Degrees,
+         reduction: Double,
+         rules: [Character:[RuleSet]],
+         colors: [Character:Color] = [:],
+         generations: Int,
+         pointToStartRenderingFrom: Point,
+         turtleToRenderWith: Tortoise) {
         
+        // Initialize instance properties
         self.axiom = axiom
         self.length = length
         self.initialDirection = initialDirection
         self.angle = angle
         self.reduction = reduction
         self.rules = rules
+        // If no colors were passed in, default all colours in L-system to black
+        self.colors = [:]
+        if colors.count == 0 {
+            self.colors["1"] = Color.black
+            self.colors["2"] = Color.black
+            self.colors["3"] = Color.black
+            self.colors["4"] = Color.black
+            self.colors["5"] = Color.black
+            self.colors["6"] = Color.black
+            self.colors["7"] = Color.black
+            self.colors["8"] = Color.black
+            self.colors["9"] = Color.black
+        }
         self.generations = generations
         self.pointToStartRenderingFrom = pointToStartRenderingFrom
         self.t = turtleToRenderWith
