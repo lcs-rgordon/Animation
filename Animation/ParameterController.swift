@@ -13,10 +13,12 @@ class ParameterController: NSViewController {
 
     // MARK: Properties
     var childSketch: ViewController?
+    var childSketchVisible = false
     
     // MARK: Outlets
     @IBOutlet weak var hueBox: ColorView!
     @IBOutlet weak var hueSlider: NSSlider!
+    @IBOutlet weak var showAnimationButton: NSButton!
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -41,6 +43,7 @@ class ParameterController: NSViewController {
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        
         if let vc = segue.destinationController as? ViewController {
 
             // Pass some information forward to the sketch
@@ -48,15 +51,27 @@ class ParameterController: NSViewController {
             
             // Save a reference to the child sketch
             childSketch = vc
-            
+
         }
     }
 
     // This is called when the "Show Animation" button is pressed
     @IBAction func showAnimation(_ sender: Any) {
+
+        // If we haven't already shown the child sketch, show it now
+        if childSketchVisible == false {
+            
+            // Show the actual animation
+            self.performSegue(withIdentifier: "ShowAnimation", sender: self)
+
+            // Record that we've shown the child sketch
+            childSketchVisible = true
+            
+            // Disable the show child sketch button
+            showAnimationButton.isEnabled = false
+
+        }
         
-        // Show the actual animation
-        self.performSegue(withIdentifier: "ShowAnimation", sender: self)
-        
+
     }
 }
