@@ -102,6 +102,7 @@
                     <connections>
                         <outlet property="hueBox" destination="tXd-Go-YKC" id="pIR-1M-Vkj"/>
                         <outlet property="hueSlider" destination="QPO-Tg-rZy" id="2y4-xH-Cvn"/>
+                        <outlet property="showAnimationButton" destination="CRc-O8-0qt" id="Q1P-F9-Xno"/>
                         <segue destination="XfG-lQ-9wD" kind="show" identifier="ShowAnimation" id="tN3-ze-CCu"/>
                     </connections>
                 </viewController>
