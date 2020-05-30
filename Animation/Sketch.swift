@@ -9,6 +9,9 @@ class Sketch : NSObject {
     
     // Tortoise to draw with
     let turtle : Tortoise
+    
+    // Turtle's current pen color
+    var color : Color = Color.black
         
     // This function runs once
     override init() {
@@ -31,6 +34,9 @@ class Sketch : NSObject {
         
         // Required to bring canvas into same orientation and origin position as last run of draw() function
         turtle.restoreStateOnCanvas()
+
+        // Set the turtle's pen color to the sketch color
+        turtle.setPenColor(to: self.color)
 
         // Move the turtle forward and turn it a bit
         turtle.forward(steps: 5)
