@@ -370,6 +370,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
 
         c.translate(to: currentPosition())
         c.rotate(by: currentHeading())
+        c.lineColor = currentPenColor()
         
     }
     

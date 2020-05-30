@@ -67,6 +67,13 @@ class Sketch : NSObject {
                                                        RuleSet(odds: 1, successorText: "X")
                                                        ]
                                                  ],
+                                          colors: ["1": Color(hue: 120, saturation: 100, brightness: 61, alpha: 100),
+                                                   "2": Color(hue: 134, saturation: 97, brightness: 46, alpha: 100),
+                                                   "3": Color(hue: 145, saturation: 87, brightness: 8, alpha: 100),
+                                                   "4": Color(hue: 135, saturation: 84, brightness: 41, alpha: 100),
+                                                   "5": Color(hue: 116, saturation: 26, brightness: 100, alpha: 100),
+                                                   "6": Color(hue: 161, saturation: 71, brightness: 53, alpha: 100)
+                                                  ],
                                           generations: 5,
                                           pointToStartRenderingFrom: Point(x: 150, y: 400),
                                           turtleToRenderWith: thirdTurtle)

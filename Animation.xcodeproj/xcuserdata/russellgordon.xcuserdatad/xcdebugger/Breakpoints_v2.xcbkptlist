@@ -16,7 +16,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "369"
             endingLineNumber = "369"
-            landmarkName = "saveState()"
+            landmarkName = "restoreStateOnCanvas()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

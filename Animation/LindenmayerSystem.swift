@@ -52,19 +52,7 @@ struct LindenmayerSystem {
         self.angle = angle
         self.reduction = reduction
         self.rules = rules
-        // If no colors were passed in, default all colours in L-system to black
-        self.colors = [:]
-        if colors.count == 0 {
-            self.colors["1"] = Color.black
-            self.colors["2"] = Color.black
-            self.colors["3"] = Color.black
-            self.colors["4"] = Color.black
-            self.colors["5"] = Color.black
-            self.colors["6"] = Color.black
-            self.colors["7"] = Color.black
-            self.colors["8"] = Color.black
-            self.colors["9"] = Color.black
-        }
+        self.colors = colors
         self.generations = generations
         self.pointToStartRenderingFrom = pointToStartRenderingFrom
         self.t = turtleToRenderWith
@@ -174,6 +162,10 @@ struct LindenmayerSystem {
                 t.saveState()
             case "]":
                 t.restoreState()
+            case "1","2","3","4","5","6","7","8","9":
+                if let providedColor = colors[character] {
+                    t.setPenColor(to: providedColor)
+                }
             default:
                 break
             }
