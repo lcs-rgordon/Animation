@@ -43,7 +43,7 @@ class Sketch : NSObject {
         // Create a gradient sky background, blue to white as vertical location increases
         for y in 300...500 {
             
-            // Set the line color to progressively get closer to white
+            // Set the line saturation to progressively get closer to white
             let currentSaturation = 100.0 - Float(y - 300) / 2
             // DEBUG: Uncomment line below to see how this value changes
             print("currentSaturation is: \(currentSaturation)")
@@ -59,7 +59,7 @@ class Sketch : NSObject {
         //       http://colorizer.org
         for y in 0...300 {
             
-            // Set the line color to progressively get closer to white
+            // Set the line brightness to progressively get closer to black
             let currentBrightness = 50.0 - Float(y) / 30.0 * 3.0
             // DEBUG: Uncomment line below to see how this value changes
             print("currentBrightness is \(currentBrightness)")
@@ -70,31 +70,35 @@ class Sketch : NSObject {
             
         }
         
-        // Create 10 trees, drawn in a parabola shape
+        // Create 9 trees, drawn from their tops along a quadratic path
         
-        // Define the vertex of the parabolic path
-        let vertex = Point(x: 250, y: 200)
+        // Define the vertex of the parabolic path (top right of canvas)
+        let vertex = Point(x: 450, y: 350)
         
-        // Define some other point on the parabolic path (in this case, the far left)
-        let anotherPointOnParabola = Point(x: 50, y: 300)
+        // Define some other point on the parabolic path (in this case, closer to bottom left)
+        let anotherPointOnParabola = Point(x: 100, y: 225)
         
         // Work out the "a" value for the parabola (vertical stretch)
         let a = (anotherPointOnParabola.y - vertex.y) / pow(anotherPointOnParabola.x - vertex.x, 2)
         
-        // Iterate to create the trees
-        for i in 1...10 {
+        // Iterate to create 9 trees
+        for i in 1...9 {
 
             // Use a quadratic relationship to define the vertical starting point for the top of each tree
             // (trees grow down from starting point)
-            let x = CGFloat(i - 1) * 50.0 + 25
-            let y = a * pow(x - vertex.x, 2) + vertex.y
+            let x = CGFloat(i - 1) * 50.0 + 75              // This defines "spread" of the trees along the quadratic path
+            let y = a * pow(x - vertex.x, 2) + vertex.y     // Determine vertical position using y = a(x-h)^2 + k
             
             // DEBUG: To help see where starting points are
             print("Starting point for tree is... x: \(x), y: \(y)")
             
+            // Define the length of the tree's initial stroke
+            let length = 27.0 - Double(y) / 16.0            // Piggyback on quadratic change in y values to set length
+            print("Length of line for system is: \(length)")
+            
             // Generate the tree
             var aTree = VisualizedLindenmayerSystem(system: coniferousTree,
-                                                    length: 5,
+                                                    length: length,
                                                     initialDirection: 270,
                                                     reduction: 1.25,
                                                     pointToStartRenderingFrom: Point(x: x, y: y),
