@@ -53,7 +53,7 @@ struct VisualizedLindenmayerSystem {
     mutating func update(forFrame currentFrame: Int) {
         
         // If this is the first frame, regenerate the system
-        if currentFrame == 1 {
+        if currentFrame == 0 {
             system.regenerate()
         }
         

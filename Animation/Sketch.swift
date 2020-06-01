@@ -13,7 +13,7 @@ class Sketch : NSObject {
     let coniferousTree: LindenmayerSystem
     
     // Visualized L-systems
-    let visualKochConstruction: VisualizedLindenmayerSystem
+    var visualKochConstruction: VisualizedLindenmayerSystem
     let visualKochIsland: VisualizedLindenmayerSystem
     var visualConiferousTree: VisualizedLindenmayerSystem
     var secondVisualConiferousTree: VisualizedLindenmayerSystem
@@ -93,8 +93,8 @@ class Sketch : NSObject {
         print("Rendering:")
         
         // Render the tree fully                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-        visualConiferousTree.renderFullSystem()
-        secondVisualConiferousTree.renderFullSystem()
+//        visualConiferousTree.renderFullSystem()
+//        secondVisualConiferousTree.renderFullSystem()
 //        visualKochConstruction.renderFullSystem()
 //        visualKochIsland.renderFullSystem()
         
@@ -105,7 +105,7 @@ class Sketch : NSObject {
         
 //        // Update rendering of all systems for the current frame of the animation
 //        kochIsland.update(forFrame: canvas.frameCount)
-//        visualKochConstruction.update(forFrame: canvas.frameCount)
+        visualKochConstruction.update(forFrame: canvas.frameCount)
 //        visualGordonSystem.update(forFrame: canvas.frameCount)
 //        coniferousTree.update(forFrame: canvas.frameCount)
 
