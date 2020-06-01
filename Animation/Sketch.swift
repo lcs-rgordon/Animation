@@ -70,15 +70,34 @@ class Sketch : NSObject {
             
         }
         
-        // Create 10 trees, each one smaller than the last
+        // Create 10 trees, drawn in a parabola shape
+        
+        // Define the vertex of the parabolic path
+        let vertex = Point(x: 250, y: 200)
+        
+        // Define some other point on the parabolic path (in this case, the far left)
+        let anotherPointOnParabola = Point(x: 50, y: 300)
+        
+        // Work out the "a" value for the parabola (vertical stretch)
+        let a = (anotherPointOnParabola.y - vertex.y) / pow(anotherPointOnParabola.x - vertex.x, 2)
+        
+        // Iterate to create the trees
         for i in 1...10 {
+
+            // Use a quadratic relationship to define the vertical starting point for the top of each tree
+            // (trees grow down from starting point)
+            let x = CGFloat(i - 1) * 50.0 + 25
+            let y = a * pow(x - vertex.x, 2) + vertex.y
+            
+            // DEBUG: To help see where starting points are
+            print("Starting point for tree is... x: \(x), y: \(y)")
             
             // Generate the tree
             var aTree = VisualizedLindenmayerSystem(system: coniferousTree,
-                                                    length: 20.0 / Double(i),
+                                                    length: 5,
                                                     initialDirection: 270,
                                                     reduction: 1.25,
-                                                    pointToStartRenderingFrom: Point(x: 50 + i * 40, y: 300),
+                                                    pointToStartRenderingFrom: Point(x: x, y: y),
                                                     drawnOn: canvas)
             
             // Render this tree
