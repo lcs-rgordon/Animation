@@ -23,21 +23,21 @@ class Sketch : NSObject {
         coniferousTree = LindenmayerSystem(axiom: "SF",
                                            angle: 20,
                                            rules: ["F": [
-                                            RuleSet(odds: 1, successorText: "3F[++1F[X]][+2F][-4F][--5F[X]]6F"),
-                                            RuleSet(odds: 1, successorText: "3F[+1F][+2F][-4F]5F"),
-                                            RuleSet(odds: 1, successorText: "3F[+1F][-2F][--6F]4F"),
-                                            ],
+                                                        RuleSet(odds: 1, successorText: "3F[++1F[X]][+2F][-4F][--5F[X]]6F"),
+                                                        RuleSet(odds: 1, successorText: "3F[+1F][+2F][-4F]5F"),
+                                                        RuleSet(odds: 1, successorText: "3F[+1F][-2F][--6F]4F"),
+                                                        ],
                                                    "X": [
-                                                    RuleSet(odds: 1, successorText: "X")
-                                            ]
-            ],
+                                                        RuleSet(odds: 1, successorText: "X")
+                                                        ]
+                                                  ],
                                            colors: ["1": Color(hue: 120, saturation: 100, brightness: 61, alpha: 100),
                                                     "2": Color(hue: 134, saturation: 97, brightness: 46, alpha: 100),
                                                     "3": Color(hue: 145, saturation: 87, brightness: 8, alpha: 100),
                                                     "4": Color(hue: 135, saturation: 84, brightness: 41, alpha: 100),
                                                     "5": Color(hue: 116, saturation: 26, brightness: 100, alpha: 100),
                                                     "6": Color(hue: 161, saturation: 71, brightness: 53, alpha: 100)
-            ],
+                                                   ],
                                            generations: 5)
         
         // Create a gradient sky background, blue to white as vertical location increases
