@@ -39,6 +39,10 @@ struct LindenmayerSystem {
         self.colors = colors
         self.generations = generations
         
+    }
+    
+    mutating func regenerate() {
+        
         // Set up the system state
         word = axiom
         
@@ -95,8 +99,10 @@ struct LindenmayerSystem {
             
             // Replace the old word with the new word
             word = newWord
-            print("After generation \(generation) the word is:")
-            print(word)
+            
+//            // DEBUG: Uncomment below for debugging
+//            print("After generation \(generation) the word is:")
+//            print(word)
                         
         }
         

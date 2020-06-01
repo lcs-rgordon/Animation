@@ -12,7 +12,7 @@ import CanvasGraphics
 struct VisualizedLindenmayerSystem {
     
     // The system to visualize
-    let system: LindenmayerSystem
+    var system: LindenmayerSystem
     
     // How to visualize the system
     let length: Double
@@ -50,7 +50,12 @@ struct VisualizedLindenmayerSystem {
     }
     
     // Render the next character of the system using the turtle provided
-    func update(forFrame currentFrame: Int) {
+    mutating func update(forFrame currentFrame: Int) {
+        
+        // If this is the first frame, regenerate the system
+        if currentFrame == 1 {
+            system.regenerate()
+        }
         
         // Save current state of the canvas so that next L-system has "clean slate" to work with
         t.saveStateOfCanvas()
@@ -75,8 +80,12 @@ struct VisualizedLindenmayerSystem {
         
     }
     
-    func renderFullSystem() {
-                
+    mutating func renderFullSystem() {
+        
+        // Re-generate the L-System so this instance is different
+        system.regenerate()
+
+        // Now render the system
         for character in system.word {
             
             // Save current state of the canvas so that next L-system has "clean slate" to work with
@@ -96,9 +105,11 @@ struct VisualizedLindenmayerSystem {
     
     // Render a specific character, or command, in the L-system
     private func render(command: Character) {
+
+//        // DEBUG: Uncomment line below to aid in debugging
+//        print(command, terminator: "")
         
         // Render based on this character
-        print(command, terminator: "")
         switch command {
         case "S":
             t.penUp()

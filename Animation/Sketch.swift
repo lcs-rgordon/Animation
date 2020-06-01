@@ -15,8 +15,8 @@ class Sketch : NSObject {
     // Visualized L-systems
     let visualKochConstruction: VisualizedLindenmayerSystem
     let visualKochIsland: VisualizedLindenmayerSystem
-    let visualConiferousTree: VisualizedLindenmayerSystem
-    let secondVisualConiferousTree: VisualizedLindenmayerSystem
+    var visualConiferousTree: VisualizedLindenmayerSystem
+    var secondVisualConiferousTree: VisualizedLindenmayerSystem
 
     // This function runs once
     override init() {
@@ -79,14 +79,14 @@ class Sketch : NSObject {
                                                            length: 20,
                                                            initialDirection: 270,
                                                            reduction: 1.25,
-                                                           pointToStartRenderingFrom: Point(x: 150, y: 400),
+                                                           pointToStartRenderingFrom: Point(x: 125, y: 400),
                                                            drawnOn: canvas)
 
         secondVisualConiferousTree = VisualizedLindenmayerSystem(system: coniferousTree,
-                                                                   length: 10,
+                                                                   length: 20,
                                                                    initialDirection: 270,
                                                                    reduction: 1.25,
-                                                                   pointToStartRenderingFrom: Point(x: 300, y: 450),
+                                                                   pointToStartRenderingFrom: Point(x: 350, y: 400),
                                                                    drawnOn: canvas)
 
         // DEBUG:
