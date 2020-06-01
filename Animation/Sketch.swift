@@ -7,11 +7,8 @@ class Sketch : NSObject {
     //       Therefore, the line immediately below must always be present.
     let canvas: Canvas
     
-    // L-system
+    // L-system definitions
     let coniferousTree: LindenmayerSystem
-    
-    // Visualized L-systems
-    var visualizedConiferousTrees: [VisualizedLindenmayerSystem] = []
     
     // This function runs once
     override init() {
@@ -73,13 +70,22 @@ class Sketch : NSObject {
             
         }
         
-        //        visualConiferousTree = VisualizedLindenmayerSystem(system: coniferousTree,
-        //                                                           length: 20,
-        //                                                           initialDirection: 270,
-        //                                                           reduction: 1.25,
-        //                                                           pointToStartRenderingFrom: Point(x: 125, y: 400),
-        //                                                           drawnOn: canvas)
-        //
+        // Create 10 trees, each one smaller than the last
+        for i in 1...10 {
+            
+            // Generate the tree
+            var aTree = VisualizedLindenmayerSystem(system: coniferousTree,
+                                                    length: 20.0 / Double(i),
+                                                    initialDirection: 270,
+                                                    reduction: 1.25,
+                                                    pointToStartRenderingFrom: Point(x: 50 + i * 40, y: 300),
+                                                    drawnOn: canvas)
+            
+            // Render this tree
+            aTree.renderFullSystem()
+            
+        }
+        
         
     }
     
