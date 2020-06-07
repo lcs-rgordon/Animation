@@ -13,8 +13,7 @@
 		81064A111C130A10007ED524 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81064A0F1C130A10007ED524 /* Main.storyboard */; };
 		81064A1C1C132DA2007ED524 /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81064A1B1C132DA2007ED524 /* Sketch.swift */; };
 		8134176A2199DBBA003676F3 /* CanvasLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188784E2199C7DF008CB375 /* CanvasLiveViewController.swift */; };
-		814ADAB3248D2D2200F80486 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 814ADAB2248D2D2200F80486 /* AudioKit.framework */; };
-		814ADAB4248D2D2200F80486 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 814ADAB2248D2D2200F80486 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		814ADAD2248D3D3400F80486 /* AudioKit in Resources */ = {isa = PBXBuildFile; fileRef = 814ADAD1248D3D3300F80486 /* AudioKit */; };
 		818878412199C645008CB375 /* CanvasGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188783A2199C645008CB375 /* CanvasGraphics.framework */; };
 		818878422199C645008CB375 /* CanvasGraphics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8188783A2199C645008CB375 /* CanvasGraphics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		818878532199C7EA008CB375 /* PerlinGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818878502199C7EA008CB375 /* PerlinGenerator.swift */; };
@@ -26,6 +25,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		814ADAD8248D3D5900F80486 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 814ADAD3248D3D5900F80486 /* AudioKit For macOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C42F36CC1C0582E6000E937C;
+			remoteInfo = AudioKit;
+		};
+		814ADADA248D3D5900F80486 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 814ADAD3248D3D5900F80486 /* AudioKit For macOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EAFECEBD1F4EBBFE00A2B046;
+			remoteInfo = AudioKitUI;
+		};
+		814ADADC248D3D7600F80486 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 814ADAD3248D3D5900F80486 /* AudioKit For macOS.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C42F36CB1C0582E6000E937C;
+			remoteInfo = AudioKit;
+		};
 		8188783F2199C645008CB375 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 810649FE1C130A10007ED524 /* Project object */;
@@ -42,7 +62,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				814ADAB4248D2D2200F80486 /* AudioKit.framework in Embed Frameworks */,
 				818878422199C645008CB375 /* CanvasGraphics.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -59,8 +78,8 @@
 		81064A121C130A10007ED524 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81064A1B1C132DA2007ED524 /* Sketch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
 		8134E7921C14CD5700EC4523 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		814ADAAB248D2C0E00F80486 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "../../../Downloads/AudioKit-macOS/AudioKit.framework"; sourceTree = "<group>"; };
-		814ADAB2248D2D2200F80486 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = AudioKit/AudioKit.framework; sourceTree = "<group>"; };
+		814ADAD1248D3D3300F80486 /* AudioKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AudioKit; sourceTree = "<group>"; };
+		814ADAD3248D3D5900F80486 /* AudioKit For macOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "AudioKit For macOS.xcodeproj"; path = "AudioKit/macOS/AudioKit For macOS.xcodeproj"; sourceTree = "<group>"; };
 		8188783A2199C645008CB375 /* CanvasGraphics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasGraphics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		818878492199C720008CB375 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		8188784E2199C7DF008CB375 /* CanvasLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasLiveViewController.swift; sourceTree = "<group>"; };
@@ -110,7 +129,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				814ADAB3248D2D2200F80486 /* AudioKit.framework in Frameworks */,
 				818878412199C645008CB375 /* CanvasGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,13 +146,14 @@
 		810649FD1C130A10007ED524 = {
 			isa = PBXGroup;
 			children = (
+				814ADAD3248D3D5900F80486 /* AudioKit For macOS.xcodeproj */,
+				814ADAD1248D3D3300F80486 /* AudioKit */,
 				8134E7921C14CD5700EC4523 /* Playground.playground */,
 				818878472199C6A0008CB375 /* CanvasGraphics */,
 				81DBFBF622E96442005EDE85 /* Documentation */,
 				81064A081C130A10007ED524 /* Animation */,
 				8188784D2199C7B8008CB375 /* Playground */,
 				81064A071C130A10007ED524 /* Products */,
-				814ADAAA248D2C0E00F80486 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -168,13 +187,13 @@
 			name = Support;
 			sourceTree = "<group>";
 		};
-		814ADAAA248D2C0E00F80486 /* Frameworks */ = {
+		814ADAD4248D3D5900F80486 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				814ADAB2248D2D2200F80486 /* AudioKit.framework */,
-				814ADAAB248D2C0E00F80486 /* AudioKit.framework */,
+				814ADAD9248D3D5900F80486 /* AudioKit.framework */,
+				814ADADB248D3D5900F80486 /* AudioKitUI.framework */,
 			);
-			name = Frameworks;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		818878472199C6A0008CB375 /* CanvasGraphics */ = {
@@ -376,6 +395,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				814ADADD248D3D7600F80486 /* PBXTargetDependency */,
 				818878402199C645008CB375 /* PBXTargetDependency */,
 			);
 			name = Animation;
@@ -433,6 +453,12 @@
 			mainGroup = 810649FD1C130A10007ED524;
 			productRefGroup = 81064A071C130A10007ED524 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 814ADAD4248D3D5900F80486 /* Products */;
+					ProjectRef = 814ADAD3248D3D5900F80486 /* AudioKit For macOS.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				81064A051C130A10007ED524 /* Animation */,
@@ -441,11 +467,29 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		814ADAD9248D3D5900F80486 /* AudioKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AudioKit.framework;
+			remoteRef = 814ADAD8248D3D5900F80486 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		814ADADB248D3D5900F80486 /* AudioKitUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AudioKitUI.framework;
+			remoteRef = 814ADADA248D3D5900F80486 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		81064A041C130A10007ED524 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				814ADAD2248D3D3400F80486 /* AudioKit in Resources */,
 				81064A0E1C130A10007ED524 /* Assets.xcassets in Resources */,
 				81064A111C130A10007ED524 /* Main.storyboard in Resources */,
 			);
@@ -488,6 +532,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		814ADADD248D3D7600F80486 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AudioKit;
+			targetProxy = 814ADADC248D3D7600F80486 /* PBXContainerItemProxy */;
+		};
 		818878402199C645008CB375 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 818878392199C645008CB375 /* CanvasGraphics */;
@@ -615,15 +664,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Animation/Animation.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/AudioKit",
-				);
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				FRAMEWORK_SEARCH_PATHS = "${PROJECT_DIR}/AudioKit";
 				INFOPLIST_FILE = Animation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.russellgordon.Animation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -636,15 +685,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Animation/Animation.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/AudioKit",
-				);
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				FRAMEWORK_SEARCH_PATHS = "${PROJECT_DIR}/AudioKit";
 				INFOPLIST_FILE = Animation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.russellgordon.Animation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
