@@ -1,6 +1,5 @@
 import Foundation
 import CanvasGraphics
-import AudioKit
 
 class Sketch : NSObject {
     

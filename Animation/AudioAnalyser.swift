@@ -24,7 +24,7 @@ enum AudioAnalyserDebugLevels: Int {
 }
 
 // Describes results of the analysis
-struct AudioAnalyserResult {
+public struct AudioAnalyserResult {
     
     var frequency: Double
     var amplitude: Double
@@ -34,7 +34,7 @@ struct AudioAnalyserResult {
     
 }
 
-class AudioAnalyser {
+public class AudioAnalyser {
     
     // MARK: - Properties
     

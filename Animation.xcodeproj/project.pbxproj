@@ -15,7 +15,7 @@
 		8134176A2199DBBA003676F3 /* CanvasLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188784E2199C7DF008CB375 /* CanvasLiveViewController.swift */; };
 		814ADAE7248D509900F80486 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 814ADAE4248D507000F80486 /* AudioKit.framework */; };
 		814ADAE8248D509900F80486 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 814ADAE4248D507000F80486 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		814ADAEA248E655B00F80486 /* AudioAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814ADAE9248E655B00F80486 /* AudioAnalyser.swift */; };
+		814ADAF1248E9F8200F80486 /* AudioAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814ADAE9248E655B00F80486 /* AudioAnalyser.swift */; };
 		818878412199C645008CB375 /* CanvasGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188783A2199C645008CB375 /* CanvasGraphics.framework */; };
 		818878422199C645008CB375 /* CanvasGraphics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8188783A2199C645008CB375 /* CanvasGraphics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		818878532199C7EA008CB375 /* PerlinGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818878502199C7EA008CB375 /* PerlinGenerator.swift */; };
@@ -155,7 +155,6 @@
 			children = (
 				81064A1B1C132DA2007ED524 /* Sketch.swift */,
 				81064A1A1C132D69007ED524 /* Support */,
-				814ADAE9248E655B00F80486 /* AudioAnalyser.swift */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -168,6 +167,7 @@
 				81064A0D1C130A10007ED524 /* Assets.xcassets */,
 				81064A0F1C130A10007ED524 /* Main.storyboard */,
 				81064A121C130A10007ED524 /* Info.plist */,
+				814ADAE9248E655B00F80486 /* AudioAnalyser.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -479,7 +479,7 @@
 				81064A0C1C130A10007ED524 /* ViewController.swift in Sources */,
 				81064A1C1C132DA2007ED524 /* Sketch.swift in Sources */,
 				81064A0A1C130A10007ED524 /* AppDelegate.swift in Sources */,
-				814ADAEA248E655B00F80486 /* AudioAnalyser.swift in Sources */,
+				814ADAF1248E9F8200F80486 /* AudioAnalyser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,7 +566,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -615,7 +615,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
