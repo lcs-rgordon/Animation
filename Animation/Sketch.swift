@@ -7,7 +7,7 @@ class Sketch: NSObject {
     //       The object must be an instance of a type that conforms to
     //       the Sketchable protocol.
     //
-    //       Therefore, the line immediately below must always be present.
+    //       Therefore, the line immediately below, or one like it, must always be present.
     var currentDrawing = BasicSketch()
 
     // To try out other included sketches, uncomment one of the lines below.
