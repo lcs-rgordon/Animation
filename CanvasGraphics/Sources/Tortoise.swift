@@ -3,7 +3,7 @@
 //  CanvasGraphics
 //
 //  Created by Russell Gordon on 2020-05-21.
-//  Copyright © 2020 Royal St. George's College. All rights reserved.
+//  Copyright © 2020 Russell Gordon. All rights reserved.
 //
 
 import Foundation
