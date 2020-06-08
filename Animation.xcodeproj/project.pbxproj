@@ -16,6 +16,12 @@
 		814ADAE7248D509900F80486 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 814ADAE4248D507000F80486 /* AudioKit.framework */; };
 		814ADAE8248D509900F80486 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 814ADAE4248D507000F80486 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		814ADAF1248E9F8200F80486 /* AudioAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814ADAE9248E655B00F80486 /* AudioAnalyser.swift */; };
+		814ADAF3248E9FDA00F80486 /* Sketchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814ADAF2248E9FDA00F80486 /* Sketchable.swift */; };
+		814ADAF5248EAB6A00F80486 /* TurtleSketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814ADAF4248EAB6A00F80486 /* TurtleSketch.swift */; };
+		814ADAF9248EB34900F80486 /* BasicSketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814ADAF8248EB34900F80486 /* BasicSketch.swift */; };
+		814ADAFB248EB45F00F80486 /* AudioInputSketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814ADAFA248EB45F00F80486 /* AudioInputSketch.swift */; };
+		814ADAFD248EB56900F80486 /* EmptySketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814ADAFC248EB56900F80486 /* EmptySketch.swift */; };
+		814ADAFF248EB5E300F80486 /* StaticSketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814ADAFE248EB5E300F80486 /* StaticSketch.swift */; };
 		818878412199C645008CB375 /* CanvasGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8188783A2199C645008CB375 /* CanvasGraphics.framework */; };
 		818878422199C645008CB375 /* CanvasGraphics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8188783A2199C645008CB375 /* CanvasGraphics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		818878532199C7EA008CB375 /* PerlinGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818878502199C7EA008CB375 /* PerlinGenerator.swift */; };
@@ -63,6 +69,12 @@
 		814ADAE4248D507000F80486 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
 		814ADAE5248D507000F80486 /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKitUI.framework; sourceTree = "<group>"; };
 		814ADAE9248E655B00F80486 /* AudioAnalyser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioAnalyser.swift; sourceTree = "<group>"; };
+		814ADAF2248E9FDA00F80486 /* Sketchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sketchable.swift; sourceTree = "<group>"; };
+		814ADAF4248EAB6A00F80486 /* TurtleSketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurtleSketch.swift; sourceTree = "<group>"; };
+		814ADAF8248EB34900F80486 /* BasicSketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSketch.swift; sourceTree = "<group>"; };
+		814ADAFA248EB45F00F80486 /* AudioInputSketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioInputSketch.swift; sourceTree = "<group>"; };
+		814ADAFC248EB56900F80486 /* EmptySketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySketch.swift; sourceTree = "<group>"; };
+		814ADAFE248EB5E300F80486 /* StaticSketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticSketch.swift; sourceTree = "<group>"; };
 		8188783A2199C645008CB375 /* CanvasGraphics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasGraphics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		818878492199C720008CB375 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		8188784E2199C7DF008CB375 /* CanvasLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasLiveViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +167,11 @@
 			children = (
 				81064A1B1C132DA2007ED524 /* Sketch.swift */,
 				81064A1A1C132D69007ED524 /* Support */,
+				814ADAF8248EB34900F80486 /* BasicSketch.swift */,
+				814ADAF4248EAB6A00F80486 /* TurtleSketch.swift */,
+				814ADAFA248EB45F00F80486 /* AudioInputSketch.swift */,
+				814ADAFE248EB5E300F80486 /* StaticSketch.swift */,
+				814ADAFC248EB56900F80486 /* EmptySketch.swift */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -168,6 +185,7 @@
 				81064A0F1C130A10007ED524 /* Main.storyboard */,
 				81064A121C130A10007ED524 /* Info.plist */,
 				814ADAE9248E655B00F80486 /* AudioAnalyser.swift */,
+				814ADAF2248E9FDA00F80486 /* Sketchable.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -479,7 +497,13 @@
 				81064A0C1C130A10007ED524 /* ViewController.swift in Sources */,
 				81064A1C1C132DA2007ED524 /* Sketch.swift in Sources */,
 				81064A0A1C130A10007ED524 /* AppDelegate.swift in Sources */,
+				814ADAF5248EAB6A00F80486 /* TurtleSketch.swift in Sources */,
+				814ADAF9248EB34900F80486 /* BasicSketch.swift in Sources */,
+				814ADAFB248EB45F00F80486 /* AudioInputSketch.swift in Sources */,
 				814ADAF1248E9F8200F80486 /* AudioAnalyser.swift in Sources */,
+				814ADAF3248E9FDA00F80486 /* Sketchable.swift in Sources */,
+				814ADAFD248EB56900F80486 /* EmptySketch.swift in Sources */,
+				814ADAFF248EB5E300F80486 /* StaticSketch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
