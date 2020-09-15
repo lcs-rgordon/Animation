@@ -26,7 +26,7 @@ public enum AnchorPosition : Int {
 }
 
 /// Carries out the heavy lifting to generate bitmap graphics
-open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
+public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     
     /// Returns the bitmap image used for Xcode Playground quick looks; represents current state of the canvas at any given time.
     public var playgroundDescription : Any {
@@ -47,7 +47,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     public var frameCount : Int = 0
     
     /// Default line width for lines drawn using drawLine()
-    open var defaultLineWidth: Int = 1 {
+    public var defaultLineWidth: Int = 1 {
         didSet {
             // Ensure rational line width set
             if (defaultLineWidth < 0) {
@@ -61,10 +61,10 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     }
     
     /// Line color, default is black
-    open var lineColor: Color = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
+    public var lineColor: Color = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
     
     /// Default border width for closed shapes
-    open var defaultBorderWidth: Int = 1 {
+    public var defaultBorderWidth: Int = 1 {
         didSet {
             // Ensure rational border width set
             if (defaultBorderWidth < 0) {
@@ -77,19 +77,19 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     }
     
     /// Border color, default is black
-    open var borderColor: Color = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
+    public var borderColor: Color = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
     
     /// Fill color, default is black
-    open var fillColor: Color = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
+    public var fillColor: Color = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
     
     /// Text color, default is black
-    open var textColor: Color = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
+    public var textColor: Color = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
     
     /// Whether to draw shapes with borders
-    open var drawShapesWithBorders: Bool = true
+    public var drawShapesWithBorders: Bool = true
     
     /// Whether to draw shapes with fill
-    open var drawShapesWithFill: Bool = true
+    public var drawShapesWithFill: Bool = true
     
     // Size of canvas
     public let width : Int
@@ -99,7 +99,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     public let scale : Int
     
     /// Draw in high performance mode. When true, canvas image does not get updated after every draw call. This should generally be kept at the default value of `false`.
-    open var highPerformance : Bool = false {
+    public var highPerformance : Bool = false {
         didSet {
             if self.highPerformance {
                 
@@ -209,14 +209,14 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     }
     
     // This is called when the view needs to be updated
-    open override func draw(_ dirtyRect: NSRect) {
+    public override func draw(_ dirtyRect: NSRect) {
 
         super.draw(dirtyRect)
 
     }
     
     // This is called after the view is created
-    override open func viewDidMoveToSuperview() {
+    override public func viewDidMoveToSuperview() {
         
     }
     
@@ -230,7 +230,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
          - kerning: The spacing between letters of the text. 0.0 is neutral, negative values draw letters together, positive values move letters further apart.
      
      */
-    open func drawText(message: String, at: Point, size: Int = 24, kerning : Float = 0.0)  {
+    public func drawText(message: String, at: Point, size: Int = 24, kerning : Float = 0.0)  {
                 
         // Set attributes of shape based on the canvas scale factor
         var size = size
@@ -279,7 +279,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
          - lineWidth: Width of the line segment.
          - capStyle: The shape of line segment endpoints (square, rounded, et cetera).
      */
-    open func drawLine(from: Point, to: Point, lineWidth: Int = 0, capStyle : NSBezierPath.LineCapStyle = NSBezierPath.LineCapStyle.square) {
+    public func drawLine(from: Point, to: Point, lineWidth: Int = 0, capStyle : NSBezierPath.LineCapStyle = NSBezierPath.LineCapStyle.square) {
         
         // Set attributes of shape based on the canvas scale factor
         var fromX = from.x
@@ -325,7 +325,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
          - height: How tall the ellipse will be across its vertical axis.
          - borderWidth: How thick the stroke of the border should be.
      */
-    open func drawEllipse(at: Point, width: Int, height: Int, borderWidth: Int = 0) {
+    public func drawEllipse(at: Point, width: Int, height: Int, borderWidth: Int = 0) {
         
         // Set attributes of shape based on the canvas scale factor
         var centreX = at.x
@@ -377,7 +377,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         - height: How tall the rectangle will be across its vertical axis.
         - borderWidth: How thick the stroke of the border should be.
      */
-    open func drawRectangle(at: Point, width: Int, height: Int, anchoredBy : AnchorPosition = AnchorPosition.bottomLeft, borderWidth: Int = 1) {
+    public func drawRectangle(at: Point, width: Int, height: Int, anchoredBy : AnchorPosition = AnchorPosition.bottomLeft, borderWidth: Int = 1) {
         
         // Set attributes of shape based on the canvas scale factor
         var bottomLeftX = at.x
@@ -457,7 +457,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         - xRadius: Horizontal size of the rounded corner.
         - yRadius: Vertical size of the rounded corner.
      */
-    open func drawRoundedRectangle(at: Point, width: Int, height: Int, anchoredBy : AnchorPosition = AnchorPosition.bottomLeft, borderWidth: Int = 1, xRadius: Int = 10, yRadius: Int = 10) {
+    public func drawRoundedRectangle(at: Point, width: Int, height: Int, anchoredBy : AnchorPosition = AnchorPosition.bottomLeft, borderWidth: Int = 1, xRadius: Int = 10, yRadius: Int = 10) {
         
         // Set attributes of shape based on the canvas scale factor
         var bottomLeftX = at.x
@@ -533,7 +533,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
      ![drawCustomShape](http://russellgordon.ca/CanvasGraphics/drawCustomShape_example.png)
 
      */
-    open func drawCustomShape(with vertices : [Point]) {
+    public func drawCustomShape(with vertices : [Point]) {
         
         // Ensure there are at least three vertices provided
         if vertices.count < 3 {
@@ -586,7 +586,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
      Use `drawAxes()` after invoking this method to understand how the canvas is changed by rotation.
      
      */
-    open func rotate(by provided : Degrees) {
+    public func rotate(by provided : Degrees) {
         
         let xform = NSAffineTransform()
         xform.rotate(byDegrees: provided)
@@ -603,7 +603,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
      
      Note that "to the right" and "up" are relative, since the canvas may be rotated.
      */
-    open func translate(to: Point) {
+    public func translate(to: Point) {
         
         var byX = to.x
         byX *= scale.asCGFloat()
@@ -625,7 +625,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
      
      "Pushes the current transformation matrix onto the matrix stack. Understanding pushMatrix() and popMatrix() requires understanding the concept of a matrix stack. The pushMatrix() function saves the current coordinate system to the stack and popMatrix() restores the prior coordinate system. pushMatrix() and popMatrix() are used in conjuction with the other transformation functions and may be embedded to control the scope of the transformations."
      */
-    open func saveState() {
+    public func saveState() {
         NSGraphicsContext.saveGraphicsState()
     }
     
@@ -639,7 +639,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
      "Pops the current transformation matrix off the matrix stack. Understanding pushing and popping requires understanding the concept of a matrix stack. The pushMatrix() function saves the current coordinate system to the stack and popMatrix() restores the prior coordinate system. pushMatrix() and popMatrix() are used in conjuction with the other transformation functions and may be embedded to control the scope of the transformations."
      
      */
-    open func restoreState() {
+    public func restoreState() {
         NSGraphicsContext.restoreGraphicsState()
     }
     
@@ -648,7 +648,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
      
      You can then paste the image into any other program, for example, Preview, and from there, save to disk, print, share with others, et cetera.
      */
-    open func copyToClipboard() {
+    public func copyToClipboard() {
         
         // Clear the pasteboard
         let pasteBoard = NSPasteboard.general
@@ -675,7 +675,7 @@ open class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     /// For example:
     ///
     /// ![axes](http://russellgordon.ca/CanvasGraphics/drawAxes_example.png)
-    open func drawAxes() {
+    public func drawAxes() {
         
         // Draw horizontal axis
         self.drawLine(from: Point(x: self.width * -10, y: 0), to: Point(x: self.width * 10, y: 0), capStyle: NSBezierPath.LineCapStyle.square)

@@ -1,41 +1,20 @@
 import Foundation
 import CanvasGraphics
 
-class Sketch : NSObject {
+class Sketch: NSObject {
     
-    // NOTE: Every sketch must contain an object of type Canvas named 'canvas'
-    //       Therefore, the line immediately below must always be present.
-    let canvas : Canvas
-    
-    // Tortoise to draw with
-    let turtle : Tortoise
-        
-    // This function runs once
-    override init() {
-        
-        // Create canvas object – specify size
-        canvas = Canvas(width: 500, height: 500)
-        
-        // Create turtle to draw with
-        turtle = Tortoise(drawingUpon: canvas)
-        
-        // Move to middle of screen
-        turtle.penUp()
-        turtle.setPosition(to: Point(x: 250, y: 250))
-        turtle.penDown()
+    // NOTE: This class must contain an object named 'currentDrawing'.
+    //       The object must be an instance of a type that conforms to
+    //       the Sketchable protocol.
+    //
+    //       Therefore, the line immediately below, or one like it, must always be present.
+    var currentDrawing = BasicSketch()
 
-    }
-    
-    // This function runs repeatedly, forever, to create the animated effect
-    func draw() {
-        
-        // Required to bring canvas into same orientation and origin position as last run of draw() function
-        turtle.restoreStateOnCanvas()
+    // To try out other included sketches:
+    // 1. Comment out the code on line 11.
+    // 2. Uncomment one of the lines below.
+//    var currentDrawing = TurtleSketch()
+//    var currentDrawing = AudioInputSketch()
+//    var currentDrawing = StaticSketch()
 
-        // Move the turtle forward and turn it a bit
-        turtle.forward(steps: 5)
-        turtle.right(by: 1)
-        
-    }
-    
 }

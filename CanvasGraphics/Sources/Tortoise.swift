@@ -3,7 +3,7 @@
 //  CanvasGraphics
 //
 //  Created by Russell Gordon on 2020-05-21.
-//  Copyright © 2020 Royal St. George's College. All rights reserved.
+//  Copyright © 2020 Russell Gordon. All rights reserved.
 //
 
 import Foundation
@@ -29,7 +29,7 @@ struct TortoiseState {
 }
 
 /// Abstraction layer to allow drawing on a Canvas instance with a "LOGO turtle" metaphor
-open class Tortoise: CustomPlaygroundDisplayConvertible {
+public class Tortoise: CustomPlaygroundDisplayConvertible {
     
     // Turtle state
     var state: TortoiseState = TortoiseState()
@@ -63,7 +63,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
     /**
      Put the pen down. When the turtle moves, a line will be drawn.
      */
-    open func penDown() {
+    public func penDown() {
         
         self.state.drawing = true
         
@@ -72,7 +72,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
     /**
      Lift the pen up. When the turtle moves, no line is drawn.
      */
-    open func penUp() {
+    public func penUp() {
         
         self.state.drawing = false
         
@@ -84,7 +84,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      - Parameters:
          - angle: How far to rotate the turtle to the right, in degrees.
      */
-    open func right(by angle: Degrees) {
+    public func right(by angle: Degrees) {
         
         self.state.heading -= angle
         c.rotate(by: -angle)
@@ -97,7 +97,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      - Parameters:
          - angle: How far to rotate the turtle to the left, in degrees.
      */
-    open func left(by angle: Degrees) {
+    public func left(by angle: Degrees) {
         
         right(by: -angle)
 
@@ -109,7 +109,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      - Parameters:
          - steps: How many steps forward the turtle should take.
      */
-    open func forward(steps: Int) {
+    public func forward(steps: Int) {
         
         // Draw based on movement
         if self.state.drawing {
@@ -134,7 +134,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      - Parameters:
          - steps: How many steps backward the turtle should take.
      */
-    open func backward(steps: Int) {
+    public func backward(steps: Int) {
         
         forward(steps: -steps)
         
@@ -146,7 +146,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      - Parameters:
          - to: What direction to point the turtle in; works the same way as a unit circle.
      */
-    open func setHeading(to: Degrees) {
+    public func setHeading(to: Degrees) {
         
         let relativeHeading = to - currentHeading()
         self.state.heading = to
@@ -160,7 +160,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      - Parameters:
          - to: The point to place the turtle at on the Cartesian plane.
      */
-    open func setPosition(to: Point) {
+    public func setPosition(to: Point) {
 
         let tempHeading = self.state.heading
         setHeading(to: 0)
@@ -188,7 +188,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      - Parameters:
          - to: The horizontal position, relative to 0 which is the left side of the canvas.
      */
-    open func setX(to: CGFloat) {
+    public func setX(to: CGFloat) {
         
         setPosition(to: Point(x: to, y: self.state.position.y))
         
@@ -200,7 +200,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      - Parameters:
          - to: The horizontal position, relative to 0 which is the left side of the canvas.
      */
-    open func setX(to: Double) {
+    public func setX(to: Double) {
         
         setPosition(to: Point(x: CGFloat(to), y: CGFloat(self.state.position.y)))
         
@@ -212,7 +212,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      - Parameters:
          - to: The horizontal position, relative to 0 which is the left side of the canvas.
      */
-    open func setX(to: Int) {
+    public func setX(to: Int) {
         
         setPosition(to: Point(x: Int(to), y: Int(self.state.position.y)))
         
@@ -224,7 +224,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      - Parameters:
          - to: The vertical position, relative to 0 which is the bottom side of the canvas.
      */
-    open func setY(to: CGFloat) {
+    public func setY(to: CGFloat) {
         
         setPosition(to: Point(x: self.state.position.x, y: to))
 
@@ -236,7 +236,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      - Parameters:
          - to: The vertical position, relative to 0 which is the bottom side of the canvas.
      */
-    open func setY(to: Double) {
+    public func setY(to: Double) {
         
         setPosition(to: Point(x: CGFloat(self.state.position.x), y: CGFloat(to)))
 
@@ -248,7 +248,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      - Parameters:
          - to: The vertical position, relative to 0 which is the bottom side of the canvas.
      */
-    open func setY(to: Int) {
+    public func setY(to: Int) {
         
         setPosition(to: Point(x: Int(self.state.position.x), y: Int(to)))
         
@@ -260,7 +260,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      - Parameters:
          - to: The desired color.
      */
-    open func setPenColor(to: Color) {
+    public func setPenColor(to: Color) {
         
         self.state.penColor = to
         c.lineColor = self.state.penColor
@@ -273,7 +273,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      - Parameters:
          - to: The desired color.
      */
-    open func setFillColor(to: Color) {
+    public func setFillColor(to: Color) {
         
         self.state.fillColor = to
         c.fillColor = self.state.fillColor
@@ -286,7 +286,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
      - Parameters:
          - to: The desired stroke size, with 1 as the smallest possible value. Values lower than 1 will be ignored.
      */
-    open func setPenSize(to: Int) {
+    public func setPenSize(to: Int) {
         
         if to > 0 {
             self.state.penSize = to
@@ -298,7 +298,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
     /**
      Move the turtle to the origin (bottom left corner of canvas).
      */
-    open func goToHome() {
+    public func goToHome() {
         
         setPosition(to: Point(x: 0, y: 0))
         setHeading(to: 0)
@@ -308,7 +308,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
     /**
      Start tracking turtle locations to mark the vertices of a closed polygon.
      */
-    open func beginFill() {
+    public func beginFill() {
         
         self.state.filling = true
         self.state.verticesForCurrentFill.append(self.state.position)
@@ -319,7 +319,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
     /**
      Stop tracking turtle locations to mark the vertices of a closed polygon. The shape will be filled at this point.
      */
-    open func endFill() {
+    public func endFill() {
         
         c.translate(to: Point(x: -self.state.position.x, y: -self.state.position.y))
         c.drawCustomShape(with: self.state.verticesForCurrentFill)
@@ -333,7 +333,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
     /**
      Draw a triangle representing the turtle. The forward vertex of the triangle indicates the position of the turtle. The rear portion of the triangle indicates the heading of the turtle. For example, a triangle pointing to the right means the turtle has a heading of 0 degrees.
      */
-    open func drawSelf() {
+    public func drawSelf() {
         
         c.lineColor = .black
         c.fillColor = .black
@@ -354,7 +354,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
     /**
      When calling Tortoise methods within the a Processing-style `draw()` function, as with the `Sketch` class, be sure to invoke this method at the start of the `draw()` function to restore canvas state to where it left off after the last frame was animated.
      */
-    open func restoreStateOnCanvas() {
+    public func restoreStateOnCanvas() {
 
         c.translate(to: currentPosition())
         c.rotate(by: currentHeading())
@@ -364,7 +364,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
     /**
      Save the current state of the tortoise (position, orientation, et cetera).
      */
-    open func saveState() {
+    public func saveState() {
         
         states.append(state)
         
@@ -373,7 +373,7 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
     /**
      Restore a previous state of the tortoise (position, orientation, et cetera).
      */
-    open func restoreState() {
+    public func restoreState() {
         
         state = states.last!
         restoreStateOnCanvas()
@@ -385,42 +385,42 @@ open class Tortoise: CustomPlaygroundDisplayConvertible {
     // MARK: Interrogate state
 
     /// The current heading of the turtle. 0 = right, 90 = up, 180 = left, 270 = down.
-    open func currentHeading() -> Degrees {
+    public func currentHeading() -> Degrees {
         
         return self.state.heading
         
     }
     
     /// The current position of the turtle on the Cartesian plane, relative to the origin (bottom left corner of canvas).
-    open func currentPosition() -> Point {
+    public func currentPosition() -> Point {
         
         return self.state.position
         
     }
     
     /// Whether the pen is currently down, or not.
-    open func isPenDown() -> Bool {
+    public func isPenDown() -> Bool {
         
         return self.state.drawing
         
     }
     
     /// The color the turtle is drawing with right now.
-    open func currentPenColor() -> Color {
+    public func currentPenColor() -> Color {
         
         return self.state.penColor
         
     }
     
     /// The pen size the turtle is drawing with right now.
-    open func currentPenSize() -> Int {
+    public func currentPenSize() -> Int {
         
         return self.state.penSize
         
     }
     
     /// The color closed polygons will be filled with.
-    open func currentFillColor() -> Color {
+    public func currentFillColor() -> Color {
         
         return self.state.fillColor
         
