@@ -346,7 +346,7 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         if borderWidth > 0 {
             path.lineWidth = borderWidth.asCGFloat()
         } else {
-            path.lineWidth = CGFloat(self.defaultBorderWidth * scale)
+            path.lineWidth = CGFloat(self.defaultBorderWidth)
         }
         
         // Set ellipse border color
