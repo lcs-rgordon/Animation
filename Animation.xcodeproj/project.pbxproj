@@ -438,7 +438,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 1200;
-				ORGANIZATIONNAME = "Royal St. George's College";
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					81064A051C130A10007ED524 = {
 						CreatedOnToolsVersion = 7.1.1;
