@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)
+// swift-compiler-version: Apple Swift version 5.3 (swiftlang-1200.0.29.2 clang-1200.0.30.1)
 // swift-module-flags: -target x86_64-apple-macos10.12 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AudioKitUI
 import AudioKit
 @_exported import AudioKitUI
@@ -23,7 +23,7 @@ import Swift
   @objc @IBInspectable public var property: Swift.String
   @objc @IBInspectable public var format: Swift.String
   @objc @IBInspectable public var fontSize: CoreGraphics.CGFloat
-  public var callback: ((Swift.Double) -> Swift.Void)
+  public var callback: (Swift.Double) -> Swift.Void
   public var discreteValues: [Swift.Double]
   public var isDragging: Swift.Bool
   public var lastTouch: CoreGraphics.CGPoint
@@ -145,7 +145,7 @@ public enum AKRotaryKnobStyle {
   @objc @IBInspectable open var bgColor: AppKit.NSColor?
   @objc @IBInspectable open var knobBorderColor: AppKit.NSColor?
   @objc @IBInspectable open var indicatorColor: AppKit.NSColor?
-  @objc @IBInspectable open var knobColor: AppKit.NSColor
+  @objc @IBInspectable open var knobColor: AudioKitUI.AKColor
   @objc @IBInspectable open var textColor: AppKit.NSColor?
   @objc @IBInspectable open var bubbleFontSize: CoreGraphics.CGFloat
   open var knobStyle: AudioKitUI.AKRotaryKnobStyle
@@ -198,7 +198,7 @@ public enum AKSliderStyle {
   @objc @IBInspectable public var bgColor: AppKit.NSColor?
   @objc @IBInspectable public var sliderBorderColor: AppKit.NSColor?
   @objc @IBInspectable public var indicatorBorderColor: AppKit.NSColor?
-  @objc @IBInspectable public var color: AppKit.NSColor
+  @objc @IBInspectable public var color: AudioKitUI.AKColor
   @objc @IBInspectable public var textColor: AppKit.NSColor?
   @objc @IBInspectable public var bubbleFontSize: CoreGraphics.CGFloat
   open var sliderStyle: AudioKitUI.AKSliderStyle
@@ -283,6 +283,33 @@ public typealias AKLabel = AppKit.NSTextField
   public func addView(_ newView: AppKit.NSView)
   @objc deinit
   @objc override dynamic public init(nibName nibNameOrNil: AppKit.NSNib.Name?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+}
+@objc @_inheritsConvenienceInitializers open class AKWaveformLayer : QuartzCore.CAShapeLayer {
+  public var allowActions: Swift.Bool
+  public var isMirrored: Swift.Bool {
+    get
+    set
+  }
+  public var table: [Swift.Float]? {
+    get
+    set
+  }
+  public var isEmpty: Swift.Bool {
+    get
+  }
+  public var gain: Swift.Float {
+    get
+    set
+  }
+  convenience public init(table: [Swift.Float], size: CoreGraphics.CGSize? = nil, fillColor: CoreGraphics.CGColor? = nil, strokeColor: CoreGraphics.CGColor? = nil, backgroundColor: CoreGraphics.CGColor? = nil, opacity: Swift.Float = 1, isMirrored: Swift.Bool = false)
+  @objc override dynamic public func action(forKey event: Swift.String) -> QuartzCore.CAAction?
+  public func updateLayer()
+  public func updateLayer(with size: CoreGraphics.CGSize)
+  public func dispose()
+  @objc deinit
+  @objc override dynamic public init()
+  @objc override dynamic public init(layer: Any)
   @objc required dynamic public init?(coder: Foundation.NSCoder)
 }
 @objc @_inheritsConvenienceInitializers public class AKResourcesAudioFileLoaderView : AppKit.NSView {
