@@ -278,8 +278,9 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
          - to: Ending position of the line segment.
          - lineWidth: Width of the line segment.
          - capStyle: The shape of line segment endpoints (square, rounded, et cetera).
+         - dashed: Whether to make the line dashed or not.
      */
-    public func drawLine(from: Point, to: Point, lineWidth: Int = 0, capStyle : NSBezierPath.LineCapStyle = NSBezierPath.LineCapStyle.square) {
+    public func drawLine(from: Point, to: Point, lineWidth: Int = 0, capStyle : NSBezierPath.LineCapStyle = NSBezierPath.LineCapStyle.square, dashed: Bool = false) {
         
         // Set attributes of shape based on the canvas scale factor
         var fromX = from.x
@@ -302,6 +303,12 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
             path.lineWidth = lineWidth.asCGFloat()
         } else {
             path.lineWidth = self.defaultLineWidth.asCGFloat()
+        }
+
+        // Optionally make the line dashed
+        if dashed {
+            let dashes: [CGFloat] = [4, 2]
+            path.setLineDash(dashes, count: 2, phase: 0)
         }
         
         // Define the line
@@ -675,7 +682,7 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     /// For example:
     ///
     /// ![axes](http://russellgordon.ca/CanvasGraphics/drawAxes_example.png)
-    public func drawAxes() {
+    public func drawAxes(withScale: Bool = false, by: Int = 50) {
         
         // Draw horizontal axis
         self.drawLine(from: Point(x: self.width * -10, y: 0), to: Point(x: self.width * 10, y: 0), capStyle: NSBezierPath.LineCapStyle.square)
@@ -683,9 +690,52 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         // Draw vertical axis
         self.drawLine(from: Point(x: 0, y: self.height * -10), to: Point(x: 0, y: self.height * 10), capStyle: NSBezierPath.LineCapStyle.square)
         
+        // Determine horizontal start and end points
+        let horizontalStart = self.width / by * -1
+        let horizontalEnd = horizontalStart * -1
+
+        // Determine vertical start and end points
+        let verticalStart = self.height / by * -1
+        let verticalEnd = verticalStart * -1
+
         // Draw labels
-        self.drawText(message: "x", at: Point(x: 50, y: 5))
-        self.drawText(message: "y", at: Point(x: 5, y: 50))
+        self.drawText(message: "x", at: Point(x: horizontalEnd * by - 10, y: 5), size: 12)
+        self.drawText(message: "y", at: Point(x: 5, y: verticalEnd * by - 20), size: 12)
+        
+        // Save line color
+        if withScale {
+            
+            let priorLineColor = self.lineColor
+            self.lineColor = Color(hue: 0, saturation: 100, brightness: 0, alpha: 18)
+            
+            // Draw horizontal scale and grid
+            for x in stride(from: horizontalStart * by, through: horizontalEnd * by, by: by) {
+                
+                // Scale
+                if x != 0 {
+                    self.drawText(message: "\(x)", at: Point(x: x + 5, y: 5), size: 9)
+                }
+                
+                // Grid
+                self.drawLine(from: Point(x: x, y: self.height * -1), to: Point(x: x, y: self.height), dashed: true)
+            }
+
+            // Draw vertical scale and grid
+            for y in stride(from: verticalStart * by, through: verticalEnd * by, by: by) {
+                
+                // Scale
+                if y != 0 && y != verticalEnd * by {
+                    self.drawText(message: "\(y)", at: Point(x: 5, y: y - 15), size: 9)
+                }
+                
+                // Grid
+                self.drawLine(from: Point(x: self.width * -1, y: y), to: Point(x: self.width, y: y), dashed: true)
+            }
+            
+            // Restore line color
+            self.lineColor = priorLineColor
+
+        }
         
     }
     
