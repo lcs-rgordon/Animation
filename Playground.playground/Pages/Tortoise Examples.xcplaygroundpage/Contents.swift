@@ -43,7 +43,7 @@ turtle.setPenColor(to: .black)
 turtle.setPenSize(to: 1)
 turtle.goToHome()
 turtle.penDown()
-for i in 1...4 {
+for _ in 1...4 {
     turtle.forward(steps: 100)
     turtle.left(by: 90)
     turtle.currentHeading()
@@ -56,7 +56,7 @@ turtle.setPosition(to: Point(x: 250, y: 250))
 turtle.penDown()
 turtle.currentPosition()
 turtle.penDown()
-for i in 1...4 {
+for _ in 1...4 {
     turtle.forward(steps: 100)
     turtle.left(by: 90)
     turtle.currentHeading()
@@ -69,7 +69,7 @@ turtle.setPosition(to: Point(x: 300, y: 300))
 turtle.penDown()
 turtle.currentPosition()
 turtle.penDown()
-for i in 1...4 {
+for _ in 1...4 {
     turtle.forward(steps: 100)
     turtle.left(by: 90)
     turtle.currentHeading()
@@ -81,7 +81,7 @@ turtle.setPosition(to: Point(x: 200, y: 200))
 turtle.penDown()
 turtle.currentPosition()
 turtle.penDown()
-for i in 1...4 {
+for _ in 1...4 {
     turtle.forward(steps: 100)
     turtle.left(by: 90)
     turtle.currentHeading()
