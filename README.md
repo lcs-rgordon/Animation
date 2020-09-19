@@ -32,6 +32,10 @@ My experience has been that:
 
 ... combines to make an extremely powerful introductory learning experience for students in Computer Science classes.
 
+## System Requirements
+
+* [Xcode 12.x](https://apps.apple.com/ca/app/xcode/id497799835?mt=12)
+
 ## Getting Started
 
 Clone or [download a ZIP](https://github.com/lcs-rgordon/Animation/archive/master.zip) of the repository.
@@ -39,10 +43,6 @@ Clone or [download a ZIP](https://github.com/lcs-rgordon/Animation/archive/maste
 Be sure you open the `Animation.xcodeproj` file:
 
 <img width="641" alt="Screen Shot 2019-07-24 at 9 42 57 PM" src="https://user-images.githubusercontent.com/32135742/61841955-1855a100-ae5c-11e9-89a3-30386bf8f864.png">
-
-Once you open the project, you must (one time only) build the `CanvasGraphics` framework:
-
-<img width="370" alt="Screen Shot 2019-07-24 at 9 45 16 PM" src="https://user-images.githubusercontent.com/32135742/61842049-64a0e100-ae5c-11e9-9b60-94e58212d12b.png">
 
 To create static images, use the playground file:
 
