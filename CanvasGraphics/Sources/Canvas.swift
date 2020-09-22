@@ -324,6 +324,63 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     }
     
     /**
+     Draw a bezier curve between the provided points.
+     
+     - Parameters:
+         - from: Starting position of the curve
+         - to: Ending position of the curve
+         - lineWidth: Position of the control point
+     */
+    public func drawCurve(from: Point, to: Point, control1: Point, control2: Point, lineWidth: Int = 0, capStyle : NSBezierPath.LineCapStyle = NSBezierPath.LineCapStyle.square) {
+        
+        // Set attributes of shape based on the canvas scale factor
+        var fromX = from.x
+        fromX *= scale.asCGFloat()
+        var fromY = from.y
+        fromY *= scale.asCGFloat()
+        var toX = to.x
+        toX *= scale.asCGFloat()
+        var toY = to.y
+        toY *= scale.asCGFloat()
+        var control1X = control1.x
+        control1X *= scale.asCGFloat()
+        var control1Y = control1.y
+        control1Y *= scale.asCGFloat()
+        var control2X = control2.x
+        control2X *= scale.asCGFloat()
+        var control2Y = control2.y
+        control2Y *= scale.asCGFloat()
+
+        var lineWidth = lineWidth
+        lineWidth *= scale
+        
+        // Make the new path with the specified cap style
+        NSBezierPath.defaultLineCapStyle = capStyle
+        let path = NSBezierPath()
+        
+        // Set width of border
+        if lineWidth > 0 {
+            path.lineWidth = lineWidth.asCGFloat()
+        } else {
+            path.lineWidth = self.defaultLineWidth.asCGFloat()
+        }
+        
+        // Define the start of the curve
+        path.move(to: NSPoint(x: fromX, y: fromY))
+        // TODO: Add curve call here
+        path.curve(to: NSPoint(x: toX, y: toY),
+                   controlPoint1: NSPoint(x: control1X, y: control1Y),
+                   controlPoint2: NSPoint(x: control2X, y: control2Y))
+        
+        // Set the line's color
+        NSColor(hue: lineColor.translatedHue, saturation: lineColor.translatedSaturation, brightness: lineColor.translatedBrightness, alpha: lineColor.translatedAlpha).setStroke()
+        
+        // Draw the line
+        path.stroke()
+        
+    }
+    
+    /**
      Draw an ellipse centred at the point specified.
      
      - Parameters:
