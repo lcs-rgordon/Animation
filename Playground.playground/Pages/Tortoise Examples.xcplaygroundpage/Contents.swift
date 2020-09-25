@@ -1,7 +1,7 @@
 //: [Previous](@previous) / [Next](@next)
 //: # Tortoise Examples
 //:
-//: The `CanvasGraphics` framework also allows you to draw using a "LOGO turtle" metaphore.
+//: The `CanvasGraphics` framework also allows you to draw using a "LOGO turtle" metaphor.
 //:
 //: [Documentation for the Tortoise abstraction](http://russellgordon.ca/CanvasGraphics/Documentation/Classes/Tortoise.html) is available.
 /*:
