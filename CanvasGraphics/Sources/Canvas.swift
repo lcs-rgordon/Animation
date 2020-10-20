@@ -178,6 +178,10 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         // Create the bitmap context
         NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: offscreenRep)
         
+        // Set the blend mode
+        // See: https://www.trailingclosure.com/blendmode-cheat-sheet/
+        NSGraphicsContext.current!.compositingOperation = NSCompositingOperation.hardLight
+        
     }
     
     // Determines whether the display is Retina calibre or not and sizes bitmap we draw to
