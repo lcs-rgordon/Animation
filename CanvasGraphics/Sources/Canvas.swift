@@ -331,11 +331,14 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
      Draw a bezier curve between the provided points.
      
      - Parameters:
-         - from: Starting position of the curve
-         - to: Ending position of the curve
-         - lineWidth: Position of the control point
+     - from: Starting position of the curve
+     - to: Ending position of the curve
+     - showControlPoints: Optionally display the co-ordinates of key points and the "handles" for the curve.
+     - lineWidth: Position of the control point
+     - capStyle: The shape of line segment endpoints (square, rounded, et cetera).
+     
      */
-    public func drawCurve(from: Point, to: Point, control1: Point, control2: Point, lineWidth: Int = 0, capStyle : NSBezierPath.LineCapStyle = NSBezierPath.LineCapStyle.square) {
+    public func drawCurve(from: Point, to: Point, control1: Point, control2: Point, showControlPoints: Bool = false, lineWidth: Int = 0, capStyle : NSBezierPath.LineCapStyle = NSBezierPath.LineCapStyle.square) {
         
         // Set attributes of shape based on the canvas scale factor
         var fromX = from.x
@@ -354,7 +357,7 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         control2X *= scale.asCGFloat()
         var control2Y = control2.y
         control2Y *= scale.asCGFloat()
-
+        
         var lineWidth = lineWidth
         lineWidth *= scale
         
@@ -371,7 +374,41 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         
         // Define the start of the curve
         path.move(to: NSPoint(x: fromX, y: fromY))
-        // TODO: Add curve call here
+        
+        // Draw the co-ordinates and "handles" of the curve
+        if showControlPoints {
+            
+            // From
+            self.drawText(message: "(\(fromX), \(fromY))",
+                          at: Point(x: fromX - 30, y: fromY + 5), size: 10)
+            
+            // To
+            self.drawText(message: "(\(toX), \(toY))",
+                          at: Point(x: toX - 30, y: toY + 5), size: 10)
+            
+            // Control 1
+            self.drawText(message: "(\(control1X), \(control1Y))",
+                          at: Point(x: control1X - 30, y: control1Y + 5), size: 10)
+            
+            // Control 2
+            self.drawText(message: "(\(control2X), \(control2Y))",
+                          at: Point(x: control2X - 30, y: control2Y + 5), size: 10)
+            
+            // First handle
+            self.drawLine(from: Point(x: control1X, y: control1Y),
+                          to: Point(x: fromX, y: fromY),
+                          lineWidth: 1,
+                          dashed: true)
+            
+            // Second handle
+            self.drawLine(from: Point(x: toX, y: toY),
+                          to: Point(x: control2X, y: control2Y),
+                          lineWidth: 1,
+                          dashed: true)
+            
+        }
+        
+        // Create the curve
         path.curve(to: NSPoint(x: toX, y: toY),
                    controlPoint1: NSPoint(x: control1X, y: control1Y),
                    controlPoint2: NSPoint(x: control2X, y: control2Y))
