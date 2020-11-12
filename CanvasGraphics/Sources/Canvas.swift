@@ -498,8 +498,8 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         
         // Adjust when anchored at centre point
         if anchoredBy == .centre {
-            bottomLeftX = at.x - width.asCGFloat() / 2
-            bottomLeftY = at.y - height.asCGFloat() / 2
+            bottomLeftX = at.x * scale.asCGFloat() - width.asCGFloat() / 2
+            bottomLeftY = at.y * scale.asCGFloat() - height.asCGFloat() / 2
         }
         
         // Make the new path
