@@ -237,7 +237,15 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
 
         let relativePosition = Point(x: to.x - self.state.position.x, y: to.y - self.state.position.y)
         if self.state.drawing {
+            // Draw line on canvas
             c.drawLine(from: Point(x: 0, y: 0), to: relativePosition)
+
+            // If a path was just opened, we must give a starting point for the path per SVG spec
+            if self.svg.hasSuffix("d=\"") { self.svg.append("M \(self.state.position.x) \(self.state.position.x) ") }
+
+            // We are drawing, so add a line to the next point for SVG output
+            self.svg.append("L \(to.x) \(to.y) ")
+        } else {
             self.svg.append("M \(to.x) \(to.y) ")
         }
         self.state.position = to
