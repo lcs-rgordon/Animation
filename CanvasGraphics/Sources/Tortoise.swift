@@ -516,8 +516,10 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
         if self.state.drawing {
             self.svg.append(SVG.pathTagEnd)
         }
-        self.svg.append(SVG.svgTagEnd)
-        
+        if !self.svg.contains("</svg>") {
+            self.svg.append(SVG.svgTagEnd)
+        }
+                
         // Now actually copy the string to the clipboard
         let pasteBoard = NSPasteboard.general
         pasteBoard.clearContents()
