@@ -126,6 +126,9 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     public func penDown() {
         
+        if self.state.drawing {
+            self.svg.append(SVG.pathTagEnd)
+        }
         self.state.drawing = true
         self.svg.append(SVG.pathTagStart)
         self.svg.append("M \(self.state.position.x) \(self.state.position.y) ")
