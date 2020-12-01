@@ -6,12 +6,19 @@
 //  Copyright © 2020 Russell Gordon. All rights reserved.
 //
 
+import Cocoa
 import Foundation
 
 /// Allow an angle mesaure in degrees to be converted to radians.
 public extension Degrees {
     func asRadians() -> CGFloat {
         return self * CGFloat.pi / 180
+    }
+}
+
+extension String.StringInterpolation {
+    mutating func appendInterpolation(formatForSVG value: CGFloat) {
+        appendLiteral(String(format: "%.15f", value))
     }
 }
 
@@ -28,6 +35,51 @@ struct TortoiseState {
 
 }
 
+struct SVG {
+    
+    static var preamble = """
+    <?xml version="1.0" standalone="no"?>
+    <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+    "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+    """
+
+    static var title: String {
+        
+        let formatter = DateFormatter()
+        formatter.timeStyle = .medium
+        formatter.dateStyle = .medium
+        let now = formatter.string(from: Date())
+        
+        return """
+        <title>Export from CanvasGraphics at \(now)</title>
+        """
+        
+    }
+    
+    static var pathTagStart = """
+
+    <path fill="none" style="stroke:rgb(0,0,0); stroke-width:1;stroke-linecap:round;stroke-opacity:1;" d="
+    """
+    
+    static var pathTagEnd = """
+    " />
+    """
+    
+    static var svgTagEnd = """
+
+    </svg>
+    """
+    
+    static func svgTagStart(canvas: Canvas) -> String {
+        return """
+            <svg width="\(canvas.width)" height="\(canvas.height)" viewBox="0 0 \(canvas.width) \(canvas.height)" style="background-color:#ffffff" xmlns="http://www.w3.org/2000/svg" version="1.1">
+
+            """
+    }
+    
+}
+
 /// Abstraction layer to allow drawing on a Canvas instance with a "LOGO turtle" metaphor
 public class Tortoise: CustomPlaygroundDisplayConvertible {
     
@@ -40,6 +92,9 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
     // The canvas this turtle operates on
     let c: Canvas
     
+    // SVG output for this tortoise
+    var svg: String = ""
+    
     /// Creates a tortoise object that you can use to drive drawing upon an instance of the Canvas class.
     /// - parameter drawingUpon: The canvas instance that the turtle should draw on.
     public init(drawingUpon: Canvas) {
@@ -48,6 +103,12 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
         
         // No borders on shapes
         c.drawShapesWithBorders = false
+        
+        // Initialize SVG output
+        self.svg.append(SVG.preamble)
+        self.svg.append(SVG.svgTagStart(canvas: c))
+        self.svg.append(SVG.title)
+        if self.state.drawing { self.svg.append(SVG.pathTagStart) }
         
     }
     
@@ -65,7 +126,12 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
      */
     public func penDown() {
         
+        if self.state.drawing {
+            self.svg.append(SVG.pathTagEnd)
+        }
         self.state.drawing = true
+        self.svg.append(SVG.pathTagStart)
+        self.svg.append("M \(self.state.position.x) \(self.state.position.y) ")
         
     }
     
@@ -75,6 +141,7 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
     public func penUp() {
         
         self.state.drawing = false
+        self.svg.append(SVG.pathTagEnd)
         
     }
 
@@ -120,6 +187,9 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
         // Update position relative to original origin
         self.state.position = Point(x: self.state.position.x + cos(self.state.heading.asRadians()) * CGFloat(steps),
                               y: self.state.position.y + sin(self.state.heading.asRadians()) * CGFloat(steps))
+        
+        // Update for SVG output
+        self.svg.append("L \(formatForSVG: self.state.position.x) \(formatForSVG: self.state.position.y) ")
         
         // If filling, keep track of current position
         if self.state.filling {
@@ -167,7 +237,16 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
 
         let relativePosition = Point(x: to.x - self.state.position.x, y: to.y - self.state.position.y)
         if self.state.drawing {
+            // Draw line on canvas
             c.drawLine(from: Point(x: 0, y: 0), to: relativePosition)
+
+            // If a path was just opened, we must give a starting point for the path per SVG spec
+            if self.svg.hasSuffix("d=\"") { self.svg.append("M \(self.state.position.x) \(self.state.position.x) ") }
+
+            // We are drawing, so add a line to the next point for SVG output
+            self.svg.append("L \(to.x) \(to.y) ")
+        } else {
+            self.svg.append("M \(to.x) \(to.y) ")
         }
         self.state.position = to
 
@@ -308,6 +387,7 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
     /**
      Start tracking turtle locations to mark the vertices of a closed polygon.
      */
+    #warning("TODO: rgordon, 2020-12-01 - Consider how fill might be added for SVG output.")
     public func beginFill() {
         
         self.state.filling = true
@@ -437,6 +517,24 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
     public var ycor: CGFloat {
         
         return self.state.position.y
+        
+    }
+    
+    // MARK: Finalize SVG output
+    public func copySVGToClipboard() {
+        
+        // Close off the SVG output
+        if self.state.drawing {
+            self.svg.append(SVG.pathTagEnd)
+        }
+        if !self.svg.contains("</svg>") {
+            self.svg.append(SVG.svgTagEnd)
+        }
+                
+        // Now actually copy the string to the clipboard
+        let pasteBoard = NSPasteboard.general
+        pasteBoard.clearContents()
+        pasteBoard.setString(self.svg, forType: .string)
         
     }
         
