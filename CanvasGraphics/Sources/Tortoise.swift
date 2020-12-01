@@ -379,6 +379,7 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
     /**
      Start tracking turtle locations to mark the vertices of a closed polygon.
      */
+    #warning("TODO: rgordon, 2020-12-01 - Consider how fill might be added for SVG output.")
     public func beginFill() {
         
         self.state.filling = true
@@ -422,7 +423,6 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
         
     }
     
-    #warning("TODO: rgordon, 2020-12-01 - Need to address saving and restoring state for SVG output.")
     /**
      When calling Tortoise methods within the a Processing-style `draw()` function, as with the `Sketch` class, be sure to invoke this method at the start of the `draw()` function to restore canvas state to where it left off after the last frame was animated.
      */
