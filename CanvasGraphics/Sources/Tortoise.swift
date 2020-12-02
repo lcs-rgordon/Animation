@@ -141,7 +141,9 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
     public func penUp() {
         
         self.state.drawing = false
-        self.svg.append(SVG.pathTagEnd)
+        if !self.svg.hasSuffix(">") {
+            self.svg.append(SVG.pathTagEnd)
+        }
         
     }
 
@@ -189,7 +191,9 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
                               y: self.state.position.y + sin(self.state.heading.asRadians()) * CGFloat(steps))
         
         // Update for SVG output
-        self.svg.append("L \(formatForSVG: self.state.position.x) \(formatForSVG: self.state.position.y) ")
+        if self.state.drawing {
+            self.svg.append("L \(formatForSVG: self.state.position.x) \(formatForSVG: self.state.position.y) ")
+        }
         
         // If filling, keep track of current position
         if self.state.filling {
