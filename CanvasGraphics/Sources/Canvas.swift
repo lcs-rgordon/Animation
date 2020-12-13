@@ -107,7 +107,11 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
                 
             } else {
                 
+                // Update preview for playground
+                if onBigSur { NSGraphicsContext.saveGraphicsState() }
+                NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: self.offscreenRepresentation)
                 self.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
+                if onBigSur { NSGraphicsContext.restoreGraphicsState() }
                 
             }
         }
@@ -117,6 +121,11 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     private var offscreenRep : NSBitmapImageRep
     public var offscreenRepresentation : NSBitmapImageRep {
         return self.offscreenRep
+    }
+    
+    // Big Sur?
+    private var onBigSur: Bool {
+        return ProcessInfo.processInfo.operatingSystemVersion.majorVersion == 11
     }
     
     /// Creates a canvas object that can be drawn upon.
@@ -272,6 +281,16 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         // Draw the string
         string.draw(at: NSPoint(x: x, y: y), withAttributes: attributes)
         
+        if onBigSur {
+            // Update for playground preview
+            if !highPerformance {
+                NSGraphicsContext.saveGraphicsState()
+                NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: self.offscreenRepresentation)
+                self.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
+                NSGraphicsContext.restoreGraphicsState()
+            }
+        }
+
     }
     
     /**
@@ -325,6 +344,16 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         // Draw the line
         path.stroke()
         
+        if onBigSur {
+            // Update for playground preview
+            if !highPerformance {
+                NSGraphicsContext.saveGraphicsState()
+                NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: self.offscreenRepresentation)
+                self.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
+                NSGraphicsContext.restoreGraphicsState()
+            }
+        }
+
     }
     
     /**
@@ -419,6 +448,16 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         // Draw the line
         path.stroke()
         
+        if onBigSur {
+            // Update for playground preview
+            if !highPerformance {
+                NSGraphicsContext.saveGraphicsState()
+                NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: self.offscreenRepresentation)
+                self.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
+                NSGraphicsContext.restoreGraphicsState()
+            }
+        }
+
     }
     
     /**
@@ -470,6 +509,16 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
             path.fill()
         }
         
+        if onBigSur {
+            // Update for playground preview
+            if !highPerformance {
+                NSGraphicsContext.saveGraphicsState()
+                NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: self.offscreenRepresentation)
+                self.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
+                NSGraphicsContext.restoreGraphicsState()
+            }
+        }
+
     }
     
     /**
@@ -528,6 +577,16 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
             path.fill()
         }
         
+        if onBigSur {
+            // Update for playground preview
+            if !highPerformance {
+                NSGraphicsContext.saveGraphicsState()
+                NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: self.offscreenRepresentation)
+                self.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
+                NSGraphicsContext.restoreGraphicsState()
+            }
+        }
+
     }
     
     /**
@@ -612,6 +671,16 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
             path.fill()
         }
         
+        if onBigSur {
+            // Update for playground preview
+            if !highPerformance {
+                NSGraphicsContext.saveGraphicsState()
+                NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: self.offscreenRepresentation)
+                self.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
+                NSGraphicsContext.restoreGraphicsState()
+            }
+        }
+
     }
     
     /**
@@ -679,6 +748,16 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
             customPath.fill()
         }
         
+        if onBigSur {
+            // Update for playground preview
+            if !highPerformance {
+                NSGraphicsContext.saveGraphicsState()
+                NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: self.offscreenRepresentation)
+                self.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
+                NSGraphicsContext.restoreGraphicsState()
+            }
+        }
+
     }
     
     /**
@@ -838,4 +917,3 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     }
     
 }
-
