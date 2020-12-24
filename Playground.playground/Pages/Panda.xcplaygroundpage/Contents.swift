@@ -42,7 +42,7 @@ PlaygroundPage.current.liveView = canvas
  You can remove the code on line 49 and begin writing your own code.
  
  [Documentation](http://russellgordon.ca/CanvasGraphics/Documentation/) is available.
-
+ 
  */
 
 // Define centre of head
@@ -67,6 +67,29 @@ canvas.drawEllipse(at: Point(x: x + 35,
                    width: 35,
                    height: 35)
 
+// Eyes
+canvas.fillColor = Color.white
+canvas.drawEllipse(at: Point(x: x - 15,
+                             y: y + 10),
+                   width: 10,
+                   height: 20)
+canvas.drawEllipse(at: Point(x: x + 15,
+                             y: y + 10),
+                   width: 10,
+                   height: 20)
+
+canvas.fillColor = Color.black
+canvas.drawEllipse(at: Point(x: x - 15,
+                             y: y + 5),
+                   width: 5,
+                   height: 10)
+canvas.drawEllipse(at: Point(x: x + 15,
+                             y: y + 5),
+                   width: 5,
+                   height: 10)
+
+
+
 /*:
  ## Show the Assistant Editor
  Don't see any results?
@@ -74,7 +97,7 @@ canvas.drawEllipse(at: Point(x: x + 35,
  Remember to show the Assistant Editor (1), and then switch to Live View (2):
  
  ![timeline](timeline.png "Timeline")
-
+ 
  ## Use source control
  To keep your work organized, receive feedback, and earn a high grade in this course, regular use of source control is a must.
  
