@@ -1,5 +1,5 @@
 //: [Previous](@previous) / [Next](@next)
-//: # Panda
+//: # Blank canvas to copy
 //:
 //: ## To duplicate this page
 //:
@@ -16,7 +16,7 @@
  
  Set the size of your desired canvas by adjusting the constants on lines 19 and 20.
  */
-let preferredWidth = 200
+let preferredWidth = 300
 let preferredHeight = 600
 /*:
  ## Required code
@@ -45,27 +45,8 @@ PlaygroundPage.current.liveView = canvas
 
  */
 
-// Define centre of head
-let x = canvas.width / 2
-let y = canvas.height / 2
-
-// Head
-canvas.fillColor = Color.white
-canvas.drawEllipse(at: Point(x: x, y: y),
-                   width: 100,
-                   height: 100)
-
-// Ears
-canvas.fillColor = Color.black
-canvas.drawEllipse(at: Point(x: x - 35,
-                             y: y + 40),
-                   width: 35,
-                   height: 35)
-
-canvas.drawEllipse(at: Point(x: x + 35,
-                             y: y + 40),
-                   width: 35,
-                   height: 35)
+// Replace this comment with your first comment – what is the goal of the code you're about to write?
+canvas.drawRectangle(at: Point(x: 50, y: 75), width: 100, height: 200)
 
 /*:
  ## Show the Assistant Editor
