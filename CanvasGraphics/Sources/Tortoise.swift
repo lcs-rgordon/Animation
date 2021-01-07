@@ -391,7 +391,7 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
     /**
      Start tracking turtle locations to mark the vertices of a closed polygon.
      */
-    #warning("TODO: rgordon, 2020-12-01 - Consider how fill might be added for SVG output.")
+//    #warning("TODO: rgordon, 2020-12-01 - Consider how fill might be added for SVG output.")
     public func beginFill() {
         
         self.state.filling = true
