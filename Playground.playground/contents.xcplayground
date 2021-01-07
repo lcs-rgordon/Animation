@@ -3,6 +3,21 @@
     <pages>
         <page name='Introduction'/>
         <page name='Tortoise Examples'/>
+        <page name='Empty Canvas 1'/>
+        <page name='Empty Canvas 2'/>
+        <page name='Empty Canvas 3'/>
+        <page name='Emtpy Canvas 4'/>
+        <page name='Empty Canvas 5'/>
+        <page name='Empty Canvas 6'/>
+        <page name='Empty Canvas 7'/>
+        <page name='Empty Canvas 8'/>
+        <page name='Empty Canvas 9'/>
+        <page name='Empty Canvas 10'/>
+        <page name='Empty Canvas 11'/>
+        <page name='Empty Canvas 12'/>
+        <page name='Empty Canvas 13'/>
+        <page name='Empty Canvas 14'/>
+        <page name='Empty Canvas 15'/>
         <page name='Blank canvas to copy'/>
     </pages>
 </playground>
