@@ -189,7 +189,8 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         
         // Set the blend mode
         // See: https://www.trailingclosure.com/blendmode-cheat-sheet/
-        NSGraphicsContext.current!.compositingOperation = NSCompositingOperation.hardLight
+        // NOTE: Not setting a compositingOperation is the same as .normal
+//        NSGraphicsContext.current!.compositingOperation = NSCompositingOperation.hardLight
         
     }
     
