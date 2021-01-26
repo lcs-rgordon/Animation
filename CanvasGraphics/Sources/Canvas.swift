@@ -860,8 +860,17 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     /// For example:
     ///
     /// ![axes](http://russellgordon.ca/CanvasGraphics/drawAxes_example.png)
-    public func drawAxes(withScale: Bool = false, by: Int = 50) {
+    public func drawAxes(withScale: Bool = false, by: Int = 50, color: Color) {
         
+        // Save current canvas line color
+        let currentLineColor = self.lineColor
+        // Save current canvas text color
+        let currentTextColor = self.textColor
+        
+        // Change to color provided by user
+        self.lineColor = color
+        self.textColor = color
+
         // Draw horizontal axis
         self.drawLine(from: Point(x: self.width * -10, y: 0), to: Point(x: self.width * 10, y: 0), capStyle: NSBezierPath.LineCapStyle.square)
         
@@ -880,11 +889,8 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         self.drawText(message: "x", at: Point(x: horizontalEnd * by - 10, y: 5), size: 12)
         self.drawText(message: "y", at: Point(x: 5, y: verticalEnd * by - 20), size: 12)
         
-        // Save line color
+        // Draw scale if requested
         if withScale {
-            
-            let priorLineColor = self.lineColor
-            self.lineColor = Color(hue: 0, saturation: 100, brightness: 0, alpha: 18)
             
             // Draw horizontal scale and grid
             for x in stride(from: horizontalStart * by, through: horizontalEnd * by, by: by) {
@@ -910,11 +916,13 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
                 self.drawLine(from: Point(x: self.width * -1, y: y), to: Point(x: self.width, y: y), dashed: true)
             }
             
-            // Restore line color
-            self.lineColor = priorLineColor
 
         }
         
+        // Restore text and line color
+        self.lineColor = currentLineColor
+        self.textColor = currentTextColor
+
+        
     }
-    
 }
