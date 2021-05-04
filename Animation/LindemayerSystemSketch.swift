@@ -158,14 +158,19 @@ class LindenmayerSystemSketch: NSObject, Sketchable {
             
         // Only run rendering logic until the end of the number of characters in the word
         if canvas.frameCount < word.count {
-            
+
             // Get an index for the current chracter in the word
             let index = word.index(word.startIndex, offsetBy: canvas.frameCount)
             let character = word[index]
             
             // DEBUG: What character is being rendered?
             print(character)
-            
+            canvas.rotate(by: -1 * turtle.currentHeading())
+            canvas.translate(to: Point(x: -1 * turtle.xcor, y: -1 * turtle.ycor))
+            canvas.drawText(message: String(character), at: Point(x: 10, y: canvas.height - 25 - 15 * canvas.frameCount), size: 10)
+            canvas.translate(to: Point(x: turtle.xcor, y: turtle.ycor))
+            canvas.rotate(by: turtle.currentHeading())
+
             // Render based on this character
             switch character {
             case "F", "B":
