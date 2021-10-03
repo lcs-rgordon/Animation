@@ -11,7 +11,7 @@ public class Pen: Tortoise {
     
     // MARK: Properties
     
-    // Pen thickness
+    /// Sets the thickness of the pen's stroke.
     public var thickness: Int {
         get {
             super.lineWidth
@@ -21,7 +21,7 @@ public class Pen: Tortoise {
         }
     }
     
-    // Pen color
+    /// Sets the color of the pen's stroke.
     public var penColor: Color {
         get {
             super.currentPenColor()
@@ -31,7 +31,7 @@ public class Pen: Tortoise {
         }
     }
     
-    // Fill color
+    /// Sets the fill for closed shapes defined by the path of the pen.
     public var fillColor: Color {
         get {
             super.currentFillColor()
@@ -41,7 +41,8 @@ public class Pen: Tortoise {
         }
     }
     
-    // Heading
+    /// The current heading of the pen.
+    /// 0 degrees: right, 90 degrees: up, 180 degrees: left, 270 degrees: down
     public var currentHeading: Degrees {
         get {
             super.currentHeading()
@@ -51,7 +52,7 @@ public class Pen: Tortoise {
         }
     }
     
-    // Position
+    /// The current position of the pen on the Cartesian plane.
     public var position: Point {
         get {
             super.currentPosition()
@@ -75,24 +76,33 @@ public class Pen: Tortoise {
     }
     
     // MARK: Methods
+    
+    /// Draws a line in the direction of the current heading of the pen.
+    ///  - parameter distance: The length of the line to be drawn.
     public func addLine(distance: Int) {
         
         forward(steps: Double(distance))
         
     }
     
+    /// Draws a line in the direction of the current heading of the pen.
+    ///  - parameter distance: The length of the line to be drawn.
     public func addLine(distance: Double) {
         
         addLine(distance: distance)
         
     }
 
+    /// Moves the pen, without drawing a line, in the direction of the current heading.
+    ///  - parameter distance: The length of the line to be drawn.
     public func move(distance: Int) {
         
         move(distance: Double(distance))
         
     }
     
+    /// Moves the pen, without drawing a line, in the direction of the current heading.
+    ///  - parameter distance: The length of the line to be drawn.
     public func move(distance: Double) {
         
         // Save pen state
@@ -155,12 +165,22 @@ public class Pen: Tortoise {
         
     }
         
+    /// Move the pen back to the origin.
     public func goToOrigin() {
         
         super.goToHome()
         
     }
     
+    /**
+     Move the pen relative to it's current position, without drawing a line.
+     
+     For example, if the current position is (100, 50) and dx is 25 while dy is 0, the new position will be (125, 50).
+          
+     - Parameters:
+         - dx: Desired horizontal change in position. Postiive values move the pen to the right; negative values move the pen to the left.
+         - dy: Desired vertical change in position. Postiive values move the pen up; negative values move the pen down.
+     */
     public func goto(dx: Double, dy: Double) {
 
         
@@ -184,6 +204,15 @@ public class Pen: Tortoise {
         
     }
 
+    /**
+     Move the pen relative to it's current position, while drawing a line.
+     
+     For example, if the current position is (100, 50) and dx is 25 while dy is 100, the new position will be (125, 150), resulting in a diagonal line.
+          
+     - Parameters:
+         - dx: Desired horizontal change in position. Postiive values move the pen to the right; negative values move the pen to the left.
+         - dy: Desired vertical change in position. Postiive values move the pen up; negative values move the pen down.
+     */
     public func drawTo(dx: Double, dy: Double) {
 
         if dy == 0 {
@@ -233,6 +262,12 @@ public class Pen: Tortoise {
         
     }
     
+    /**
+     Turn the pen to a new heading.
+     
+     - Parameters:
+         - degrees: Desired rotation. Positive values turn the pen to the left (counter-clockwise) while negative values turn the pen to the right (clockwise).
+     */
     public func turn(degrees: Double) {
         if degrees > 0 {
             super.left(by: degrees)
@@ -242,12 +277,25 @@ public class Pen: Tortoise {
     }
     
 
+    /**
+     Draw a circle centred at the pen's current position.
+     
+     - Parameters:
+         - radius: Radius of the circle to be drawn.
+     */
     public func drawCircle(radius: Double) {
 
         super.c.arc(withCenter: position, radius: radius, startAngle: 0, endAngle: 360, clockwise: false)
         
     }
     
+    /**
+     Draws an arc from the pen's current position and along the pen's current heading.
+     
+     - Parameters:
+         - radius: Radius of an imaginary circle, if a full circle were drawn.
+         - angle: How much of a complete circle to draw; when this is 90 a quarter circle is drawn, 180 results in a half-circle, and so on.
+     */
     public func addArc(radius: Double, angle: Double) {
         
         // Get current position
@@ -354,16 +402,41 @@ public class Pen: Tortoise {
         }
     }
     
-    // Draws a circle at a particular point
+    /**
+     Draws a circle at a given absolute point on the Cartesian plane, irrespective of the pen's current position, then moves the pen to the centre of the newly drawn circle.
+     
+     - Parameters:
+         - xy: The centre of the circle that is to be drawn.
+         - size: The radius of the circle to be drawn.
+     */
     public func plotPoint(xy: Point, size: Double) {
         
+        // Save current fill state on the canvas
+        let currentFillState = super.c.drawShapesWithFill
+        let currentFillColor = super.c.fillColor
+        
+        // Fill this circle with the current pen's color
         super.c.drawShapesWithFill = true
         fillColor = penColor
+        
+        // Move the pen back to the origin
+        goToOrigin()
+        
+        // Draw the circle
         super.c.drawEllipse(at: xy, width: Int(round(size)) * 2, height: Int(round(size)) * 2)
+        
+        // Move the pen to the middle of the circle drawn
         goto(dx: xy.x, dy: xy.y)
+        
+        // Restore fill state on canvas
+        super.c.drawShapesWithFill = currentFillState
+        super.c.fillColor = currentFillColor
+        
     }
     
-    // TODO: Complete this
+    /**
+     Draws a line between two given points, then moves the pen to the end of the line just drawn.
+     */
     public func drawBetween(x1: Double, y1: Double, x2: Double, y2: Double) {
         penUp()
         position.x = x1
