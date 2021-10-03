@@ -310,28 +310,13 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
                     clockwise: Bool = false,
                     capStyle: NSBezierPath.LineCapStyle = NSBezierPath.LineCapStyle.square) {
 
-        print("center is:")
-        dump(center)
-        print("radius is:")
-        dump(radius)
-        print("startAngle is:")
-        dump(startAngle)
-        print("endAngle is:")
-        dump(endAngle)
-
         // Set attributes of shape based on the canvas scale factor
         var actualRadius = CGFloat(radius)
         actualRadius *= scale.asCGFloat()
-        print("actualRadius is: ")
-        dump(actualRadius)
         var x = center.x
         x *= scale.asCGFloat()
-        print("x is: ")
-        dump(x)
         var y = center.y
         y *= scale.asCGFloat()
-        print("y is: ")
-        dump(y)
 
         // Make the new path with the specified cap style
         NSBezierPath.defaultLineCapStyle = capStyle

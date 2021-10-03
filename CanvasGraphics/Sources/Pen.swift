@@ -69,7 +69,9 @@ public class Pen: Tortoise {
         super.init(drawingUpon: canvas)
         
         // Set pen thickness and colour
-        self.thickness = 3
+        if super.c.scale == 1 {
+            self.lineWidth = 3
+        }
         self.penColor = .blue
         self.currentHeading = 0
         
@@ -222,25 +224,18 @@ public class Pen: Tortoise {
         } else {
             // Work out the angle described by the horizontal and vertical change
             let theta = abs(atan(dy / dx) * 180 / Double.pi)
-            print("theta is \(theta)")
             
             // Rotate by the angle
             var terminalArmRotation = 0.0
             if dx > 0 && dy > 0 {
                 terminalArmRotation = theta
-                print("quadrant 1")
             } else if dx < 0 && dy > 0 {
                 terminalArmRotation = 180 - theta
-                print("quadrant 2")
             } else if dx < 0 && dy < 0 {
                 terminalArmRotation = 180 + theta
-                print("quadrant 3")
             } else if dx > 0 && dy < 0 {
                 terminalArmRotation = 360 - theta
-                print("quadrant 4")
             }
-            print("terminalArmRotation is \(terminalArmRotation)")
-            print("curentHeading is \(currentHeading)")
             
             // Save present heading
             let savedHeading = currentHeading
@@ -300,9 +295,7 @@ public class Pen: Tortoise {
         
         // Get current position
         let currentX = position.x
-        print("currentX is: \(currentX)")
         let currentY = position.y
-        print("currentX is: \(currentY)")
 
         if angle < 0 {
 
@@ -311,13 +304,9 @@ public class Pen: Tortoise {
             let dx = radius * cos(toCenterInRadians)
             let dy = -radius * sin(toCenterInRadians)
             let centerX = currentX + dx
-            print("centerX is: \(centerX)")
             let centerY = currentY + dy
-            print("centerY is: \(centerY)")
             let startAngle = 90 + Double(currentHeading) + angle
-            print("startAngle is: \(startAngle)")
             let endAngle = 90 + Double(currentHeading)
-            print("endAngle is: \(endAngle)")
             
             // Save present heading
             let savedHeading = currentHeading
@@ -327,7 +316,9 @@ public class Pen: Tortoise {
             super.c.arc(withCenter: CGPoint(x: dx, y: dy),
                         radius: CGFloat(radius),
                         startAngle: CGFloat(startAngle),
-                        endAngle: CGFloat(endAngle), clockwise: false)
+                        endAngle: CGFloat(endAngle),
+                        clockwise: false,
+                        capStyle: .round)
             
             // Restore original heading
             super.setHeading(to: savedHeading)
@@ -339,9 +330,7 @@ public class Pen: Tortoise {
             penDown()
             
             // Rotate so we can back up to get to end of the arc
-            print("currentHeading is: \(currentHeading)")
             currentHeading += angle - 90
-            print("currentHeading is now: \(currentHeading)")
             
             // Back up so that we are at the edge of the arc
             penUp()
@@ -358,13 +347,9 @@ public class Pen: Tortoise {
             let dx = radius * cos(toCenterInRadians)
             let dy = radius * sin(toCenterInRadians)
             let centerX = currentX + dx
-            print("centerX is: \(centerX)")
             let centerY = currentY + dy
-            print("centerY is: \(centerY)")
             let startAngle = -90 + Double(currentHeading) + angle
-            print("startAngle is: \(startAngle)")
             let endAngle = -90 + Double(currentHeading)
-            print("endAngle is: \(endAngle)")
 
             // Save present heading
             let savedHeading = currentHeading
@@ -375,8 +360,9 @@ public class Pen: Tortoise {
                         radius: CGFloat(radius),
                         startAngle: CGFloat(startAngle),
                         endAngle: CGFloat(endAngle),
-                        clockwise: true)
-            
+                        clockwise: true,
+                        capStyle: .round)
+
             // Restore original heading
             super.setHeading(to: savedHeading)
             
@@ -387,9 +373,7 @@ public class Pen: Tortoise {
             penDown()
             
             // Rotate so we can back up to get to end of the arc
-            print("currentHeading is: \(currentHeading)")
             currentHeading += angle + 90
-            print("currentHeading is now: \(currentHeading)")
             
             // Back up so that we are at the edge of the arc
             penUp()
