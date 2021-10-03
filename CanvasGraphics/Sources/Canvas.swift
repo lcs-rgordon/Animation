@@ -293,6 +293,78 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         }
 
     }
+
+    /**
+     Draws an arc from the current position.
+     
+     - Parameters:
+     - center: Specifies the center point of the circle used to define the arc.
+     - radius: Specifies the radius of the circle used to define the arc.
+     - startAngle: Specifies the starting angle of the arc, measured in degrees counterclockwise from the x-axis.
+     - endAngle: Specifies the end angle of the arc, measured in degrees counterclockwise from the x-axis.
+     */
+    public func arc(withCenter center: Point,
+                    radius: Double,
+                    startAngle: Degrees,
+                    endAngle: Degrees,
+                    clockwise: Bool = false,
+                    capStyle: NSBezierPath.LineCapStyle = NSBezierPath.LineCapStyle.square) {
+
+        print("center is:")
+        dump(center)
+        print("radius is:")
+        dump(radius)
+        print("startAngle is:")
+        dump(startAngle)
+        print("endAngle is:")
+        dump(endAngle)
+
+        // Set attributes of shape based on the canvas scale factor
+        var actualRadius = CGFloat(radius)
+        actualRadius *= scale.asCGFloat()
+        print("actualRadius is: ")
+        dump(actualRadius)
+        var x = center.x
+        x *= scale.asCGFloat()
+        print("x is: ")
+        dump(x)
+        var y = center.y
+        y *= scale.asCGFloat()
+        print("y is: ")
+        dump(y)
+
+        // Make the new path with the specified cap style
+        NSBezierPath.defaultLineCapStyle = capStyle
+        let path = NSBezierPath()
+        
+        // Define the curve
+        path.appendArc(withCenter: NSPoint(x: x, y: y),
+                       radius: actualRadius,
+                       startAngle: startAngle,
+                       endAngle: endAngle,
+                       clockwise: clockwise)
+                
+        // Set the arc's color
+        NSColor(hue: lineColor.translatedHue, saturation: lineColor.translatedSaturation, brightness: lineColor.translatedBrightness, alpha: lineColor.translatedAlpha).setStroke()
+        
+        // Set the arc's thickness
+        path.lineWidth = self.defaultLineWidth.asCGFloat()
+        
+        // Draw the arc
+        path.stroke()
+        
+        if onBigSur {
+            // Update for playground preview
+            if !highPerformance {
+                NSGraphicsContext.saveGraphicsState()
+                NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: self.offscreenRepresentation)
+                self.image = NSImage(cgImage: offscreenRep.cgImage!, size: offscreenRep.size)
+                NSGraphicsContext.restoreGraphicsState()
+            }
+        }
+
+        
+    }
     
     /**
      Draw a line segment between the provided points.
@@ -861,9 +933,14 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
     ///
     /// ![axes](http://russellgordon.ca/CanvasGraphics/drawAxes_example.png)
     public func drawAxes(withScale: Bool = false, by: Int = 50, color: Color) {
+
+        // Save current canvas line width
+        let currentLineWidth = self.defaultLineWidth
+        self.defaultLineWidth = 1
         
         // Save current canvas line color
         let currentLineColor = self.lineColor
+        
         // Save current canvas text color
         let currentTextColor = self.textColor
         
@@ -871,12 +948,16 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         self.lineColor = color
         self.textColor = color
 
-        // Draw horizontal axis
+        // Draw horizontal axis, opaque
+        self.defaultLineWidth = 2
+        self.lineColor = Color(hue: color.hue, saturation: color.saturation, brightness: color.brightness, alpha: 100)
         self.drawLine(from: Point(x: self.width * -10, y: 0), to: Point(x: self.width * 10, y: 0), capStyle: NSBezierPath.LineCapStyle.square)
         
-        // Draw vertical axis
+        // Draw vertical axis, opaque
         self.drawLine(from: Point(x: 0, y: self.height * -10), to: Point(x: 0, y: self.height * 10), capStyle: NSBezierPath.LineCapStyle.square)
-        
+        self.defaultLineWidth = 1
+        self.lineColor = color
+
         // Determine horizontal start and end points
         let horizontalStart = self.width / by * -1
         let horizontalEnd = horizontalStart * -1
@@ -885,19 +966,40 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         let verticalStart = self.height / by * -1
         let verticalEnd = verticalStart * -1
 
-        // Draw labels
+        // Draw labels, opaque
+        self.textColor = Color(hue: color.hue, saturation: color.saturation, brightness: color.brightness, alpha: 100)
         self.drawText(message: "x", at: Point(x: horizontalEnd * by - 10, y: 5), size: 12)
         self.drawText(message: "y", at: Point(x: 5, y: verticalEnd * by - 20), size: 12)
-        
-        // Draw scale if requested
+
+        // Draw scale if requested, opaque
+        self.lineColor = Color(hue: color.hue, saturation: color.saturation, brightness: color.brightness, alpha: color.alpha / 3)
         if withScale {
+            
+            // Skip labelling every stop on the axis if the value is small
+            var labellingStep = by
+            if by < 50 {
+                labellingStep = by * 2
+            }
+            if labellingStep < 25 {
+                labellingStep *= 2
+            }
             
             // Draw horizontal scale and grid
             for x in stride(from: horizontalStart * by, through: horizontalEnd * by, by: by) {
                 
                 // Scale
-                if x != 0 {
-                    self.drawText(message: "\(x)", at: Point(x: x + 5, y: 5), size: 9)
+                if x != 0 && x.quotientAndRemainder(dividingBy: labellingStep).remainder == 0 {
+                    var offset = 0
+                    if x <= -100 {
+                        offset = -12
+                    } else if x > -100 && x <= 0 {
+                        offset = -9
+                    } else if x > 0 && x < 100 {
+                        offset = -7
+                    } else if x >= 100 && x < 1000 {
+                        offset = -9
+                    }
+                    self.drawText(message: "\(x)", at: Point(x: x + offset, y: 5), size: 10)
                 }
                 
                 // Grid
@@ -908,8 +1010,8 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
             for y in stride(from: verticalStart * by, through: verticalEnd * by, by: by) {
                 
                 // Scale
-                if y != 0 && y != verticalEnd * by {
-                    self.drawText(message: "\(y)", at: Point(x: 5, y: y - 15), size: 9)
+                if y != 0 && y != verticalEnd * by && y.quotientAndRemainder(dividingBy: labellingStep).remainder == 0 {
+                    self.drawText(message: "\(y)", at: Point(x: 5, y: y - 7), size: 10)
                 }
                 
                 // Grid
@@ -919,10 +1021,11 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
 
         }
         
-        // Restore text and line color
+        // Restore text, line color, and width
         self.lineColor = currentLineColor
         self.textColor = currentTextColor
-
+        self.defaultLineWidth = currentLineWidth
+        
         
     }
 }

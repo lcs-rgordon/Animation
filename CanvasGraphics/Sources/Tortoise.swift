@@ -95,6 +95,16 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
     // SVG output for this tortoise
     var svg: String = ""
     
+    // Line width
+    public var lineWidth: Int {
+        get {
+            c.defaultLineWidth
+        }
+        set {
+            c.defaultLineWidth = newValue
+        }
+    }
+    
     /// Creates a tortoise object that you can use to drive drawing upon an instance of the Canvas class.
     /// - parameter drawingUpon: The canvas instance that the turtle should draw on.
     public init(drawingUpon: Canvas) {
@@ -182,7 +192,7 @@ public class Tortoise: CustomPlaygroundDisplayConvertible {
         
         // Draw based on movement
         if self.state.drawing {
-            c.drawLine(from: Point(x: 0, y: 0), to: Point(x: steps, y: 0))
+            c.drawLine(from: Point(x: 0, y: 0), to: Point(x: steps, y: 0), capStyle: .round)
         }
         c.translate(to: Point(x: steps, y: 0))
         

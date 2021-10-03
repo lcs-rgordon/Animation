@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E53D79F270781750064AD2B /* Pen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E53D79E270781750064AD2B /* Pen.swift */; };
 		81064A0A1C130A10007ED524 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81064A091C130A10007ED524 /* AppDelegate.swift */; };
 		81064A0C1C130A10007ED524 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81064A0B1C130A10007ED524 /* ViewController.swift */; };
 		81064A0E1C130A10007ED524 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81064A0D1C130A10007ED524 /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0E53D79E270781750064AD2B /* Pen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pen.swift; sourceTree = "<group>"; };
 		81064A061C130A10007ED524 /* Animation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Animation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81064A091C130A10007ED524 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81064A0B1C130A10007ED524 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				81A9FADA219A151B003E6502 /* Helpers.swift */,
 				81A9FADC219A156E003E6502 /* Color.swift */,
 				81F935032476B0E000CD75D8 /* Tortoise.swift */,
+				0E53D79E270781750064AD2B /* Pen.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				818878542199C7EA008CB375 /* Canvas.swift in Sources */,
 				81A9FADD219A156E003E6502 /* Color.swift in Sources */,
 				81F935042476B0E000CD75D8 /* Tortoise.swift in Sources */,
+				0E53D79F270781750064AD2B /* Pen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
