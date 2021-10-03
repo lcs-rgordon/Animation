@@ -242,8 +242,9 @@ public class Pen: Tortoise {
     }
     
 
-    // TODO: Complete this
     public func drawCircle(radius: Double) {
+
+        super.c.arc(withCenter: position, radius: radius, startAngle: 0, endAngle: 360, clockwise: false)
         
     }
     
