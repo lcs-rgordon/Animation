@@ -77,11 +77,23 @@ public class Pen: Tortoise {
     // MARK: Methods
     public func addLine(distance: Int) {
         
-        super.forward(steps: distance)
+        forward(steps: Double(distance))
         
     }
     
+    public func addLine(distance: Double) {
+        
+        addLine(distance: distance)
+        
+    }
+
     public func move(distance: Int) {
+        
+        move(distance: Double(distance))
+        
+    }
+    
+    public func move(distance: Double) {
         
         // Save pen state
         let penState = super.isPenDown()
@@ -92,7 +104,7 @@ public class Pen: Tortoise {
         }
         
         // Move forward
-        super.forward(steps: distance)
+        forward(steps: distance)
         
         // Restore pen state
         if penState == true {
@@ -101,6 +113,48 @@ public class Pen: Tortoise {
         
     }
     
+    /**
+     Move the turtle forward.
+     
+     - Parameters:
+         - steps: How many steps forward the turtle should take.
+     */
+    private func forward(steps: Double) {
+        
+        // Draw based on movement
+        if self.state.drawing {
+            c.drawLine(from: Point(x: 0, y: 0), to: Point(x: steps, y: 0), capStyle: .round)
+        }
+        c.translate(to: Point(x: steps, y: 0))
+        
+        // Update position relative to original origin
+        self.state.position = Point(x: self.state.position.x + cos(self.state.heading.asRadians()) * CGFloat(steps),
+                              y: self.state.position.y + sin(self.state.heading.asRadians()) * CGFloat(steps))
+        
+        // Update for SVG output
+        if self.state.drawing {
+            self.svg.append("L \(formatForSVG: self.state.position.x) \(formatForSVG: self.state.position.y) ")
+        }
+        
+        // If filling, keep track of current position
+        if self.state.filling {
+            self.state.verticesForCurrentFill.append(self.state.position)
+        }
+        
+    }
+    
+    /**
+     Move the turtle backward.
+     
+     - Parameters:
+         - steps: How many steps backward the turtle should take.
+     */
+    private func backward(steps: Double) {
+        
+        forward(steps: -steps)
+        
+    }
+        
     public func goToOrigin() {
         
         super.goToHome()
@@ -170,7 +224,7 @@ public class Pen: Tortoise {
             let hypotenuse = sqrt(dx * dx + dy * dy)
 
             // Draw the line
-            super.forward(steps: Int(round(hypotenuse)))
+            forward(steps: hypotenuse)
 
             // Restore original heading
             super.setHeading(to: savedHeading)
@@ -242,7 +296,7 @@ public class Pen: Tortoise {
             
             // Back up so that we are at the edge of the arc
             penUp()
-            backward(steps: Int(round(radius)))
+            backward(steps: radius)
             penDown()
             
             // Correct rotation so we are pointing the right way
@@ -290,7 +344,7 @@ public class Pen: Tortoise {
             
             // Back up so that we are at the edge of the arc
             penUp()
-            backward(steps: Int(round(radius)))
+            backward(steps: radius)
             penDown()
             
             // Correct rotation so we are pointing the right way
