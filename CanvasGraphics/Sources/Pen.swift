@@ -108,20 +108,16 @@ public class Pen: Tortoise {
     public func move(distance: Double) {
         
         // Save pen state
-        let penState = super.isPenDown()
+        let priorPenState = super.state.drawing
         
-        // Lift pen if it was down
-        if super.isPenDown() {
-            super.penUp()
-        }
+        // Lift pen
+        super.penUp()
         
         // Move forward
         forward(steps: distance)
         
         // Restore pen state
-        if penState == true {
-            super.penDown()
-        }
+        super.state.drawing = priorPenState
         
     }
     
@@ -187,21 +183,17 @@ public class Pen: Tortoise {
 
         
         // Save pen state
-        let penState = super.isPenDown()
+        let priorPenState = super.state.drawing
         
-        // Lift pen if it was down
-        if super.isPenDown() {
-            super.penUp()
-        }
+        // Lift pen
+        super.penUp()
         
         // Move
         position.x += dx
         position.y += dy
         
         // Restore pen state
-        if penState == true {
-            super.penDown()
-        }
+        super.state.drawing = priorPenState
 
         
     }
