@@ -1,27 +1,15 @@
 //: [Previous](@previous) / [Next](@next)
-//: # Blank canvas to copy
-//:
-//: ## To duplicate this page
-//:
-//: Place your cursor on line 19 of this page, press `Command-A` to select all text, and then `Command-C` to copy.
-//:
-//: Two-finger tap on the playground, then choose **New Playground Page**:
-//:
-//: ![new-playground](new-playground.png "New Playground")
-//:
-//: Move to the new page and press `Command-A` to select all text there, then `Command-V` to paste.
-//:
 /*:
- ## Canvas size
+## Canvas size
  
- Set the size of your desired canvas by adjusting the constants on lines 19 and 20.
+ Set the size of your desired canvas by adjusting the constants on lines 7 and 8.
  */
-let preferredWidth = 300
+let preferredWidth = 600
 let preferredHeight = 600
 /*:
  ## Required code
  
- Lines 28 to 36 are required to make the playground run.
+ Lines 16 to 30 are required to make the playground run.
  
  Please do not remove.
  */
@@ -32,27 +20,64 @@ import CanvasGraphics
 // Create canvas
 let canvas = Canvas(width: preferredWidth, height: preferredHeight)
 
+// Create a turtle that can draw upon the canvas
+let turtle = Tortoise(drawingUpon: canvas)
+
+// Create a pen that can draw upon the canvas
+let p = Pen(drawingUpon: canvas)
+
 // Show the canvas in the playground's live view
 PlaygroundPage.current.liveView = canvas
+
+/*:
+ ## Optional code
+ 
+ Below are two generally helpful configurations.
+ 
+ If you do not wish to work in all four quadrants of the Cartesian plane, comment out the code on line 44.
+ 
+ If you do not wish to see a grid, comment out the code on line 48.
+ 
+ */
+
+// Move the origin from the bottom-left corner of the canvas to it's centre point
+canvas.translate(to: Point(x: canvas.width / 2,
+                           y: canvas.height / 2))
+
+// Show a grid
+canvas.drawAxes(withScale: true, by: 20, color: .black)
+
 /*:
  ## Add your code
  
- Beginning on line 48, write a meaningful comment.
- 
- You can remove the code on line 49 and begin writing your own code.
- 
+ Beginning on line 61, you can add your own code.
+  
  [Documentation](http://russellgordon.ca/CanvasGraphics/Documentation/) is available.
 
  */
 
-// Replace this comment with your first comment – what is the goal of the code you're about to write?
-canvas.drawRectangle(at: Point(x: 50, y: 75), width: 100, height: 200)
+// Begin writing your code below (you can remove the examples shown)
+
+// Draw a circle, using the canvas object directly
+canvas.drawEllipse(at: Point(x: 100, y: 100), width: 25, height: 25)
+
+// Draw a vertical line, up and to the left
+p.drawTo(dx: -25, dy: 50)
+
+// Go back to origin
+p.goToOrigin()
+
+// Change the pen color
+p.penColor = .red
+
+// Draw a curve, down and to the right
+p.addArc(radius: 50, angle: -45)
 
 /*:
- ## Show the Assistant Editor
+ ## Show the Live View
  Don't see any results?
  
- Remember to show the Assistant Editor (1), and then switch to Live View (2):
+ Remember to show the Live View (1 then 2):
  
  ![timeline](timeline.png "Timeline")
 

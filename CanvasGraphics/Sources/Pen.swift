@@ -170,10 +170,10 @@ public class Pen: Tortoise {
     /// Move the pen back to the origin.
     public func goToOrigin() {
         
-        super.goToHome()
+        goto(dx: Double(currentPosition().x) * -1.0, dy: Double(currentPosition().y) * -1.0)
         
     }
-    
+        
     /**
      Move the pen relative to it's current position, without drawing a line.
      
@@ -294,8 +294,8 @@ public class Pen: Tortoise {
     public func addArc(radius: Double, angle: Double) {
         
         // Get current position
-        let currentX = position.x
-        let currentY = position.y
+//        let currentX = position.x
+//        let currentY = position.y
 
         if angle < 0 {
 
@@ -303,8 +303,8 @@ public class Pen: Tortoise {
             let toCenterInRadians = (90 - Double(currentHeading)) * (.pi / 180)
             let dx = radius * cos(toCenterInRadians)
             let dy = -radius * sin(toCenterInRadians)
-            let centerX = currentX + dx
-            let centerY = currentY + dy
+//            let centerX = currentX + dx
+//            let centerY = currentY + dy
             let startAngle = 90 + Double(currentHeading) + angle
             let endAngle = 90 + Double(currentHeading)
             
@@ -346,8 +346,8 @@ public class Pen: Tortoise {
             let toCenterInRadians = (90 + Double(currentHeading)) * (.pi / 180)
             let dx = radius * cos(toCenterInRadians)
             let dy = radius * sin(toCenterInRadians)
-            let centerX = currentX + dx
-            let centerY = currentY + dy
+//            let centerX = currentX + dx
+//            let centerY = currentY + dy
             let startAngle = -90 + Double(currentHeading) + angle
             let endAngle = -90 + Double(currentHeading)
 
