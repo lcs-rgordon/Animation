@@ -1,10 +1,10 @@
 //: [Previous](@previous) / [Next](@next)
 /*:
-## Canvas size
+ ## Canvas size
  
  Set the size of your desired canvas by adjusting the constants on lines 7 and 8.
  */
-let preferredWidth = 600
+let preferredWidth = 400
 let preferredHeight = 600
 /*:
  ## Required code
@@ -41,37 +41,46 @@ PlaygroundPage.current.liveView = canvas
  */
 
 // Move the origin from the bottom-left corner of the canvas to it's centre point
-canvas.translate(to: Point(x: canvas.width / 2,
-                           y: canvas.height / 2))
 
-// Show a grid
-canvas.drawAxes(withScale: true, by: 20, color: .black)
+
 
 /*:
  ## Add your code
  
  Beginning on line 61, you can add your own code.
-  
+ 
  [Documentation](http://russellgordon.ca/CanvasGraphics/Documentation/) is available.
-
+ 
  */
 
-// Begin writing your code below (you can remove the examples shown)
+// Create a light blue colour constant
+let lightBlue = Color(hue: 195, saturation: 68, brightness: 84, alpha: 100)
 
-// Draw a circle, using the canvas object directly
-canvas.drawEllipse(at: Point(x: 100, y: 100), width: 25, height: 25)
+// Set the fill color for shapes that follow
+canvas.fillColor = lightBlue
 
-// Draw a vertical line, up and to the left
-p.drawTo(dx: -25, dy: 50)
+// Draw a rectangle to create the background
+canvas.drawRectangle(at: Point(x: 0, y: 0), width: 400, height: 600)
 
-// Go back to origin
-p.goToOrigin()
+// Set the colour for text that follows this command
+canvas.textColor = .white
 
-// Change the pen color
-p.penColor = .red
+// Draw "hello" in big letters, tightly spaced
+canvas.drawText(message: "hello", at: Point(x: 200, y: 200), size: 45, kerning: -5)
 
-// Draw a curve, down and to the right
-p.addArc(radius: 50, angle: -45)
+// Draw "goodbye" in smaller letters, spread out
+canvas.drawText(message: "goodbye", at: Point(x: 225, y: 100), size: 25, kerning: 4)
+
+// Show a grid
+canvas.drawAxes(withScale: true, by: 50, color: .white)
+
+
+
+
+
+
+
+
 
 /*:
  ## Show the Live View
@@ -80,7 +89,7 @@ p.addArc(radius: 50, angle: -45)
  Remember to show the Live View (1 then 2):
  
  ![timeline](timeline.png "Timeline")
-
+ 
  ## Use source control
  To keep your work organized, receive feedback, and earn a high grade in this course, regular use of source control is a must.
  

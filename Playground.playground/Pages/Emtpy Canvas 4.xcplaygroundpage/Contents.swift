@@ -40,9 +40,6 @@ PlaygroundPage.current.liveView = canvas
  
  */
 
-// Move the origin from the bottom-left corner of the canvas to it's centre point
-canvas.translate(to: Point(x: canvas.width / 2,
-                           y: canvas.height / 2))
 
 // Show a grid
 canvas.drawAxes(withScale: true, by: 20, color: .black)
@@ -56,22 +53,24 @@ canvas.drawAxes(withScale: true, by: 20, color: .black)
 
  */
 
-// Begin writing your code below (you can remove the examples shown)
+let opaqueOrange = Color(hue: 40,
+                         saturation: 80,
+                         brightness: 80,
+                         alpha: 100)
+canvas.fillColor = opaqueOrange
+canvas.drawEllipse(at: Point(x: 200, y: 200),
+                   width: 100,
+                   height: 100)
 
-// Draw a circle, using the canvas object directly
-canvas.drawEllipse(at: Point(x: 100, y: 100), width: 25, height: 25)
+let transparentGreen = Color(hue: 120,
+                             saturation: 80,
+                             brightness: 40,
+                             alpha: 50)
+canvas.fillColor = transparentGreen
+canvas.drawEllipse(at: Point(x: 250, y: 200),
+                   width: 100,
+                   height: 100)
 
-// Draw a vertical line, up and to the left
-p.drawTo(dx: -25, dy: 50)
-
-// Go back to origin
-p.goToOrigin()
-
-// Change the pen color
-p.penColor = .red
-
-// Draw a curve, down and to the right
-p.addArc(radius: 50, angle: -45)
 
 /*:
  ## Show the Live View

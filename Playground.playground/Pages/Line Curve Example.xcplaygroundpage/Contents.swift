@@ -60,14 +60,19 @@ canvas.drawAxes(withScale: true, by: 50, color: .black)
 
 
 // A loop to express the 0, 50, 100, 150... pattern
+canvas.highPerformance = true
 for someValue in stride(from: 0,
                         through: 400,
-                        by: 50) {
+                        by: 1) {
 
     
     // someValue
     // Expresses the pattern 0, 50, 100, 150...
     someValue
+    
+    // 400 - someValue
+    // Express the pattern 400, 350, 300, 250...
+    400 - someValue
     
     // Draw the lines, from and to, for the bottom-right corner
     canvas.lineColor = .blue
@@ -78,9 +83,23 @@ for someValue in stride(from: 0,
     canvas.lineColor = .red
     canvas.drawLine(from: Point(x: 0, y: someValue),
                     to: Point(x: someValue, y: 400))
+    
+    // Draw the lines, from and to, for the top-right corner
+    canvas.lineColor = .green
+    canvas.drawLine(from: Point(x: 400, y: someValue),
+                    to: Point(x: 400 - someValue, y: 400))
+
+    // Draw the lines, from and to, for the bottom-left corner
+    canvas.lineColor = .purple
+    canvas.drawLine(from: Point(x: 0, y: 400 - someValue),
+                    to: Point(x: someValue, y: 0))
 
     
 }
+
+canvas.highPerformance = false
+
+
 
 canvas.copyToClipboard()
 /*:
