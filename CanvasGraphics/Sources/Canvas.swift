@@ -123,11 +123,11 @@ public class Canvas : NSImageView, CustomPlaygroundDisplayConvertible {
         return self.offscreenRep
     }
     
-    // Big Sur?
+    // Big Sur or higher?
     private var onBigSur: Bool {
-        return ProcessInfo.processInfo.operatingSystemVersion.majorVersion == 11
+        return ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 11
     }
-    
+
     /// Creates a canvas object that can be drawn upon.
     /// - parameter width: Width of the canvas
     /// - parameter height: Height of the canvas
